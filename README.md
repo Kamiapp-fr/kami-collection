@@ -7,14 +7,14 @@ A collection of web components write in Typescript.
 
 
 ```sh
-npm install --save kami-flash
+npm install --save kami-collection
 ```
 
 Or grab from the *dist* folder :
 
 
 ```html
-<script src="KamiFlash.umd.js"></script>
+<script src="KamiCollection.umd.js"></script>
 ```
 
 
