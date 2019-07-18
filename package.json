@@ -12,7 +12,7 @@
   "author": "Leroy Emilien <eleroy@savoy-international.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/EmilienLeroy/kami-collection"
   },
   "license": "MIT",
   "engines": {
