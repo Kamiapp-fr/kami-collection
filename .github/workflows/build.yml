@@ -20,16 +20,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and build
-      run: |
-        npm install
-        npm run build
-    - name: Commit files
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "📦 Build dist" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+    - name: install
+      run: npm install
+      
+    - name: build
+      run: npm run build
+
+    - name: push
+      uses: github-actions-x/commit@v2.1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        push-branch: 'master'
+        commit-message: '📦 Build dist'
+        files: .
