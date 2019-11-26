@@ -19843,10 +19843,7 @@ var KamiComponent = /** @class */ (function (_super) {
 }(HTMLElement));
 
 // polyfill
-[
-    KamiFlash_umd,
-    KamiInfiniteList_umd
-].forEach(function (component) {
+[KamiFlash_umd, KamiInfiniteList_umd].forEach(function (component) {
     // this fix redefinition due at turbolink
     if (!customElements.get(component.tag)) {
         customElements.define(component.tag, component);
