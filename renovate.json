@@ -1,11 +1,4 @@
 {
-  "packageRules": [
-    {
-      "depTypeList ": ["dependencies"],
-      "groupName": "Kami Collection",
-      "automerge": true
-    }
-  ],
   "commitMessageAction": "⬆️ Update",
   "extends": [
     "config:base"
