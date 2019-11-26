@@ -6,11 +6,11 @@
   "packageRules": [
       {
           "depTypeList": ["devDependencies"],
-          "groupName": "Dev dependencies",
+          "groupName": "Dev dependencies"
       },
       {
           "depTypeList": ["dependencies"],
-          "groupName": "Dependencies",
+          "groupName": "Dependencies"
       }
   ],
   "commitMessageAction": "⬆️ Update",
