@@ -130,7 +130,7 @@
     "web-animations-js": "^2.3.1"
   },
   "dependencies": {
-    "kami-flash": "0.0.4",
+    "kami-flash": "0.0.5",
     "kami-infinitelist": "0.0.5",
     "kami-component": "0.0.4"
   }
