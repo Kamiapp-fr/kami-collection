@@ -132,6 +132,6 @@
   "dependencies": {
     "kami-flash": "0.0.4",
     "kami-infinitelist": "0.0.3",
-    "kami-component": "0.0.2"
+    "kami-component": "0.0.4"
   }
 }
