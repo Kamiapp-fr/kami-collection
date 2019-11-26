@@ -1,4 +1,8 @@
 {
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
   "commitMessageAction": "⬆️ Update",
   "extends": [
     "config:base"
