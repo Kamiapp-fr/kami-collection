@@ -1,8 +1,13 @@
 {
   "automerge": true,
+  "automergeType": "branch"
   "major": {
     "automerge": false
   },
+  "packageRules": [{
+      "depTypeList": ["devDependencies"],
+      "groupName": "Dev dependencies"
+  }]
   "commitMessageAction": "⬆️ Update",
   "extends": [
     "config:base"
