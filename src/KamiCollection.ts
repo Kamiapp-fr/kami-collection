@@ -1,18 +1,18 @@
-//polyfill
+// polyfill
 import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter';
 import '@webcomponents/webcomponentsjs/webcomponents-bundle';
 import 'web-animations-js';
 
-//component
+// component
 import KamiFlash from 'kami-flash';
 import KamiInfiniteList from 'kami-infinitelist';
 import KamiComponent from 'kami-component';
 
-customElements.define(KamiFlash.tag,KamiFlash);
-customElements.define('kami-infinitelist',KamiInfiniteList);
+[KamiFlash, KamiInfiniteList].forEach(component => {
+    // this fix redefinition due at turbolink
+    if (!customElements.get(component.tag)) {
+        customElements.define(component.tag, component);
+    }
+});
 
-export {
-    KamiFlash,
-    KamiInfiniteList,
-    KamiComponent
-}
+export { KamiFlash, KamiInfiniteList, KamiComponent };
