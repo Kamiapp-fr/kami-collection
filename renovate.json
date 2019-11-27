@@ -6,7 +6,7 @@
       {
           "depTypeList": ["devDependencies"],
           "groupName": "Dev dependencies",
-          "enable": false
+          "enabled": false
       },
       {
           "depTypeList": ["dependencies"],
