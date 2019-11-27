@@ -1,5 +1,13 @@
 {
+  "major": {
+    "automerge": false
+  },
   "packageRules": [
+      {
+          "depTypeList": ["devDependencies"],
+          "groupName": "Dev dependencies",
+          "enable": false
+      },
       {
           "depTypeList": ["dependencies"],
           "groupName": "Dependencies",
