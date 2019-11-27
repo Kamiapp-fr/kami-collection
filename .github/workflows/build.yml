@@ -31,7 +31,6 @@ jobs:
       with:
         commit_message: 📦 Build dist
         branch: ${{ github.head_ref }}
-        file_pattern: .
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         

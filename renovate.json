@@ -1,16 +1,9 @@
 {
- "automerge": true,
-  "major": {
-    "automerge": false
-  },
   "packageRules": [
       {
-          "depTypeList": ["devDependencies"],
-          "groupName": "Dev dependencies"
-      },
-      {
           "depTypeList": ["dependencies"],
-          "groupName": "Dependencies"
+          "groupName": "Dependencies",
+          "automerge": true
       }
   ],
   "commitMessageAction": "⬆️ Update",
