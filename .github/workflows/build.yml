@@ -16,7 +16,7 @@ jobs:
         node-version: [10.x]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -31,9 +31,6 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@refactor/switch-to-js
       with:
         commit_message: 📦 Build dist
-        branch: ${{ github.head_ref }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Push changes
       uses: ad-m/github-push-action@master
