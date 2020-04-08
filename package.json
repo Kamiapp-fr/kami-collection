@@ -130,7 +130,7 @@
   },
   "dependencies": {
     "kami-flash": "0.0.5",
-    "kami-infinitelist": "0.0.5",
-    "kami-component": "0.0.5"
+    "kami-infinitelist": "0.0.6",
+    "kami-component": "0.0.6"
   }
 }
