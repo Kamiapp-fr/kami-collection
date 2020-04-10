@@ -25,19 +25,6 @@ jobs:
       
     - name: build
       run: npm run build
-      
-    - name: Commit changed files
-      uses: stefanzweifel/git-auto-commit-action@v2.3.0
-      with:
-        commit_message: 📦 Build dist
-        branch: master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Publish
       uses: mikeal/merge-release@master

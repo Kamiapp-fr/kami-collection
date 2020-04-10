@@ -1,5 +1,5 @@
 
-# `kami-collection`
+# `📘 kami-collection`
 
 A collection of web components write in Typescript.
 
@@ -10,22 +10,9 @@ A collection of web components write in Typescript.
 npm install --save kami-collection
 ```
 
-Or grab from the *dist* folder :
-
-
-```html
-<script src="KamiCollection.umd.js"></script>
-```
-
+You can also use the [CDN](https://cdn.jsdelivr.net/npm/kami-collection).
 
 ## Usage
-
-
-```html
-<script src="../dist/KamiCollection.umd.js"></script>
-```
-
-Or:
 
 ```js
 // ES6 Modules or TypeScript
@@ -35,6 +22,13 @@ import 'kami-collection'
 import { KamiFlash } from 'kami-collection';
 
 ```
+
+Or:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/kami-collection"></script>
+```
+
 
 ## Components
 
