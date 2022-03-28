@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    div{
+        margin: 10px;
+    }
+
+    button{
+        width: 100px;
+    }
+
+</style>
+<body>
+    
+    <div>
+        <input id="message" type="text" placeholder="Write your message">
+        <select name="" id="type">
+            <option value="INFO">Info</option>
+            <option value="OK">Ok</option>
+            <option value="ERROR">Error</option>
+            <option value="WARNING">Warning</option>
+        </select>
+        <input id="time" type="number" style="width: 50px;" placeholder="time">
+        <label for="progressbar">progress bar</label>
+        <input id="progressbar" type="checkbox" name="test">
+    </div>
+
+    <div>
+        <button class="create" id="TOPLEFT">TOPLEFT</button>
+        <button class="create" id="TOP">TOP</button>
+        <button class="create" id="TOPRIGHT">TOPRIGHT</button>
+    </div>
+    
+    <div>
+        <button class="create" id="BOTTOMLEFT">BOTTOMLEFT</button>
+        <button class="create" id="BOTTOM">BOTTOM</button>
+        <button class="create" id="BOTTOMRIGHT">BOTTOMRIGHT</button>
+    </div>
+
+    <div>
+        <button id="close">CLEAR</button>
+    </div>
+    
+    <script type="module">
+        import KamiFlash from '@kamiapp/flash';
+
+        window.onload = function(){
+            //declare flash component
+            customElements.define(KamiFlash.tag, KamiFlash);
+
+            KamiFlash.createFlash('kami-flash','INFO','Flash generate with the createFlash() methode','BOTTOM',true,'5000',true)
+
+            //get all button
+            let buttons = document.querySelectorAll('.create');
+            buttons.forEach((button)=>{
+
+                //add event click listener for each btn
+                button.addEventListener('click',function(){
+
+                    //generate the flash component
+                    let select = document.querySelector('#type')
+                    let message = document.querySelector('#message');
+                    let flash = document.createElement('kami-flash');
+                    let time = document.querySelector('#time');
+                    let progressbar = document.querySelector('#progressbar');
+
+                    flash.setAttribute('type',select.options[select.selectedIndex].value);
+                    flash.setAttribute('position',this.id);
+                    flash.setAttribute('stack','true')
+
+                    if(message.value){
+                        flash.setAttribute('message',message.value);
+                    }
+
+                    if(time.value){
+                        flash.setAttribute('time',time.value);
+                    }
+
+                    if(progressbar.checked){
+                        flash.setAttribute('progressbar','true');
+                    }
+
+                    //append the flash message to the body
+                    document.body.append(flash);
+                })
+            })
+
+            document.body.querySelector('#close').addEventListener('click',()=>{
+                KamiFlash.closeAll();
+            })
+        }
+    </script>
+</body>
+</html>

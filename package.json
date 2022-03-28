@@ -12,6 +12,7 @@
     "vite": "^2.8.0"
   },
   "workspaces": [
-    "./packages/component"
+    "./packages/component",
+    "./packages/flash"
   ]
 }

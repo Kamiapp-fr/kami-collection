@@ -3,7 +3,7 @@
 import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter';
 import '@webcomponents/webcomponentsjs/webcomponents-bundle';
 
-abstract class KamiComponent extends HTMLElement {
+abstract class KamiComponent<T = any> extends HTMLElement {
   /**
    * You should override this getter to return your own tag name for your component.
    * @example
@@ -63,7 +63,7 @@ abstract class KamiComponent extends HTMLElement {
   /**
    * @property {any} props
    */
-  protected props: any;
+  protected props: T | undefined;
 
   constructor({ syncProps = false } = {}) {
     // Always call super first in constructor
@@ -130,8 +130,8 @@ abstract class KamiComponent extends HTMLElement {
    * @param name - prop name
    * @param value - value of the prop
    */
-  protected setProp(name: string, value: any): void {
-    if (name && value && typeof this.props === 'object') {
+  protected setProp(name: keyof T, value: any): void {
+    if (name && value && this.props && typeof this.props === 'object') {
       this.props[name] = value;
     }
   }
@@ -140,7 +140,7 @@ abstract class KamiComponent extends HTMLElement {
    * Returns the value of the prop with the specified name, of `this.props`.
    * @param name - prop name
    */
-  protected getProp(name: string): any {
+  protected getProp(name: keyof T): any {
     if (this.props && typeof this.props === 'object') {
       return this.props[name];
     }
@@ -170,8 +170,8 @@ abstract class KamiComponent extends HTMLElement {
    * @param {String} oldValue - the old value
    * @param {String} newValue - the new value
    */
-  attributeChangedCallback(name: string, oldValue: any, newValue: any): void {
-    if (this.isObservable && oldValue !== newValue) {
+  attributeChangedCallback(name: keyof T, oldValue: any, newValue: any): void {
+    if (this.isObservable && oldValue !== newValue && this.props) {
       this.props[name] = newValue;
     }
   }
