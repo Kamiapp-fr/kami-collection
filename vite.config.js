@@ -14,7 +14,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         counter: resolve(__dirname, './demos/component/counter/index.html'),
-        drawing: resolve(__dirname, './demos/component/drawing/index.html')
+        drawing: resolve(__dirname, './demos/component/drawing/index.html'),
+        flash: resolve(__dirname, './demos/flash/index.html')
       }
     }
   }
