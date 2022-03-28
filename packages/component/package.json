@@ -1,0 +1,27 @@
+{
+  "name": "kami-component",
+  "private": true,
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/kami-component.umd.js",
+  "module": "./dist/kami-component.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/kami-component.es.js",
+      "require": "./dist/kami-component.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite build -w",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.6.0",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vite-plugin-dts": "^1.0.4"
+  }
+}
