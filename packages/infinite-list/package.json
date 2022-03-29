@@ -1,5 +1,5 @@
 {
-  "name": "kami-infinite-list",
+  "name": "@kamiapp/infinite-list",
   "private": true,
   "version": "0.0.0",
   "files": [
@@ -7,6 +7,7 @@
   ],
   "main": "./dist/kami-infinite-list.umd.js",
   "module": "./dist/kami-infinite-list.es.js",
+  "types": "./dist/infinite-list/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-infinite-list.es.js",

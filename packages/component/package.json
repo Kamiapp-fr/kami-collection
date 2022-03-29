@@ -1,5 +1,5 @@
 {
-  "name": "kami-component",
+  "name": "@kamiapp/component",
   "private": true,
   "version": "0.0.0",
   "files": [
@@ -7,6 +7,7 @@
   ],
   "main": "./dist/kami-component.umd.js",
   "module": "./dist/kami-component.es.js",
+  "types": "./dist/kami-component.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-component.es.js",
