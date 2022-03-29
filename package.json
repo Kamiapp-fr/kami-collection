@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite dev",
-    "build:demos": "tsc && vite build",
-    "build:packages": "npm run build --workspaces",
-    "publish:packages": "npm publish --workspaces",
+    "build": "tsc && vite build",
+    "test": "echo '@TODO add tests'",
+    "lint": "echo '@TODO add lint'",
     "preview": "vite preview"
   },
   "devDependencies": {
