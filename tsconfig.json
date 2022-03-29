@@ -17,7 +17,8 @@
     "rootDir": "./",
     "paths": {
       "@kamiapp/component": ["./packages/component/src/kami-component.ts"],
-      "@kamiapp/flash": ["./packages/flash/src/kami-flash.ts"]
+      "@kamiapp/flash": ["./packages/flash/src/index.ts"],
+      "@kamiapp/infinite-list": ["./packages/infinite-list/src/index.ts"]
     }
   },
   "include": ["demos", "packages/*"]

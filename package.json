@@ -13,6 +13,7 @@
   },
   "workspaces": [
     "./packages/component",
-    "./packages/flash"
+    "./packages/flash",
+    "./packages/infinite-list"
   ]
 }
