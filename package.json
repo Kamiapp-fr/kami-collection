@@ -7,7 +7,8 @@
     "build": "tsc && vite build",
     "test": "echo '@TODO add tests'",
     "lint": "echo '@TODO add lint'",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "version": "git add ."
   },
   "devDependencies": {
     "@geut/chan": "^3.2.6",
@@ -15,8 +16,6 @@
     "vite": "^2.8.0"
   },
   "workspaces": [
-    "./packages/component",
-    "./packages/flash",
-    "./packages/infinite-list"
+    "./packages/*"
   ]
 }
