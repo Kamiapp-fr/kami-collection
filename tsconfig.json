@@ -13,8 +13,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "baseUrl": "./",
-    "rootDir": "./",
+    "rootDirs": ["./"],
+    "baseUrl": ".",
     "paths": {
       "@kamiapp/component": ["./packages/component/src/kami-component.ts"],
       "@kamiapp/flash": ["./packages/flash/src/index.ts"],
