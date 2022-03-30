@@ -53,7 +53,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope: '@kamiapp'
       - run: npm ci
-      - run: npm build --workspaces
+      - run: npm run build --workspaces
       - run: npm publish --workspaces
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -85,5 +85,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: npm ci
-      - run: chan gh-release ${GITHUB_REF/refs\/tags\//}
+      - run: npm install -g @geut/chan
+      - run: echo "NPM_VERSION=`echo $(node -p "require('./package.json').version")`" >> $GITHUB_ENV
+      - run: chan gh-release ${{ env.NPM_VERSION }}
