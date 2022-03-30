@@ -16,6 +16,5 @@ module.exports = defineConfig({
   },
   plugins: [dts({
     include: ['src', '../component/src'],
-
   })]
 })

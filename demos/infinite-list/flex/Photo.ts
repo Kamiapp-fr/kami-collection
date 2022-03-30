@@ -1,78 +1,65 @@
-import KamiComponent from "@kamiapp/component";
+import KamiComponent from '@kamiapp/component';
 
-export default class Photo extends KamiComponent 
-{
-    private observeWindows?: IntersectionObserver;
+export default class Photo extends KamiComponent {
+  private observeWindows?: IntersectionObserver;
 
-    constructor()
-    {
-        super();
-    }
+  static get observedAttributes() {
+    return [
+      'titleprops',
+      'urlprops',
+    ];
+  }
 
-    static get observedAttributes() {
-        return [
-            'titleprops', 
-            'urlprops',
-        ];
-    }
+  // set your properties to the parent
+  // necessary for the render() method
+  setProperties() {
+    this.props = this.observe({
+      titleprops: this.getAttribute('titleprops'),
+      urlprops: this.getAttribute('urlprops'),
+    });
+  }
 
-    //set your properties to the parent
-    //necessary for the render() method
-    setProperties()
-    {
-        this.props = this.observe({
-            titleprops: this.getAttribute('titleprops'),
-            urlprops: this.getAttribute('urlprops')
-        })
-    }
+  // init all your event listener
+  initEventListener() {
+    this.wrapper.querySelector('.photo')?.addEventListener('click', () => {
+      // eslint-disable-next-line no-alert
+      alert(`title: ${this.props.titleprops}`);
+    });
+  }
 
+  connectedCallback() {
+    this.wrapper.style.position = 'relative';
 
-    //init all your event listener
-    initEventListener()
-    {
-        this.wrapper.querySelector('.photo')?.addEventListener('click',()=>{
-            alert(`title: ${this.props.titleprops}`)
-        })
-    }
+    this.observeWindows = new IntersectionObserver(this.display.bind(this), {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    });
 
-    connectedCallback()
-    {
-        this.wrapper.style.position = 'relative';
+    this.observeWindows.observe(this);
+  }
 
-        this.observeWindows = new IntersectionObserver(this.display.bind(this),{
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        });
+  display(changes: IntersectionObserverEntry[]) {
+    changes.forEach((change) => {
+      if (change.intersectionRatio > 0) {
+        this.wrapper.querySelector('.photo')?.classList.add('photo--display');
+      }
+    });
+  }
 
-        this.observeWindows.observe(this)
-    }
-
-    display(changes: IntersectionObserverEntry[])
-    {
-        changes.forEach(change => {
-            if (change.intersectionRatio > 0) {
-                this.wrapper.querySelector('.photo')?.classList.add('photo--display');
-            }
-        });
-    }
-
-
-    //render the dom structure
-    renderHtml()
-    {
-        return `
+  // render the dom structure
+  renderHtml() {
+    return `
             <div class="photo">
                 <div class="photo__title">${this.props.titleprops}</div>
                 <div class="photo__image"></div>
             </div>
-        `;        
-    }
+        `;
+  }
 
-    //render the style component
-    renderStyle()
-    {
-        return `
+  // render the style component
+  renderStyle() {
+    return `
             *{
                 margin: 0px;
                 padding:0px;
@@ -128,6 +115,5 @@ export default class Photo extends KamiComponent
             }
             
             `;
-        }
-
+  }
 }

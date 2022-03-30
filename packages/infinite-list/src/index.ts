@@ -9,7 +9,7 @@ import KamiInfiniteList from './components/KamiInfiniteList';
 
 // define the search if is not already define
 if (!customElements.get(KamiSearchBar.tag)) {
-    customElements.define(KamiSearchBar.tag, KamiSearchBar);
+  customElements.define(KamiSearchBar.tag, KamiSearchBar);
 }
 
 // export only the infinite list

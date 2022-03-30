@@ -5,8 +5,8 @@
  * @property {Keyframe[]} out - animation out
  */
 interface IAnimation {
-    enter: Keyframe[];
-    out: Keyframe[];
+  enter: Keyframe[];
+  out: Keyframe[];
 }
 
 export default IAnimation;

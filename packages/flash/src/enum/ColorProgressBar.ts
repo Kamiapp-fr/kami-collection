@@ -3,10 +3,10 @@
  * @enum ColorProgressBar
  */
 enum ColorProgressBar {
-    OK = '#008e72',
-    ERROR = '#ff0056',
-    WARNING = '#ff3000',
-    INFO = '#0081ff'
+  OK = '#008e72',
+  ERROR = '#ff0056',
+  WARNING = '#ff3000',
+  INFO = '#0081ff',
 }
 
 export default ColorProgressBar;

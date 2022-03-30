@@ -16,7 +16,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install packages
-        run: npm ci --workspaces
+        run: npm ci
 
       - name: Run Tests
         run: npm run test
@@ -35,7 +35,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install packages
-        run: npm ci --workspaces
+        run: npm ci
 
       - name: Run Linter
         run: npm run lint
@@ -52,7 +52,7 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
           scope: '@kamiapp'
-      - run: npm ci --workspaces
+      - run: npm ci
       - run: npm build --workspaces
       - run: npm publish --workspaces
         env:

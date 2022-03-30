@@ -115,7 +115,7 @@ abstract class KamiComponent<T = any> extends HTMLElement {
    * This method will be call if you use the observe() method.
    */
   protected initEventListener(): void {
-    return void 0;
+    return undefined;
   }
 
   /**
@@ -144,6 +144,8 @@ abstract class KamiComponent<T = any> extends HTMLElement {
     if (this.props && typeof this.props === 'object') {
       return this.props[name];
     }
+
+    return undefined;
   }
 
   /**
@@ -178,7 +180,8 @@ abstract class KamiComponent<T = any> extends HTMLElement {
 
   /**
    * This methode will observer the target which you have pass in param.
-   * When one of the property of your target is set the render() and initEventlistener() will be call.
+   * When one of the property of your target is set the render()
+   * and initEventlistener() will be call.
    * Which reload dynamicaly your component.
    * @param {Object} target - object which will be observed
    * @returns {ProxyConstructor}
@@ -189,12 +192,11 @@ abstract class KamiComponent<T = any> extends HTMLElement {
     // create a proxy to observe your props
     return new Proxy(target, {
       // just return your props
-      get: (obj: any, prop: string) => {
-        return obj[prop];
-      },
+      get: (obj: any, prop: string) => obj[prop],
       // rerender your component and his listener
       set: (obj, prop, value) => {
         // set the props value
+        // eslint-disable-next-line no-param-reassign
         obj[prop] = value;
 
         if (this.syncProps) {
@@ -212,7 +214,7 @@ abstract class KamiComponent<T = any> extends HTMLElement {
         }
 
         return true;
-      }
+      },
     });
   }
 
@@ -252,7 +254,7 @@ abstract class KamiComponent<T = any> extends HTMLElement {
    * @return {Element | null} html element create.
    */
   protected createElement(html: string): Element | null {
-    let element: Element = document.createElement('div') as Element;
+    const element: Element = document.createElement('div') as Element;
     element.innerHTML = html;
     return element.firstElementChild;
   }
@@ -263,9 +265,9 @@ abstract class KamiComponent<T = any> extends HTMLElement {
    * @returns {Boolean} the boolean converted
    */
   toBoolean(val: any): boolean {
-    let a: any = {
+    const a: any = {
       true: true,
-      false: false
+      false: false,
     };
 
     return a[val];
@@ -273,7 +275,8 @@ abstract class KamiComponent<T = any> extends HTMLElement {
 
   /**
    * This method will parse all element into the main HTMLelement.
-   * if an element have an attribute which begin by "bind:" it will call the *addBindsListener()* method
+   * if an element have an attribute which begin by "bind:"
+   * it will call the *addBindsListener()* method
    * with the element and the attribute in params.
    * else nothing happens.
    * @param {HTMLElement} html - parent element
@@ -304,7 +307,7 @@ abstract class KamiComponent<T = any> extends HTMLElement {
       const type: Event = new Event(attr.nodeName.split(':')[1]);
 
       // parse the function to call from the attr nodeValue
-      attr.nodeValue.split(';').forEach(functionToCall => {
+      attr.nodeValue.split(';').forEach((functionToCall) => {
         this.bindListener(html, functionToCall.replace(/ /g, ''), type);
       });
     }
@@ -329,7 +332,12 @@ abstract class KamiComponent<T = any> extends HTMLElement {
       // add listener only if event is a function.
       if (typeof event === 'function') {
         html.addEventListener(type.type, (e: Event) => {
-          params ? event(...params, e) : event(e);
+          if (params) {
+            event(...params, e);
+            return;
+          }
+
+          event(e);
         });
       } else {
         throw new TypeError(`${functionToCall} is not a function !`);
@@ -388,11 +396,11 @@ abstract class KamiComponent<T = any> extends HTMLElement {
 
     if (value.toString() !== '') {
       // check if the param already exist
-      this.getUrlParam(param)
-        ? // update the param
-          this.url.searchParams.set(param, value)
-        : // add the param
-          this.url.searchParams.append(param, value);
+      if (this.getUrlParam(param)) {
+        this.url.searchParams.set(param, value);
+      } else {
+        this.url.searchParams.append(param, value);
+      }
 
       // update url is needed
       newUrl = true;

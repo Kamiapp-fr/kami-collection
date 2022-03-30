@@ -1,78 +1,64 @@
-import KamiComponent from "@kamiapp/component";
+import KamiComponent from '@kamiapp/component';
 
-export default class Post extends KamiComponent 
-{
-    private observeWindows?: IntersectionObserver;
+export default class Post extends KamiComponent {
+  private observeWindows?: IntersectionObserver;
 
-    constructor()
-    {
-        super();
-    }
+  static get observedAttributes() {
+    return [
+      'titleprops',
+      'bodyprops',
+    ];
+  }
 
-    static get observedAttributes() {
-        return [
-            'titleprops', 
-            'bodyprops',
-        ];
-    }
+  // set your properties to the parent
+  // necessary for the render() method
+  setProperties() {
+    this.props = this.observe({
+      titleprops: this.getAttribute('titleprops'),
+      bodyprops: this.getAttribute('bodyprops'),
+    });
+  }
 
-    //set your properties to the parent
-    //necessary for the render() method
-    setProperties()
-    {
-        this.props = this.observe({
-            titleprops: this.getAttribute('titleprops'),
-            bodyprops: this.getAttribute('bodyprops')
-        })
-    }
+  // init all your event listener
+  initEventListener() {
+    this.wrapper.querySelector('.post')?.addEventListener('click', () => {
+      // eslint-disable-next-line no-alert
+      alert(`title: ${this.props.titleprops} body: ${this.props.bodyprops}`);
+    });
+  }
 
+  connectedCallback() {
+    this.observeWindows = new IntersectionObserver(this.display.bind(this), {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    });
 
-    //init all your event listener
-    initEventListener()
-    {
-        this.wrapper.querySelector('.post')?.addEventListener('click',()=>{
-            alert(`title: ${this.props.titleprops} body: ${this.props.bodyprops}`)
-        })
-    }
+    this.observeWindows.observe(this);
+    this.wrapper.style.position = 'relative';
+  }
 
-    connectedCallback()
-    {
-        this.observeWindows = new IntersectionObserver(this.display.bind(this),{
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        });
+  display(changes: IntersectionObserverEntry[]) {
+    changes.forEach((change) => {
+      if (change.intersectionRatio > 0) {
+        this.wrapper.querySelector('.post')?.classList.add('post--display');
+      }
+    });
+  }
 
-        this.observeWindows.observe(this)
-        this.wrapper.style.position = 'relative';
-
-    }
-
-    display(changes: IntersectionObserverEntry[])
-    {
-        changes.forEach(change => {
-            if (change.intersectionRatio > 0) {
-                this.wrapper.querySelector('.post')?.classList.add('post--display');
-            }
-        });
-    }
-
-
-    //render the dom structure
-    renderHtml()
-    {
-        return `
+  // render the dom structure
+  renderHtml() {
+    return `
             <div class="post">
                 <div class="post__title">${this.props.titleprops}</div>
                 <div class="post__body">${this.props.bodyprops}</div>
             </div>
-        `;        
-    }
+        `;
+  }
 
-    //render the style component
-    renderStyle()
-    {
-        return `
+  // render the style component
+  renderStyle() {
+    return `
             .post{
                 margin: 5px;
                 padding: 5px;
@@ -105,6 +91,5 @@ export default class Post extends KamiComponent
             }
             
             `;
-        }
-
+  }
 }

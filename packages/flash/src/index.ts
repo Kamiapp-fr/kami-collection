@@ -8,7 +8,7 @@ import KamiProgressBar from './components/KamiProgressBar';
 
 // define the search if is not already define
 if (!customElements.get(KamiProgressBar.tag)) {
-    customElements.define(KamiProgressBar.tag, KamiProgressBar);
+  customElements.define(KamiProgressBar.tag, KamiProgressBar);
 }
 
 export default KamiFlash;

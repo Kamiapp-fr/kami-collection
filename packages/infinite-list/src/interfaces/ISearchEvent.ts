@@ -1,5 +1,5 @@
 interface ISearchEvent {
-    search: string;
+  search: string;
 }
 
 export default ISearchEvent;

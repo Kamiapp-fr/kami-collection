@@ -8,9 +8,9 @@ import Type from '../enum/Type';
  * @property {Type} type - type of the flash parent
  */
 interface IKamiProgressBar {
-    width: number;
-    time: number;
-    type: Type;
+  width: number;
+  time: number;
+  type: Type;
 }
 
 export default IKamiProgressBar;

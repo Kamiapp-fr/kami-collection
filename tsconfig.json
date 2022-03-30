@@ -21,5 +21,6 @@
       "@kamiapp/infinite-list": ["./packages/infinite-list/src/index.ts"]
     }
   },
-  "include": ["demos", "packages/*"]
+  "include": ["demos"],
+  "exclude": ["node_modules"]
 }

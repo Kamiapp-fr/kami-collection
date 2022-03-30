@@ -1,96 +1,88 @@
-import KamiComponent from "@kamiapp/component";
-import KamiInfiniteList from "@kamiapp/infinite-list";
+import KamiComponent from '@kamiapp/component';
+import KamiInfiniteList from '@kamiapp/infinite-list';
 
 class Card extends KamiComponent {
-    private currentY?: number;
-    
-    private currentRatio?: number;
-    
-    public isIntersecting?: boolean;
-    
-    private previousY?: number;
-    
-    public previousRatio?: number;
-    
-    private observeWindows?: IntersectionObserver;
+  private currentY?: number;
 
-    static get tag() {
-        return 'card-component';
-    }
+  private currentRatio?: number;
 
-    static get observedAttributes() {
-        return [
-            'name', 
-            'img'
-        ];
-    }
+  public isIntersecting?: boolean;
 
+  private previousY?: number;
 
-    setProperties() {
-        this.props = this.observe({
-            name: this.getAttribute('name') || 'name',
-            img: this.getAttribute('img') || 'img'
-        })
-    }
+  public previousRatio?: number;
 
-    connectedCallback()
-    {
-        this.previousY = 0
-        this.previousRatio = 0
-        this.observeWindows = new IntersectionObserver(this.display.bind(this),{
-            root: null,
-            rootMargin: '50px',
-            threshold: 0.1
-        });
+  private observeWindows?: IntersectionObserver;
 
-        this.observeWindows.observe(this)
-        this.wrapper.style.position = 'relative';
+  static get tag() {
+    return 'card-component';
+  }
 
-    }
+  static get observedAttributes() {
+    return [
+      'name',
+      'img',
+    ];
+  }
 
-    display(changes: IntersectionObserverEntry[])
-    {
-        changes.forEach(change => {
-            const card = this.wrapper.querySelector('.card') as HTMLElement;
-            this.currentY = change.boundingClientRect.y
-            this.currentRatio = change.intersectionRatio
-            this.isIntersecting = change.isIntersecting
+  setProperties() {
+    this.props = this.observe({
+      name: this.getAttribute('name') || 'name',
+      img: this.getAttribute('img') || 'img',
+    });
+  }
 
-            
-            
-            if (this.previousY && (this.currentY < this.previousY)) {
-                card.style.transform = "rotate3d(1, 0, 0, 45deg) translateZ(-100px)";
-            } else {
-                card.style.transform = "rotate3d(1, 0, 0, -45deg) translateZ(-100px)";
-            }
+  connectedCallback() {
+    this.previousY = 0;
+    this.previousRatio = 0;
+    this.observeWindows = new IntersectionObserver(this.display.bind(this), {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.1,
+    });
 
-            if (change.intersectionRatio > 0) {
-                card.style.opacity = '1';
-                card.style.transform = "rotate3d(1, 0, 0, 0deg) translateZ(0px)";
-            }
+    this.observeWindows.observe(this);
+    this.wrapper.style.position = 'relative';
+  }
 
-            if (change.intersectionRatio < 0.1) {
-                card.style.opacity = '0';
-            }
+  display(changes: IntersectionObserverEntry[]) {
+    changes.forEach((change) => {
+      const card = this.wrapper.querySelector('.card') as HTMLElement;
+      this.currentY = change.boundingClientRect.y;
+      this.currentRatio = change.intersectionRatio;
+      this.isIntersecting = change.isIntersecting;
 
-            this.previousY = this.currentY;
-            this.previousRatio = this.currentRatio;
+      if (this.previousY && (this.currentY < this.previousY)) {
+        card.style.transform = 'rotate3d(1, 0, 0, 45deg) translateZ(-100px)';
+      } else {
+        card.style.transform = 'rotate3d(1, 0, 0, -45deg) translateZ(-100px)';
+      }
 
-        });
-        
-    }
+      if (change.intersectionRatio > 0) {
+        card.style.opacity = '1';
+        card.style.transform = 'rotate3d(1, 0, 0, 0deg) translateZ(0px)';
+      }
 
-    renderHtml() {
-        return `
+      if (change.intersectionRatio < 0.1) {
+        card.style.opacity = '0';
+      }
+
+      this.previousY = this.currentY;
+      this.previousRatio = this.currentRatio;
+    });
+  }
+
+  renderHtml() {
+    return `
             <div class="card">
                 <div class="card__img"></div>
                 <div class="card__content">${this.getProp('name')}</div>
             </div>
         `;
-    }
+  }
 
-    renderStyle() {
-        return `
+  renderStyle() {
+    return `
             .card {
                 padding: 10px;
                 font-family: sans-serif;
@@ -116,9 +108,8 @@ class Card extends KamiComponent {
                 margin: 15px;
             }
         `;
-    }
+  }
 }
-
 
 customElements.define(Card.tag, Card);
 customElements.define('kami-infinite-list', KamiInfiniteList);

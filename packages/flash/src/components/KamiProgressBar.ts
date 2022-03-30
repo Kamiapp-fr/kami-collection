@@ -3,90 +3,92 @@ import IKamiProgressBar from '../interfaces/IKamiProgressBar';
 import Type from '../enum/Type';
 import ColorProgressBar from '../enum/ColorProgressBar';
 
-
 /**
  * Create a progress bar for the kami flash component.
  * @class KamiProgressBar
  * @extends KamiComponent
  */
 class KamiProgressBar extends KamiComponent<IKamiProgressBar> {
-    /**
+  /**
      * @static
      * @property {string} tag - the component tag
      */
-    static get tag(): any {
-        return 'kami-progressbar';
-    }
+  static get tag(): any {
+    return 'kami-progressbar';
+  }
 
-    /**
+  /**
      * @property {string} color - progress bar color
      */
-    private color: string;
+  private color: string;
 
-    /**
+  /**
      * @property {number} interval - setInterval id
      */
-    private interval: number | undefined;
+  private interval: number | undefined;
 
-    /**
+  /**
      * @property {number} width - progress bar width
      */
-    private width: number;
+  private width: number;
 
-    /**
+  /**
      * Delta width by the current time.
      * @type {number}
      */
-    get deltaWidth() {
-        return (this.width / this.props.time) * 10;
-    }
+  get deltaWidth() {
+    return (this.width / this.props.time) * 10;
+  }
 
-    declare protected props: IKamiProgressBar;
+  declare protected props: IKamiProgressBar;
 
-    constructor({ width, time, type }: IKamiProgressBar) {
-        super();
-        this.width = width;
-        this.props.width = width;
-        this.props.time = time;
-        this.props.type = type;
-        this.color = ColorProgressBar[this.props.type];
-    }
+  constructor({ width, time, type }: IKamiProgressBar) {
+    super();
+    this.width = width;
+    this.props.width = width;
+    this.props.time = time;
+    this.props.type = type;
+    this.color = ColorProgressBar[this.props.type];
+  }
 
-    setProperties(): void {
-        this.props = this.observe({
-            width: 0,
-            time: 0,
-            type: Type.INFO
-        })as unknown as IKamiProgressBar;
-    }
+  setProperties(): void {
+    this.props = this.observe({
+      width: 0,
+      time: 0,
+      type: Type.INFO,
+    }) as unknown as IKamiProgressBar;
+  }
 
-    /**
+  /**
      * Start the progress bar reduce.
      * @returns {void}
      */
-    start(): void {
-        this.interval = window.setInterval(this.progress.bind(this), 10);
-    }
+  start(): void {
+    this.interval = window.setInterval(this.progress.bind(this), 10);
+  }
 
-    /**
+  /**
      * Reduce the progress bar with the current delta width.
      * @returns {void}
      */
-    progress(): void {
-        this.props.width <= 0
-            ? clearInterval(this.interval)
-            : (this.props.width = this.props.width - this.deltaWidth);
+  progress(): void {
+    if (this.props.width <= 0) {
+      clearInterval(this.interval);
+      return;
     }
 
-    renderHtml(): string {
-        return `
+    this.props.width -= this.deltaWidth;
+  }
+
+  renderHtml(): string {
+    return `
             <div class="progressbar">
             </div>
         `;
-    }
+  }
 
-    renderStyle(): string {
-        return `
+  renderStyle(): string {
+    return `
             .progressbar{
                 position: absolute;
                 width: ${this.props.width}px;
@@ -97,7 +99,7 @@ class KamiProgressBar extends KamiComponent<IKamiProgressBar> {
                 border-radius: .2857rem;
             }
         `;
-    }
+  }
 }
 
 export default KamiProgressBar;

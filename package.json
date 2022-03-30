@@ -6,7 +6,7 @@
     "dev": "vite dev",
     "build": "tsc && vite build",
     "test": "echo '@TODO add tests'",
-    "lint": "echo '@TODO add lint'",
+    "lint": "eslint .",
     "preview": "vite preview",
     "version:patch": "npm version patch --workspaces && git add . && npm version patch --force",
     "version:minor": "npm version minor --workspaces && git add . && npm version minor --force",
@@ -14,7 +14,11 @@
   },
   "devDependencies": {
     "@geut/chan": "^3.2.6",
-    "typescript": "^4.5.4",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-typescript": "^16.1.4",
+    "typescript": "^4.6.3",
     "vite": "^2.8.0"
   },
   "workspaces": [
