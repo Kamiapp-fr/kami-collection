@@ -1,6 +1,5 @@
 {
   "name": "@kamiapp/component",
-  "private": true,
   "version": "0.1.1",
   "files": [
     "dist"
