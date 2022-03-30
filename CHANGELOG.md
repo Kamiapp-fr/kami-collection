@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2022-03-30
+### Fixed
+- Fixed CI/CD trouble. Now build and release should totaly automated.
+
 ## [0.1.0] - 2022-03-30
 ### Changed
 - Migrates old kami components:
@@ -17,5 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Kamiapp-fr/kami-collection/releases/tag/v0.1.0
