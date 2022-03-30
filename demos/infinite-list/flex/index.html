@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  <script type="module" crossorigin src="/assets/flex.57f3a9a1.js"></script>
+  <link rel="modulepreload" href="/assets/vendor.2a8d4232.js">
+  <link rel="modulepreload" href="/assets/kami-component.8dc500b2.js">
+  <link rel="modulepreload" href="/assets/index.3cbcadf3.js">
+  <link rel="stylesheet" href="/assets/simple.9554a95c.css">
+</head>
+
+<body>
+    
+    <kami-infinite-list
+        datasource="https://jsonplaceholder.typicode.com/photos"
+        delegate="photo-custom"
+        limitQuery="_limit"
+        pageQuery="_page"
+        limit='22'
+        width="700px"
+        flex="true"
+    >
+        <photo-custom
+            titleprops="title"
+            urlprops="url"
+        >
+        </photo-custom>
+    </kami-infinite-list>
+
+
+    
+</body>
+</html>
