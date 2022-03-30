@@ -1,0 +1,32 @@
+{
+  "name": "@kamiapp/infinite-list",
+  "private": true,
+  "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/kami-infinite-list.umd.js",
+  "module": "./dist/kami-infinite-list.es.js",
+  "types": "./dist/infinite-list/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/kami-infinite-list.es.js",
+      "require": "./dist/kami-infinite-list.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite build -w",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@polymer/iron-icons": "^3.0.1",
+    "@webcomponents/webcomponentsjs": "^2.6.0",
+    "web-animations-js": "^2.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vite-plugin-dts": "^1.0.4"
+  }
+}
