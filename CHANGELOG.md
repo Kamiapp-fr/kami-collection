@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2022-03-30
+### Fixed
+- Fix `npm publish` command authentification.
+
 ## [0.1.2] - 2022-03-30
 ### Fixed
 - Fix `npm publish` command with removing the private field from each `@kamiapp` packages.
@@ -26,7 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Kamiapp-fr/kami-collection/releases/tag/v0.1.0
