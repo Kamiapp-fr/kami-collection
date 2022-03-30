@@ -1,12 +1,11 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import { alias } from '../../vite.config';
 
 module.exports = defineConfig({
   resolve: {
-    alias: {
-      '@kamiapp/component': '../component/src/kami-component.ts'
-    },
+    alias,
   },
   build: {
     lib: {
@@ -15,5 +14,7 @@ module.exports = defineConfig({
       fileName: (format) => `kami-flash.${format}.js`
     },
   },
-  plugins: [dts()]
+  plugins: [dts({
+    include: ['src', '../component/src'],
+  })]
 })
