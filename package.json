@@ -20,6 +20,9 @@
     "vite": "^2.8.0"
   },
   "workspaces": [
-    "./packages/*"
+    "./packages/component",
+    "./packages/flash",
+    "./packages/infinite-list",
+    "./packages/collection"
   ]
 }
