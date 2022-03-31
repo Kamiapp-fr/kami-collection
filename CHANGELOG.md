@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2022-03-31
+### Fixed
+- Pin dependencies to get always the lastest versions of kamiapp packages.
+- Update version script to only update package number.
+
 ## [0.1.4] - 2022-03-31
 ### Fixed
 - Fix types using local packages as dependencies. Instead of using alias to get types, now types is get directly from the node module package.
@@ -34,7 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.4...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.5...HEAD
+[0.1.5]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.1...v0.1.2
