@@ -8,9 +8,7 @@
     "test": "echo '@TODO add tests'",
     "lint": "eslint .",
     "preview": "vite preview",
-    "version:patch": "npm version patch --workspaces && git add . && npm version patch --force",
-    "version:minor": "npm version minor --workspaces && git add . && npm version minor --force",
-    "version:major": "npm version major --workspaces && git add . && npm version major --force"
+    "version": "node ./scripts/version"
   },
   "devDependencies": {
     "@geut/chan": "^3.2.6",
