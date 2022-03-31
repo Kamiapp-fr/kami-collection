@@ -1,15 +1,23 @@
-# `📘 kami-collection`
+<div align="center">
+  <img src="./.github/logo.png" width="200" />
+  <br/><br/>
+  
+  # Kami Collection
+  
+  A collection of Web Component developed by [Kami](https://www.kamiapp.fr/en).
+  <br/><br/>
+ [![CI/CD](https://github.com/Kamiapp-fr/kami-collection/actions/workflows/main.yml/badge.svg)](https://github.com/Kamiapp-fr/kami-collection/actions/workflows/main.yml)
+</div>
 
-A collection of web components write in Typescript.
 
 
 ## Components
 
-| Repository                                                        |  description                             | version  | license |
-|------------------------------------------------------------------ |------------------------------------------|----------|---------|
-| [``<kami-flash>``](./packages/flash/)          |   Simple flash web component.            | [![version](https://img.shields.io/npm/v/@kamiapp/flash.svg?style=flat-square)](https://www.npmjs.com/package/kami-flash)    | [![license](https://img.shields.io/npm/l/kami-flash.svg?style=flat-square)](https://www.npmjs.com/package/kami-flash)                               |
-| [``<kami-infinite-list>``](./packages/infinite-list/)       |   Infinite list based on web component.          | [![version](https://img.shields.io/npm/v/@kamiapp/infinite-list.svg?style=flat-square)](https://www.npmjs.com/package/kami-infinitelist)     | [![license](https://img.shields.io/npm/l/kami-infinitelist.svg?style=flat-square)](https://www.npmjs.com/package/kami-flash)        |
-| [``<kami-component>``](./packages/component/)       |   Abstract class to create simple web component.         | [![version](https://img.shields.io/npm/v/@kamiapp/component.svg?style=flat-square)](https://www.npmjs.com/package/kami-component)     | [![license](https://img.shields.io/npm/l/kami-component.svg?style=flat-square)](https://www.npmjs.com/package/kami-flash)        |
+| Repository                                           |  description                             | version  |
+|----------------------------------------------------- |------------------------------------------|----------|
+| [``<kami-flash>``](./packages/flash/)                |   Simple flash web component.            | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/flash)    |                           
+| [``<kami-infinite-list>``](./packages/infinite-list/)|   Infinite list based on web component.          | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/infinite-list)    |     
+| [``<kami-component>``](./packages/component/)|   Abstract class to create simple web component.         | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/component) |    
 
 ## Contribute
 
