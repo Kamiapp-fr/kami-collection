@@ -1,14 +1,14 @@
 {
   "name": "@kamiapp/collection",
   "private": true,
-  "version": "0.1.3",
+  "version": "0.1.4",
   "scripts": {
     "dev": "vite dev",
     "build": "tsc && vite build",
     "test": "echo '@TODO add tests'",
     "lint": "eslint .",
     "preview": "vite preview",
-    "version": "node ./scripts/version"
+    "release": "node ./scripts/version"
   },
   "devDependencies": {
     "@geut/chan": "^3.2.6",
