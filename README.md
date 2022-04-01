@@ -79,4 +79,4 @@ You can get more informations about each components into the ``packages/<compone
 
 ## Contribute
 
-We would love you for the contribution to ``kami-collection`` project, check the ``CONTRIBUTING`` file for more info.
+We would love you for the contribution to ``kami-collection`` project, check the [CONTRIBUTING](./CONTRIBUTING.md) file for more info.
