@@ -11,6 +11,9 @@
  ![GitHub](https://img.shields.io/github/license/kamiapp-fr/kami-collection)
 </div>
 
+
+> ⚠️ **WARNING:** This project is under development and it risk to have some majors changes since the ``v1.0.0`` will be release. One of the biggest change will be the usage of `lit` instead of ``<kami-component>`` as base class of each element of the collection. It's because the ``<kami-component>`` package will be probably deprecate in the futur due to the complexity to maintain it.
+
 ## Getting Started
 ### Install
 
