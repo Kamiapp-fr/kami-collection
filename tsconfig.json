@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "useDefineForClassFields": true,
+    "useDefineForClassFields": false,
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
@@ -9,7 +9,7 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true, 
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
