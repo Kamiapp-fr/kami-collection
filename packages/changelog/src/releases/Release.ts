@@ -1,9 +1,9 @@
 import ProviderRelease from './ProviderRelease';
 
 export default abstract class Release<T = any> {
-  protected data: T;
+  protected data: T | T[];
 
-  constructor(data: T) {
+  constructor(data: T | T[]) {
     this.data = data;
   }
 

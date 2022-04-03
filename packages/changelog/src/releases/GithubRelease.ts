@@ -14,10 +14,18 @@ export default class GithubRelease extends Release<GithubReleaseState> {
   }
 
   public getContent(): string {
-    return this.data.body;
+    if (!Array.isArray(this.data)) {
+      return this.data.body;
+    }
+
+    return this.data.reduce((value, { body }) => value + body, '');
   }
 
   public getDate(): Date {
-    return dayjs(this.data.published_at).toDate();
+    if (!Array.isArray(this.data)) {
+      return dayjs(this.data.published_at).toDate();
+    }
+
+    return dayjs(this.data.pop()?.published_at).toDate();
   }
 }
