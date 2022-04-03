@@ -5,7 +5,8 @@ export const alias = {
   "@kamiapp/component": resolve(__dirname, "./packages/component/src/kami-component.ts"),
   "@kamiapp/flash": resolve(__dirname, "./packages/flash/src/index.ts"),
   "@kamiapp/infinite-list": resolve(__dirname, "./packages/infinite-list/src/index.ts"),
-  "@kamiapp/collection": resolve(__dirname, "./packages/collection/src/kami-collection.ts")
+  "@kamiapp/collection": resolve(__dirname, "./packages/collection/src/kami-collection.ts"),
+  "@kamiapp/changelog": resolve(__dirname, "./packages/changelog/src/kami-changelog.ts")
 }
 
 export default defineConfig({

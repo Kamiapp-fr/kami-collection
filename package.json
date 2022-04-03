@@ -23,6 +23,7 @@
     "./packages/component",
     "./packages/flash",
     "./packages/infinite-list",
+    "./packages/changelog",
     "./packages/collection"
   ]
 }
