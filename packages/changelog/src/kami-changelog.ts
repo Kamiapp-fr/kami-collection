@@ -1,20 +1,17 @@
 import { LitElement, html } from 'lit';
 import { property, state } from 'lit/decorators.js';
-import MarkdownIt from 'markdown-it';
+import KamiMarkdown from '@kamiapp/markdown';
 import { ProviderRelease, releaseFactory } from './releases';
 import Release from './releases/Release';
+
+if (!customElements.get('kami-markdown')) {
+  customElements.define('kami-markdown', KamiMarkdown);
+}
 
 export default class KamiChangelog extends LitElement {
   static get tag() {
     return 'kami-changelog';
   }
-
-  constructor() {
-    super();
-    this.md = new MarkdownIt();
-  }
-
-  private md: MarkdownIt;
 
   @property()
   private readonly src?: string;
@@ -47,9 +44,11 @@ export default class KamiChangelog extends LitElement {
       return 'No Data';
     }
 
-    return html`${
-      this.md.parse(this.release.getContent(), {}).map(({ content }) => html`${content}<br>`)
-    }`;
+    return html`
+      <kami-markdown>
+        ${this.release.getContent()}
+      </kami-markdown>
+    `;
   }
 
   render() {
