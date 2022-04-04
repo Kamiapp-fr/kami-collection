@@ -20,9 +20,16 @@
         height: 100vh;
         flex-direction: column;
     }
+
+    kami-markdown:not(:defined) {
+        opacity: 0;
+    }
 </style>
 <body>
-    <kami-markdown></kami-markdown>
+    <kami-markdown>
+        # Title
+        ## Description
+    </kami-markdown>
     <script type="module">
         import KamiMarkdown from '@kamiapp/markdown';
 
