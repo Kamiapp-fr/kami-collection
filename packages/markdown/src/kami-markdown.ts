@@ -14,7 +14,17 @@ export default class KamiMarkdown extends LitElement {
   constructor() {
     super();
     this.parser = new Markdown();
-    this.content = this.innerHTML.trim().split('\n').reduce(this.reduceHtml, '');
+    this.content = '';
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    this.content = this.innerHTML
+      .trim()
+      .replace(/<!--.*?-->/g, '')
+      .split('\n')
+      .reduce(this.reduceHtml, '');
   }
 
   private reduceHtml(content: string, text: string) {
