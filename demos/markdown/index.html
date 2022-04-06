@@ -14,26 +14,33 @@
 
     body {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
         width: 100%;
         height: 100vh;
         flex-direction: column;
     }
 
-    kami-markdown:not(:defined) {
-        opacity: 0;
-    }
 </style>
 <body>
-    <kami-markdown>
+    <textarea style="height: 50%;">
         # Title
         ## Description
-    </kami-markdown>
+    </textarea>
+    <kami-markdown></kami-markdown>
+    
     <script type="module">
         import KamiMarkdown from '@kamiapp/markdown';
+        const textarea = document.querySelector('textarea');
+        const md = document.querySelector('kami-markdown');
 
         customElements.define(KamiMarkdown.tag, KamiMarkdown);
+        customElements.whenDefined(KamiMarkdown.tag).then(update);
+        textarea.addEventListener('input', update)
+
+        function update() {
+            md.innerHTML = textarea.value;
+        }
     </script>
 </body>
 </html>
