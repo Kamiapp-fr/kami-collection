@@ -1,21 +1,26 @@
 import { html, LitElement } from 'lit';
-import { state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Markdown from 'markdown-it';
+import { getTheme, MarkdownTheme } from './themes';
 
 export default class KamiMarkdown extends LitElement {
   static get tag() {
     return 'kami-markdown';
   }
 
+  private parser: Markdown;
+
+  @property()
+  private theme: MarkdownTheme;
+
   @state()
   private content: string;
-
-  private parser: Markdown;
 
   constructor() {
     super();
     this.content = '';
+    this.theme = MarkdownTheme.NONE;
     this.parser = new Markdown();
   }
 
@@ -46,12 +51,16 @@ export default class KamiMarkdown extends LitElement {
 
   protected render() {
     return html`
+      <style>
+        ${getTheme(this.theme)}
+      </style>
       <slot 
         style="display: none" 
         @slotchange=${this.handleSlotchange}
       ></slot>
-
-      ${unsafeHTML(this.parser.render(this.content))}
+      <article class="markdown-body">
+        ${unsafeHTML(this.parser.render(this.content))}
+      </article>
     `;
   }
 }
