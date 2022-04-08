@@ -1,3 +1,6 @@
+import 'material-icons/iconfont/material-icons.css';
+import '@material/mwc-icon';
+
 import { LitElement, html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import KamiMarkdown from '@kamiapp/markdown';
@@ -45,6 +48,7 @@ export default class KamiChangelog extends LitElement {
     }
 
     return html`
+      <mwc-icon>description</mwc-icon>
       <kami-markdown>
         ${this.release.getContent()}
       </kami-markdown>
