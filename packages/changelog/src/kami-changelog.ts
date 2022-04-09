@@ -1,9 +1,9 @@
-import 'material-icons/iconfont/material-icons.css';
 import '@material/mwc-icon';
-
+import { mdiBell } from '@mdi/js';
 import { LitElement, html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import KamiMarkdown from '@kamiapp/markdown';
+
 import { ProviderRelease, releaseFactory } from './releases';
 import Release from './releases/Release';
 
@@ -48,7 +48,9 @@ export default class KamiChangelog extends LitElement {
     }
 
     return html`
-      <mwc-icon>description</mwc-icon>
+      <svg viewBox="0 0 25 25" height="50" width="50">
+        <path d=${mdiBell}></path>
+      </svg>
       <kami-markdown>
         ${this.release.getContent()}
       </kami-markdown>
