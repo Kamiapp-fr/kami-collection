@@ -1,6 +1,6 @@
 import '@material/mwc-icon';
-import { mdiBell } from '@mdi/js';
-import { LitElement, html } from 'lit';
+import { mdiBellOutline } from '@mdi/js';
+import { LitElement, html, css } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import KamiMarkdown from '@kamiapp/markdown';
 
@@ -15,6 +15,17 @@ export default class KamiChangelog extends LitElement {
   static get tag() {
     return 'kami-changelog';
   }
+
+  static styles = css`
+    .kami-changelog__btn {
+      background-color: var(--kami-changelog-btn-color, white);
+      border-radius: var(--kami-changelog-btn-raduis, 100%);
+      padding: var(--kami-changelog-btn-padding, 10px);
+      height: var(--kami-changelog-btn-height, 50px);
+      width: var(--kami-changelog-btn-width, 50px); 
+      box-shadow: var(--kami-changelog-btn-shadow, 0 0 8px -5px black);
+    }
+  `;
 
   @property()
   private readonly src?: string;
@@ -48,16 +59,21 @@ export default class KamiChangelog extends LitElement {
     }
 
     return html`
-      <svg viewBox="0 0 25 25" height="50" width="50">
-        <path d=${mdiBell}></path>
-      </svg>
       <kami-markdown>
         ${this.release.getContent()}
       </kami-markdown>
     `;
   }
 
+  btnTemplate() {
+    return html`
+      <svg class="kami-changelog__btn" viewBox="0 0 24 25">
+        <path d=${mdiBellOutline}></path>
+      </svg>
+    `;
+  }
+
   render() {
-    return html`<p>${this.changelogTemplate()}</p>`;
+    return html`<p>${this.btnTemplate()}</p>`;
   }
 }
