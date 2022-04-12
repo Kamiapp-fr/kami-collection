@@ -22,14 +22,18 @@
     }
 </style>
 <body>
-    <kami-changelog
-        src="https://api.github.com/repos/Kamiapp-fr/kami-collection/releases"
-        provider="github"
-    ></kami-changelog>
+    <kami-theme theme="dark">
+        <kami-changelog
+            src="https://api.github.com/repos/Kamiapp-fr/kami-collection/releases"
+            provider="github"
+        ></kami-changelog>
+    </kami-theme>
     <script type="module">
         import KamiChangelog from '@kamiapp/changelog';
+        import KamiTheme from '@kamiapp/theme';
 
         customElements.define(KamiChangelog.tag, KamiChangelog);
+        customElements.define(KamiTheme.tag, KamiTheme);
     </script>
 </body>
 </html>

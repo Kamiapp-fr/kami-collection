@@ -18,7 +18,6 @@ export default class KamiChangelog extends LitElement {
 
   static styles = css`
     :host {
-      
       position: var(--kami-changelog-position, fixed);
       bottom: var(--kami-changelog-bottom, 0);
       right: var(--kami-changelog-right, 0);
@@ -29,6 +28,7 @@ export default class KamiChangelog extends LitElement {
 
     .kami-changelog {
       position: relative;
+      font-family: sans-serif;
     }
 
     .kami-changelog__btn {
@@ -51,7 +51,7 @@ export default class KamiChangelog extends LitElement {
     }
 
     .kami-changelog__release {
-      background-color: var(--kami-theme-backgroud, white);
+      background-color: var(--kami-theme-background, white);
       box-shadow: var(--kami-theme-shadow, 0 0 8px -5px black);
       border-radius: var(--kami-theme-raduis, 20px);
       bottom: var(--kami-changelog-release-bottom, 90px);
