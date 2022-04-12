@@ -28,13 +28,13 @@ export default class KamiChangelog extends LitElement {
 
     .kami-changelog {
       position: relative;
-      font-family: sans-serif;
+      font-family: var(--kami-theme-font);
     }
 
     .kami-changelog__btn {
-      fill: var(--kami-theme-primary, black);
-      background-color: var(--kami-theme-background, white);
-      box-shadow: var(--kami-theme-shadow, 0 0 8px -5px black);
+      fill: var(--kami-theme-primary);
+      background-color: var(--kami-theme-background);
+      box-shadow: var(--kami-theme-shadow);
       border-radius: var(--kami-changelog-btn-raduis, 100%);
       padding: var(--kami-changelog-btn-padding, 10px);
       height: var(--kami-changelog-btn-height, 50px);
@@ -43,17 +43,17 @@ export default class KamiChangelog extends LitElement {
     }
 
     .kami-changelog__title {
-      background-color: var(--kami-theme-primary, black);
-      color: var(--kami-theme-backgroud, white);
+      background-color: var(--kami-theme-primary);
+      color: var(--kami-theme-background);
       margin: 0;
       padding: 15px;
       font-size: 23px;
     }
 
     .kami-changelog__release {
-      background-color: var(--kami-theme-background, white);
-      box-shadow: var(--kami-theme-shadow, 0 0 8px -5px black);
-      border-radius: var(--kami-theme-raduis, 20px);
+      background-color: var(--kami-theme-background);
+      box-shadow: var(--kami-theme-shadow);
+      border-radius: var(--kami-theme-raduis);
       bottom: var(--kami-changelog-release-bottom, 90px);
       right: var(--kami-changelog-release-right, 0px);
       width: var(--kami-changelog-release-width, 300px);
