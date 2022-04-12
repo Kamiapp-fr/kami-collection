@@ -10,6 +10,21 @@ export default class KamiTheme extends LitElement {
   @property()
   private readonly theme: 'light' | 'dark' = 'light';
 
+  public updateTheme(theme: 'light' | 'dark') {
+    if (theme === 'dark') {
+      document.body.classList.add('kami-dark-mode');
+    }
+
+    if (theme === 'light') {
+      document.body.classList.remove('kami-dark-mode');
+    }
+  }
+
+  public connectedCallback() {
+    super.connectedCallback();
+    this.updateTheme(this.theme);
+  }
+
   protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
     const theme = _changedProperties.get('theme');
 
@@ -17,13 +32,7 @@ export default class KamiTheme extends LitElement {
       return;
     }
 
-    if (this.theme === 'dark') {
-      document.body.classList.add('kami-dark-mode');
-    }
-
-    if (this.theme === 'light') {
-      document.body.classList.remove('kami-dark-mode');
-    }
+    this.updateTheme(this.theme);
   }
 
   protected render() {
