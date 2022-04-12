@@ -7,7 +7,8 @@ export const alias = {
   "@kamiapp/infinite-list": resolve(__dirname, "./packages/infinite-list/src/index.ts"),
   "@kamiapp/collection": resolve(__dirname, "./packages/collection/src/kami-collection.ts"),
   "@kamiapp/markdown": resolve(__dirname, "./packages/markdown/src/kami-markdown.ts"),
-  "@kamiapp/changelog": resolve(__dirname, "./packages/changelog/src/kami-changelog.ts")
+  "@kamiapp/changelog": resolve(__dirname, "./packages/changelog/src/kami-changelog.ts"),
+  "@kamiapp/theme": resolve(__dirname, "./packages/theme/src/kami-theme.ts")
 }
 
 export default defineConfig({

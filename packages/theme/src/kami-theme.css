@@ -1,0 +1,25 @@
+@font-face {
+    font-family: "Gosha Sans";
+    src: url("./fonts/GoshaSans-Regular.otf");
+}
+
+@font-face {
+    font-family: "UnB Office";
+    src: url("./fonts/unb-office_regular.ttf");
+}
+
+:root {
+    --kami-theme-primary: #30E2C9;
+    --kami-theme-secondary: #8B8B8F;
+    --kami-theme-background: #F5F5FB;
+    --kami-theme-shadow: 0 0 8px -5px black;
+    --kami-theme-raduis: 20px;
+}
+
+.kami-dark-mode {
+    --kami-theme-primary: #30E2C9;
+    --kami-theme-secondary: #8B8B8F;
+    --kami-theme-background: #303032 ;
+    --kami-theme-shadow: 0 0 8px -5px black;
+    --kami-theme-raduis: 20px;
+}

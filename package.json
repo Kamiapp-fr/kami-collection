@@ -21,6 +21,7 @@
   },
   "workspaces": [
     "./packages/component",
+    "./packages/theme",
     "./packages/flash",
     "./packages/infinite-list",
     "./packages/markdown",
