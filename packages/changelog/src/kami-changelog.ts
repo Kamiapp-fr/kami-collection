@@ -1,5 +1,5 @@
 import '@material/mwc-icon';
-import { mdiBellOutline } from '@mdi/js';
+import { mdiBellOutline, mdiClose } from '@mdi/js';
 import { LitElement, html, css } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import KamiMarkdown from '@kamiapp/markdown';
@@ -17,13 +17,57 @@ export default class KamiChangelog extends LitElement {
   }
 
   static styles = css`
+    :host {
+      
+      position: var(--kami-changelog-position, fixed);
+      bottom: var(--kami-changelog-bottom, 0);
+      right: var(--kami-changelog-right, 0);
+      left: var(--kami-changelog-left, auto);
+      top: var(--kami-changelog-top, auto);
+      margin: var(--kami-changelog-margin, 30px 40px) !important;
+    }
+
+    .kami-changelog {
+      position: relative;
+    }
+
     .kami-changelog__btn {
-      background-color: var(--kami-changelog-btn-color, white);
+      fill: var(--kami-theme-primary, black);
+      background-color: var(--kami-theme-background, white);
+      box-shadow: var(--kami-theme-shadow, 0 0 8px -5px black);
       border-radius: var(--kami-changelog-btn-raduis, 100%);
       padding: var(--kami-changelog-btn-padding, 10px);
       height: var(--kami-changelog-btn-height, 50px);
       width: var(--kami-changelog-btn-width, 50px); 
-      box-shadow: var(--kami-changelog-btn-shadow, 0 0 8px -5px black);
+      cursor: pointer;
+    }
+
+    .kami-changelog__title {
+      background-color: var(--kami-theme-primary, black);
+      color: var(--kami-theme-backgroud, white);
+      margin: 0;
+      padding: 15px;
+      font-size: 23px;
+    }
+
+    .kami-changelog__release {
+      background-color: var(--kami-theme-backgroud, white);
+      box-shadow: var(--kami-theme-shadow, 0 0 8px -5px black);
+      border-radius: var(--kami-theme-raduis, 20px);
+      bottom: var(--kami-changelog-release-bottom, 90px);
+      right: var(--kami-changelog-release-right, 0px);
+      width: var(--kami-changelog-release-width, 300px);
+      height: var(--kami-changelog-release-height, 500px);
+      position: absolute;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .kami-changelog__markdown {
+      padding: 10px 25px;
+      overflow: hidden auto;
+      box-sizing: border-box;
+      height: calc(100% - 56px);
     }
   `;
 
@@ -33,8 +77,14 @@ export default class KamiChangelog extends LitElement {
   @property()
   private readonly provider?: ProviderRelease;
 
+  @property()
+  private readonly header?: string;
+
   @state()
   private release?: Release;
+
+  @state()
+  private display: boolean = false;
 
   public async connectedCallback(): Promise<void> {
     super.connectedCallback();
@@ -53,27 +103,41 @@ export default class KamiChangelog extends LitElement {
     this.release = releaseFactory(this.provider, data);
   }
 
-  changelogTemplate() {
-    if (!this.release) {
-      return 'No Data';
-    }
+  public toggleDisplay() {
+    this.display = !this.display;
+  }
 
+  private releaseTemplate(release: Release) {
     return html`
-      <kami-markdown>
-        ${this.release.getContent()}
-      </kami-markdown>
+      <div class="kami-changelog__release">
+        <h3 class="kami-changelog__title">${this.header || KamiChangelog.tag}</h3>
+        <div class="kami-changelog__markdown">
+          <kami-markdown>
+            ${release.getContent()}
+          </kami-markdown>
+        </div>
+      </div>
     `;
   }
 
-  btnTemplate() {
+  private btnTemplate() {
     return html`
-      <svg class="kami-changelog__btn" viewBox="0 0 24 25">
-        <path d=${mdiBellOutline}></path>
+      <svg @click=${this.toggleDisplay} class="kami-changelog__btn" viewBox="0 0 24 25">
+        <path d=${this.display ? mdiClose : mdiBellOutline}></path>
       </svg>
     `;
   }
 
-  render() {
-    return html`<p>${this.btnTemplate()}</p>`;
+  public render() {
+    if (!this.release) {
+      return '';
+    }
+
+    return html`
+      <div class="kami-changelog">
+        ${this.display ? this.releaseTemplate(this.release) : ''}
+        ${this.btnTemplate()}
+      </div>
+    `;
   }
 }
