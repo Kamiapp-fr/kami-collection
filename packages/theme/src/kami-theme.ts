@@ -1,43 +1,29 @@
-import './kami-theme.css';
-import { html, LitElement, PropertyValueMap } from 'lit';
-import { property } from 'lit/decorators.js';
+import './fonts/index.css';
+import { css } from 'lit';
+import Theme from './base-theme';
 
-export default class KamiTheme extends LitElement {
+export default class KamiTheme extends Theme {
   static get tag() {
     return 'kami-theme';
   }
 
-  @property()
-  private readonly theme: 'light' | 'dark' = 'light';
-
-  public updateTheme(theme: 'light' | 'dark') {
-    if (theme === 'dark') {
-      document.body.classList.add('kami-dark-mode');
+  static styles = css`
+    ::slotted(*) {
+      --kami-theme-font: "Gosha Sans";
+      --kami-theme-shadow: 0 0 8px -5px black;
+      --kami-theme-raduis: 20px;
     }
 
-    if (theme === 'light') {
-      document.body.classList.remove('kami-dark-mode');
+    .kami-light-mode::slotted(*) {
+      --kami-theme-primary: #30E2C9;
+      --kami-theme-secondary: #8B8B8F;
+      --kami-theme-background: #F5F5FB;
     }
-  }
-
-  public connectedCallback() {
-    super.connectedCallback();
-    this.updateTheme(this.theme);
-  }
-
-  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    const theme = _changedProperties.get('theme');
-
-    if (!theme || theme === this.theme) {
-      return;
+  
+    .kami-dark-mode::slotted(*) {
+      --kami-theme-primary: #30E2C9;
+      --kami-theme-secondary: #8B8B8F;
+      --kami-theme-background: #303032;
     }
-
-    this.updateTheme(this.theme);
-  }
-
-  protected render() {
-    return html`
-      <slot></slot>
-    `;
-  }
+  `;
 }
