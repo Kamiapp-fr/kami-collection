@@ -1,6 +1,4 @@
-import {
-  css, html, LitElement, PropertyValueMap,
-} from 'lit';
+import { html, LitElement, PropertyValueMap } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { Transitions, transitions } from './transitions';
 
@@ -8,13 +6,6 @@ export default class KamiTransition extends LitElement {
   static get tag() {
     return 'kami-transition';
   }
-
-  static style = css`
-    :host {
-      position: relative;
-      display: inline-block;
-    }
-  `;
 
   @query('#single')
   private child?: HTMLSlotElement;
@@ -97,6 +88,9 @@ export default class KamiTransition extends LitElement {
     this.cancelAnimation(this.animationIn);
     this.cancelAnimation(this.animationOut);
 
+    this.updateHostSize(this.in);
+    this.updateHostSize(this.out);
+
     this.toggle(this.show);
   }
 
@@ -119,24 +113,6 @@ export default class KamiTransition extends LitElement {
   }
 
   public firstUpdated(): void {
-    if (!this.child) {
-      return;
-    }
-
-    if (this.show && this.single) {
-      this.child!.style.display = 'inherit';
-    }
-
-    if (!this.show && this.in && this.out) {
-      this.childIn!.style.display = 'none';
-      this.childOut!.style.display = 'inherit';
-    }
-
-    if (this.show && this.in && this.out) {
-      this.childIn!.style.display = 'inherit';
-      this.childOut!.style.display = 'none';
-    }
-
     if (this.single && (this.in || this.out)) {
       throw new Error('In-out does not work with default slot');
     }
@@ -148,6 +124,24 @@ export default class KamiTransition extends LitElement {
     if (this.out && !this.in) {
       throw new Error('Missing in slot');
     }
+
+    if (this.show && this.single) {
+      this.displayEl(this.child);
+    }
+
+    if (!this.show && this.in && this.out) {
+      this.hideEl(this.childIn);
+      this.displayEl(this.childOut);
+    }
+
+    if (this.show && this.in && this.out) {
+      this.displayEl(this.childIn);
+      this.hideEl(this.childOut);
+    }
+
+    this.updateHostSize(this.in);
+    this.updateHostSize(this.out);
+    this.style.display = 'block';
   }
 
   public display() {
@@ -155,10 +149,10 @@ export default class KamiTransition extends LitElement {
       return;
     }
 
-    this.child.style.display = 'inherit';
+    this.displayEl(this.child);
 
     this.animation = this.single.animate(transitions[this.transition], this.options);
-    this.animation.onfinish = () => { this.child!.style.display = 'inherit'; };
+    this.animation.onfinish = () => this.displayEl(this.child);
   }
 
   public displayInOut() {
@@ -166,17 +160,16 @@ export default class KamiTransition extends LitElement {
       return;
     }
 
-    this.childIn.style.display = 'inherit';
-    this.childOut.style.display = 'inherit';
+    this.displayEl(this.childIn);
 
     this.animationIn = this.in.animate(transitions[this.transition], this.options);
     this.animationOut = this.out.animate(transitions[this.transition], { ...this.options, direction: 'reverse' });
 
-    this.animationIn.onfinish = () => { this.childIn!.style.display = 'inherit'; };
-    this.animationOut.onfinish = () => { this.childOut!.style.display = 'none'; };
+    this.animationIn.onfinish = () => this.displayEl(this.childIn);
+    this.animationIn.oncancel = () => this.displayEl(this.childIn);
 
-    this.animationIn.oncancel = () => { this.childIn!.style.display = 'inherit'; };
-    this.animationOut.oncancel = () => { this.childOut!.style.display = 'none'; };
+    this.animationOut.onfinish = () => this.hideEl(this.childOut);
+    this.animationOut.oncancel = () => this.hideEl(this.childOut);
   }
 
   public hide() {
@@ -185,7 +178,7 @@ export default class KamiTransition extends LitElement {
     }
 
     this.animation = this.single.animate(transitions[this.transition], { ...this.options, direction: 'reverse' });
-    this.animation.onfinish = () => { this.child!.style.display = 'none'; };
+    this.animation.onfinish = () => this.hideEl(this.child);
   }
 
   public hideInOut() {
@@ -193,16 +186,23 @@ export default class KamiTransition extends LitElement {
       return;
     }
 
-    this.childIn.style.display = 'inherit';
-    this.childOut.style.display = 'inherit';
+    this.displayEl(this.childOut);
 
     this.animationIn = this.in.animate(transitions[this.transition], { ...this.options, direction: 'reverse' });
     this.animationOut = this.out.animate(transitions[this.transition], this.options);
 
-    this.animationIn.onfinish = () => { this.childIn!.style.display = 'none'; };
-    this.animationOut.onfinish = () => { this.childOut!.style.display = 'inherit'; };
-    this.animationIn.oncancel = () => { this.childIn!.style.display = 'none'; };
-    this.animationOut.oncancel = () => { this.childOut!.style.display = 'inherit'; };
+    this.animationIn.onfinish = () => this.hideEl(this.childIn);
+    this.animationIn.oncancel = () => this.hideEl(this.childIn);
+
+    this.animationOut.onfinish = () => this.displayEl(this.childOut);
+    this.animationOut.oncancel = () => this.displayEl(this.childOut);
+  }
+
+  public updateHostSize(el?: Element) {
+    if (el && el.clientWidth && el.clientHeight) {
+      this.style.width = `${el.clientWidth}px`;
+      this.style.height = `${el.clientHeight}px`;
+    }
   }
 
   public cancelAnimation(animation?: Animation) {
@@ -211,11 +211,29 @@ export default class KamiTransition extends LitElement {
     }
   }
 
+  public displayEl(el?: HTMLElement) {
+    if (!el) {
+      return;
+    }
+
+    // eslint-disable-next-line no-param-reassign
+    el.style.display = 'inherit';
+  }
+
+  public hideEl(el?: HTMLElement) {
+    if (!el) {
+      return;
+    }
+
+    // eslint-disable-next-line no-param-reassign
+    el.style.display = 'none';
+  }
+
   protected render() {
     return html`
       <slot id="single" style="display: none;"></slot>
-      <slot id="in" name="in" style="display: none;"></slot>
-      <slot id="out" name="out" style="display: none;"></slot>
+      <slot id="in" name="in" style="display: none; position: absolute;"></slot>
+      <slot id="out" name="out" style="display: none; position: absolute;"></slot>
     `;
   }
 }

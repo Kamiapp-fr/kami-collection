@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    kami-transition {
+        display: none;
+    }
+</style>
+<body>
+    
+    <kami-transition transition="slide-up" duration="200" show="true">
+        <button slot="in">Enter</button>
+        <button slot="out">Exit</button>
+    </kami-transition>
+
+    <script type="module">
+        import KamiTransition from '@kamiapp/transition';
+
+        customElements.define(KamiTransition.tag, KamiTransition);
+        
+        let display = true;
+        const btns = document.querySelectorAll('button');
+        const transition = document.querySelector('kami-transition');
+
+        btns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                display = !display;
+                transition.toggle(display)
+            })
+        });
+    </script>
+</body>
+</html>
