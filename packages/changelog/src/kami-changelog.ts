@@ -147,11 +147,10 @@ export default class KamiChangelog extends LitElement {
         <kami-transition transition="slide-up" duration="200" show="${this.display}">
           ${this.releaseTemplate(this.release)}
         </kami-transition>
-        <kami-transition transition="slide-up" duration="1000" show="${this.display}">
+        <kami-transition transition="fade" duration="250" easing="linear" show="${this.display}">
           <div slot="in">${this.btnTemplate(mdiClose)}</div>
           <div slot="out">${this.btnTemplate(mdiBellBadgeOutline)}</div>
         </kami-transition>
-
       </div>
     `;
   }
