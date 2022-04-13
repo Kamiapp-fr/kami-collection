@@ -20,6 +20,16 @@
         height: 100vh;
         flex-direction: column;
     }
+
+    .custom-theme {
+        --kami-changelog-bottom: 0;
+        --kami-changelog-right: auto;
+        --kami-changelog-left: 0;
+        --kami-changelog-top: auto;
+
+        --kami-changelog-release-bottom: 90px;
+        --kami-changelog-release-right: -320px;
+    }
 </style>
 <body>
     <kami-theme  theme="dark">
@@ -29,6 +39,12 @@
             provider="github"
         ></kami-changelog>
     </kami-theme>
+    <kami-changelog
+        class="custom-theme"
+        src="https://api.github.com/repos/Kamiapp-fr/kami-collection/releases"
+        header="🚀 Releases"
+        provider="github"
+    ></kami-changelog>
     <script type="module">
         import KamiChangelog from '@kamiapp/changelog';
         import KamiTheme from '@kamiapp/theme';

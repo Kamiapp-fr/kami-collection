@@ -18,12 +18,11 @@
         box-sizing: border-box;
         width: 100%;
         height: 100vh;
-        flex-direction: column;
     }
 
 </style>
 <body>
-    <textarea style="height: 50%;">
+    <textarea style="height: 50%; flex-grow: 1;">
         # H1
         ## H2
         ### H3
@@ -49,16 +48,16 @@
         `code`
 
     </textarea>
-    <kami-theme>
+    <kami-theme style="flex-grow: 1;">
         <kami-markdown></kami-markdown>
     </kami-theme>
-    
+    <kami-markdown style="flex-grow: 1;"></kami-markdown>
     <script type="module">
         import KamiMarkdown from '@kamiapp/markdown';
         import KamiTheme from '@kamiapp/theme';
 
         const textarea = document.querySelector('textarea');
-        const md = document.querySelector('kami-markdown');
+        const mds = document.querySelectorAll('kami-markdown');
 
         customElements.define(KamiMarkdown.tag, KamiMarkdown);
         customElements.define(KamiTheme.tag, KamiTheme);
@@ -66,7 +65,7 @@
         textarea.addEventListener('input', update)
 
         function update() {
-            md.innerHTML = textarea.value;
+            mds.forEach((md) => md.innerHTML = textarea.value);
         }
     </script>
 </body>
