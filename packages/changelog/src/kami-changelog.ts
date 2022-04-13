@@ -1,14 +1,19 @@
 import '@material/mwc-icon';
-import { mdiBellOutline, mdiClose } from '@mdi/js';
+import { mdiBellBadgeOutline, mdiClose } from '@mdi/js';
 import { LitElement, html, css } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import KamiMarkdown from '@kamiapp/markdown';
+import KamiTransition from '@kamiapp/transition';
 
 import { ProviderRelease, releaseFactory } from './releases';
 import Release from './releases/Release';
 
 if (!customElements.get('kami-markdown')) {
   customElements.define('kami-markdown', KamiMarkdown);
+}
+
+if (!customElements.get('kami-transition')) {
+  customElements.define('kami-transition', KamiTransition);
 }
 
 export default class KamiChangelog extends LitElement {
@@ -127,7 +132,7 @@ export default class KamiChangelog extends LitElement {
   private btnTemplate() {
     return html`
       <svg @click=${this.toggleDisplay} class="kami-changelog__btn" viewBox="0 0 24 25">
-        <path d=${this.display ? mdiClose : mdiBellOutline}></path>
+        <path d=${this.display ? mdiClose : mdiBellBadgeOutline}></path>
       </svg>
     `;
   }
@@ -139,7 +144,9 @@ export default class KamiChangelog extends LitElement {
 
     return html`
       <div class="kami-changelog">
-        ${this.display ? this.releaseTemplate(this.release) : ''}
+        <kami-transition transition="slide-up" duration="200" show="${this.display}">
+          ${this.releaseTemplate(this.release)}
+        </kami-transition>
         ${this.btnTemplate()}
       </div>
     `;
