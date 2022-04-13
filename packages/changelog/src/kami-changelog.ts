@@ -129,10 +129,10 @@ export default class KamiChangelog extends LitElement {
     `;
   }
 
-  private btnTemplate() {
+  private btnTemplate(icone: string) {
     return html`
       <svg @click=${this.toggleDisplay} class="kami-changelog__btn" viewBox="0 0 24 25">
-        <path d=${this.display ? mdiClose : mdiBellBadgeOutline}></path>
+        <path d=${icone}></path>
       </svg>
     `;
   }
@@ -147,7 +147,11 @@ export default class KamiChangelog extends LitElement {
         <kami-transition transition="slide-up" duration="200" show="${this.display}">
           ${this.releaseTemplate(this.release)}
         </kami-transition>
-        ${this.btnTemplate()}
+        <kami-transition transition="slide-up" duration="1000" show="${this.display}">
+          <div slot="in">${this.btnTemplate(mdiClose)}</div>
+          <div slot="out">${this.btnTemplate(mdiBellBadgeOutline)}</div>
+        </kami-transition>
+
       </div>
     `;
   }
