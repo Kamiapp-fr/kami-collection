@@ -1,5 +1,5 @@
-import KamiTheme from './kami-theme';
-import BaseTheme from './base-theme';
+import KamiTheme from './themes/kami-theme';
+import BaseTheme from './themes/base-theme';
 
 export default KamiTheme;
 export {
