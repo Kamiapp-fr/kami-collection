@@ -19,9 +19,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kamiapp/changelog": "^0.x",
     "@kamiapp/component": "^0.x",
     "@kamiapp/flash": "^0.x",
     "@kamiapp/infinite-list": "^0.x",
+    "@kamiapp/markdown": "^0.x",
+    "@kamiapp/theme": "^0.x",
+    "@kamiapp/transition": "^0.x",
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "web-animations-js": "^2.3.1"
   },
