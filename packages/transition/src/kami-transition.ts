@@ -39,6 +39,16 @@ export default class KamiTransition extends LitElement {
   private show?: boolean;
 
   @property({
+    type: String,
+  })
+  private from?: string;
+
+  @property({
+    type: String,
+  })
+  private to?: string;
+
+  @property({
     type: Number,
   })
   private duration: number = 500;
@@ -220,7 +230,7 @@ export default class KamiTransition extends LitElement {
     this.animation = this.runAnimation({
       child: this.child,
       el: this.single,
-      keyframes: transitions[this.transition],
+      keyframes: transitions[this.transition](this.from, this.to),
       options: this.options,
     });
 
@@ -237,7 +247,7 @@ export default class KamiTransition extends LitElement {
       childOut: this.childOut,
       inEl: this.in,
       outEl: this.out,
-      keyframes: transitions[this.transition],
+      keyframes: transitions[this.transition](this.from, this.to),
       options: this.options,
     });
 
@@ -255,7 +265,7 @@ export default class KamiTransition extends LitElement {
     this.animation = this.runAnimation({
       child: this.child,
       el: this.single,
-      keyframes: transitions[this.transition],
+      keyframes: transitions[this.transition](this.from, this.to),
       show: false,
       options: {
         ...this.options,
@@ -276,7 +286,7 @@ export default class KamiTransition extends LitElement {
       childOut: this.childIn,
       inEl: this.out,
       outEl: this.in,
-      keyframes: transitions[this.transition],
+      keyframes: transitions[this.transition](this.from, this.to),
       options: this.options,
     });
 

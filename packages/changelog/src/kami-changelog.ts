@@ -144,7 +144,7 @@ export default class KamiChangelog extends LitElement {
 
     return html`
       <div class="kami-changelog">
-        <kami-transition transition="slide-up" duration="200" show="${this.display}">
+        <kami-transition transition="slide-y" duration="200" show="${this.display}">
           ${this.releaseTemplate(this.release)}
         </kami-transition>
         <kami-transition transition="fade" duration="250" easing="linear" show="${this.display}">

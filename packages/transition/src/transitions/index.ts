@@ -1,23 +1,19 @@
 import { fade } from './fade';
-import {
-  slideDown, slideLeft, slideRight, slideUp,
-} from './slide';
+import { slideX, slideY } from './slide';
 
 export * from './fade';
 export * from './slide';
 
+type AnimationFactory = (from?: string, to?: string) => Keyframe[];
+
 export interface Transitions {
-  fade: Keyframe[],
-  'slide-up': Keyframe[],
-  'slide-down': Keyframe[],
-  'slide-right': Keyframe[],
-  'slide-left': Keyframe[],
+  fade: AnimationFactory,
+  'slide-x': AnimationFactory,
+  'slide-y': AnimationFactory
 }
 
 export const transitions: Transitions = {
   fade,
-  'slide-up': slideUp,
-  'slide-down': slideDown,
-  'slide-left': slideLeft,
-  'slide-right': slideRight,
+  'slide-x': slideX,
+  'slide-y': slideY,
 };

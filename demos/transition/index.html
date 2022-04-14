@@ -41,32 +41,30 @@
     }
 </style>
 <body>
-
     <kami-transition transition="fade" duration="500" show="true">
         <button slot="in">Enter fade</button>
         <button slot="out">Exit fade</button>
     </kami-transition>
     
-    <kami-transition transition="slide-up" duration="200" show="true">
+    <kami-transition transition="slide-y" from="25" duration="200" show="true">
         <button slot="in">Enter slide-up</button>
         <button slot="out">Exit slide-up</button>
     </kami-transition>
     
-    <kami-transition transition="slide-down" duration="200" show="true">
+    <kami-transition transition="slide-y" from="-25" duration="200" show="true">
         <button slot="in">Enter slide-down</button>
         <button slot="out">Exit slide-down</button>
     </kami-transition>
 
-    <kami-transition transition="slide-left" duration="200" show="true">
+    <kami-transition transition="slide-x" from="-25" duration="200" show="true">
         <button slot="in">Enter slide-left</button>
         <button slot="out">Exit slide-left</button>
     </kami-transition>
 
-    <kami-transition transition="slide-right" duration="200" show="true">
+    <kami-transition transition="slide-x" from="25" duration="200" show="true">
         <button slot="in">Enter slide-right</button>
         <button slot="out">Exit slide-right</button>
     </kami-transition>
-    
 
     <script type="module">
         import KamiTransition from '@kamiapp/transition';
