@@ -1,0 +1,32 @@
+{
+  "name": "@kamiapp/markdown",
+  "version": "0.1.6",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/kami-markdown.umd.js",
+  "module": "./dist/kami-markdown.es.js",
+  "types": "./dist/markdown/src/kami-markdown.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/kami-markdown.es.js",
+      "require": "./dist/kami-markdown.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite build -w",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.6.0",
+    "lit": "^2.2.1",
+    "markdown-it": "^12.3.2",
+    "web-animations-js": "^2.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vite-plugin-dts": "^1.0.4"
+  }
+}

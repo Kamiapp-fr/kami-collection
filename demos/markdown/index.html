@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        display: flex;
+        padding: 20px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100vh;
+    }
+
+</style>
+<body>
+    <textarea style="height: 50%; flex-grow: 1;">
+        # H1
+        ## H2
+        ### H3
+        #### H4
+        ##### H5
+
+        **bold text**
+
+        *italicized text*
+
+        > blockquote
+
+        1. First item
+        2. Second item
+        3. Third item
+
+        ---
+
+        - First item
+        - Second item
+        - Third item
+
+        `code`
+
+    </textarea>
+    <kami-theme style="flex-grow: 1;">
+        <kami-markdown></kami-markdown>
+    </kami-theme>
+    <kami-markdown style="flex-grow: 1;"></kami-markdown>
+    <script type="module">
+        import KamiMarkdown from '@kamiapp/markdown';
+        import KamiTheme from '@kamiapp/theme';
+
+        const textarea = document.querySelector('textarea');
+        const mds = document.querySelectorAll('kami-markdown');
+
+        customElements.define(KamiMarkdown.tag, KamiMarkdown);
+        customElements.define(KamiTheme.tag, KamiTheme);
+        customElements.whenDefined(KamiMarkdown.tag).then(update);
+        textarea.addEventListener('input', update)
+
+        function update() {
+            mds.forEach((md) => md.innerHTML = textarea.value);
+        }
+    </script>
+</body>
+</html>

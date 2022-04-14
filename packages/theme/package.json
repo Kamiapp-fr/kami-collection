@@ -1,0 +1,31 @@
+{
+  "name": "@kamiapp/theme",
+  "version": "0.1.6",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/kami-theme.umd.js",
+  "module": "./dist/kami-theme.es.js",
+  "types": "./dist/theme/src/kami-theme.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/kami-theme.es.js",
+      "require": "./dist/kami-theme.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite build -w",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.6.0",
+    "lit": "^2.2.1",
+    "web-animations-js": "^2.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vite-plugin-dts": "^1.0.4"
+  }
+}
