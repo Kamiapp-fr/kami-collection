@@ -2,6 +2,23 @@ import { html, LitElement, PropertyValueMap } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { Transitions, transitions } from './transitions';
 
+interface RunAnimation {
+  child: HTMLSlotElement,
+  el: Element,
+  keyframes: Keyframe[],
+  options: KeyframeAnimationOptions,
+  show?: boolean,
+}
+
+interface RunAnimationInOut {
+  childIn: HTMLSlotElement,
+  childOut: HTMLSlotElement,
+  inEl: Element,
+  outEl: Element,
+  keyframes: Keyframe[],
+  options: KeyframeAnimationOptions,
+}
+
 export default class KamiTransition extends LitElement {
   static get tag() {
     return 'kami-transition';
@@ -36,16 +53,18 @@ export default class KamiTransition extends LitElement {
   })
   private easing: string = 'ease';
 
+  @property({
+    type: String,
+  })
+  private transition: keyof Transitions = 'fade';
+
   private animation?: Animation;
 
   private animationIn?: Animation;
 
   private animationOut?: Animation;
 
-  @property({
-    type: String,
-  })
-  private transition: keyof Transitions = 'fade';
+  public state?: boolean;
 
   public get options() {
     return {
@@ -127,6 +146,7 @@ export default class KamiTransition extends LitElement {
 
     if (this.show && this.single) {
       this.displayEl(this.child);
+      this.state = true;
     }
 
     if (!this.show && this.in && this.out) {
@@ -137,11 +157,59 @@ export default class KamiTransition extends LitElement {
     if (this.show && this.in && this.out) {
       this.displayEl(this.childIn);
       this.hideEl(this.childOut);
+      this.state = true;
     }
 
     this.updateHostSize(this.in);
     this.updateHostSize(this.out);
     this.style.display = 'block';
+    this.style.opacity = '1';
+  }
+
+  public runAnimation({
+    child,
+    el,
+    keyframes,
+    options,
+    show = true,
+  }: RunAnimation) {
+    if (show) {
+      this.displayEl(child);
+    }
+
+    const animation = el.animate(keyframes, options);
+
+    animation.onfinish = () => {
+      if (show) {
+        this.displayEl(child);
+      } else {
+        this.hideEl(child);
+      }
+    };
+
+    return animation;
+  }
+
+  public runAnimationInOut({
+    childIn,
+    childOut,
+    inEl,
+    outEl,
+    keyframes,
+    options,
+  }: RunAnimationInOut) {
+    this.displayEl(childIn);
+
+    const animationIn = inEl.animate(keyframes, options);
+    const animationOut = outEl.animate(keyframes, { ...options, direction: 'reverse' });
+
+    animationIn.onfinish = () => this.displayEl(childIn);
+    animationIn.oncancel = () => this.displayEl(childIn);
+
+    animationOut.onfinish = () => this.hideEl(childOut);
+    animationOut.oncancel = () => this.hideEl(childOut);
+
+    return { animationIn, animationOut };
   }
 
   public display() {
@@ -149,10 +217,14 @@ export default class KamiTransition extends LitElement {
       return;
     }
 
-    this.displayEl(this.child);
+    this.animation = this.runAnimation({
+      child: this.child,
+      el: this.single,
+      keyframes: transitions[this.transition],
+      options: this.options,
+    });
 
-    this.animation = this.single.animate(transitions[this.transition], this.options);
-    this.animation.onfinish = () => this.displayEl(this.child);
+    this.state = true;
   }
 
   public displayInOut() {
@@ -160,16 +232,19 @@ export default class KamiTransition extends LitElement {
       return;
     }
 
-    this.displayEl(this.childIn);
+    const { animationIn, animationOut } = this.runAnimationInOut({
+      childIn: this.childIn,
+      childOut: this.childOut,
+      inEl: this.in,
+      outEl: this.out,
+      keyframes: transitions[this.transition],
+      options: this.options,
+    });
 
-    this.animationIn = this.in.animate(transitions[this.transition], this.options);
-    this.animationOut = this.out.animate(transitions[this.transition], { ...this.options, direction: 'reverse' });
+    this.animationIn = animationIn;
+    this.animationOut = animationOut;
 
-    this.animationIn.onfinish = () => this.displayEl(this.childIn);
-    this.animationIn.oncancel = () => this.displayEl(this.childIn);
-
-    this.animationOut.onfinish = () => this.hideEl(this.childOut);
-    this.animationOut.oncancel = () => this.hideEl(this.childOut);
+    this.state = true;
   }
 
   public hide() {
@@ -177,8 +252,18 @@ export default class KamiTransition extends LitElement {
       return;
     }
 
-    this.animation = this.single.animate(transitions[this.transition], { ...this.options, direction: 'reverse' });
-    this.animation.onfinish = () => this.hideEl(this.child);
+    this.animation = this.runAnimation({
+      child: this.child,
+      el: this.single,
+      keyframes: transitions[this.transition],
+      show: false,
+      options: {
+        ...this.options,
+        direction: 'reverse',
+      },
+    });
+
+    this.state = false;
   }
 
   public hideInOut() {
@@ -186,29 +271,36 @@ export default class KamiTransition extends LitElement {
       return;
     }
 
-    this.displayEl(this.childOut);
+    const { animationIn, animationOut } = this.runAnimationInOut({
+      childIn: this.childOut,
+      childOut: this.childIn,
+      inEl: this.out,
+      outEl: this.in,
+      keyframes: transitions[this.transition],
+      options: this.options,
+    });
 
-    this.animationIn = this.in.animate(transitions[this.transition], { ...this.options, direction: 'reverse' });
-    this.animationOut = this.out.animate(transitions[this.transition], this.options);
+    this.animationIn = animationOut;
+    this.animationOut = animationIn;
 
-    this.animationIn.onfinish = () => this.hideEl(this.childIn);
-    this.animationIn.oncancel = () => this.hideEl(this.childIn);
-
-    this.animationOut.onfinish = () => this.displayEl(this.childOut);
-    this.animationOut.oncancel = () => this.displayEl(this.childOut);
+    this.state = false;
   }
 
   public updateHostSize(el?: Element) {
-    if (el && el.clientWidth && el.clientHeight) {
-      this.style.width = `${el.clientWidth}px`;
-      this.style.height = `${el.clientHeight}px`;
+    if (!el || (!el.clientWidth && !el.clientHeight)) {
+      return;
     }
+
+    this.style.width = `${el.clientWidth}px`;
+    this.style.height = `${el.clientHeight}px`;
   }
 
   public cancelAnimation(animation?: Animation) {
-    if (animation && animation.playState !== 'finished') {
-      animation.cancel();
+    if (!animation || animation.playState === 'finished') {
+      return;
     }
+
+    animation.cancel();
   }
 
   public displayEl(el?: HTMLElement) {
