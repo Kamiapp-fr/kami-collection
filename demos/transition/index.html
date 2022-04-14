@@ -25,6 +25,8 @@
         padding: 20px;
         font-size: 20px;
         border-radius: 20px;
+        width: 150px;
+        cursor: pointer;
         border: none;
     }
 
@@ -41,29 +43,34 @@
     }
 </style>
 <body>
-    <kami-transition transition="fade" duration="500" show="true">
-        <button slot="in">Enter fade</button>
-        <button slot="out">Exit fade</button>
-    </kami-transition>
-    
-    <kami-transition transition="slide-y" from="25" duration="200" show="true">
-        <button slot="in">Enter slide-up</button>
-        <button slot="out">Exit slide-up</button>
-    </kami-transition>
-    
-    <kami-transition transition="slide-y" from="-25" duration="200" show="true">
-        <button slot="in">Enter slide-down</button>
-        <button slot="out">Exit slide-down</button>
+    <kami-transition transition="fade" duration="200" show="true">
+        <button slot="in">fade</button>
+        <button slot="out">fade</button>
     </kami-transition>
 
-    <kami-transition transition="slide-x" from="-25" duration="200" show="true">
-        <button slot="in">Enter slide-left</button>
-        <button slot="out">Exit slide-left</button>
+    <kami-transition transition="scale" duration="200" show="true">
+        <button slot="in">scale</button>
+        <button slot="out">scale</button>
+    </kami-transition>
+    
+    <kami-transition transition="slide-y" easing="ease-in-out" from="50" duration="200" show="true">
+        <button slot="in">slide-up</button>
+        <button slot="out">slide-up</button>
+    </kami-transition>
+    
+    <kami-transition transition="slide-y" easing="ease-in-out" from="-50" duration="200" show="true">
+        <button slot="in">slide-down</button>
+        <button slot="out">slide-down</button>
     </kami-transition>
 
-    <kami-transition transition="slide-x" from="25" duration="200" show="true">
-        <button slot="in">Enter slide-right</button>
-        <button slot="out">Exit slide-right</button>
+    <kami-transition transition="slide-x" easing="ease-in-out" from="-50" duration="200" show="true">
+        <button slot="in">slide-left</button>
+        <button slot="out">slide-left</button>
+    </kami-transition>
+
+    <kami-transition transition="slide-x" easing="ease-in-out" from="50" duration="200" show="true">
+        <button slot="in">slide-right</button>
+        <button slot="out">slide-right</button>
     </kami-transition>
 
     <script type="module">
