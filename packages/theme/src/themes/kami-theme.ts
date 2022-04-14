@@ -13,7 +13,7 @@ export default class KamiTheme extends Theme {
       --kami-theme-font-secondary: "UnB Office";
       --kami-theme-shadow: 0 0 8px -5px black;
       --kami-theme-text-shadow: 0 0 4px #0000008a;
-      --kami-theme-raduis: 20px;
+      --kami-theme-radius: 20px;
       --kami-theme-white: white;
     }
 

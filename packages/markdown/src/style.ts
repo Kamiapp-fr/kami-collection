@@ -207,7 +207,7 @@ export const style = css`
   code {
     background-color: var(--kami-theme-secondary);
     color: var(--kami-theme-white);
-    border-radius: var(--kami-theme-raduis);
+    border-radius: var(--kami-theme-radius);
     padding: 2px 7px;
   }
 `;
