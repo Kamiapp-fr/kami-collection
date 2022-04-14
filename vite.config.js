@@ -28,6 +28,7 @@ export default defineConfig({
         simple: resolve(__dirname, './demos/infinite-list/simple/index.html'),
         changelog: resolve(__dirname, './demos/changelog/index.html'),
         markdown: resolve(__dirname, './demos/markdown/index.html'),
+        transition: resolve(__dirname, './demos/transition/index.html')
       }
     }
   }
