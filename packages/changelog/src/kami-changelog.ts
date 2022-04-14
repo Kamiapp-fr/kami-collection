@@ -109,6 +109,12 @@ export default class KamiChangelog extends LitElement {
   @state()
   private display: boolean = false;
 
+  public get hasRelease() {
+    return this.release
+      && this.release.getContent() !== undefined
+      && this.release.getContent() !== '';
+  }
+
   public async connectedCallback(): Promise<void> {
     super.connectedCallback();
 
@@ -153,7 +159,7 @@ export default class KamiChangelog extends LitElement {
 
   public render() {
     return html`
-      <kami-transition transition="slide-y"  show="${this.release !== undefined}">
+      <kami-transition transition="slide-y"  show="${this.hasRelease}">
         <div class="kami-changelog">
           <kami-transition transition="slide-y" duration="200" show="${this.display}">
             ${this.releaseTemplate(this.release)}
