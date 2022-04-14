@@ -76,7 +76,7 @@ export default class KamiChangelog extends LitElement {
     .kami-changelog__release {
       background-color: var(--kami-theme-background);
       box-shadow: var(--kami-theme-shadow);
-      border-radius: var(--kami-theme-raduis);
+      border-radius: var(--kami-theme-radius);
       bottom: var(--kami-changelog-release-bottom, 90px);
       right: var(--kami-changelog-release-right, 0px);
       width: var(--kami-changelog-release-width, 400px);
