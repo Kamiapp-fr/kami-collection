@@ -46,6 +46,8 @@ export default class KamiChangelog extends LitElement {
     .kami-changelog {
       position: relative;
       font-family: var(--kami-theme-font-primary);
+      width: var(--kami-changelog-release-width, 70px);
+      height: var(--kami-changelog-release-height, 70px);
     }
 
     .kami-changelog__btn {
@@ -54,8 +56,8 @@ export default class KamiChangelog extends LitElement {
       box-shadow: var(--kami-theme-shadow);
       border-radius: var(--kami-changelog-btn-raduis, 100%);
       padding: var(--kami-changelog-btn-padding, 10px);
-      height: var(--kami-changelog-btn-height, 50px);
-      width: var(--kami-changelog-btn-width, 50px); 
+      height: calc(var(--kami-changelog-btn-height, 70px) - var(--kami-changelog-btn-padding, 10px) * 2);
+      width: calc(var(--kami-changelog-btn-width, 70px) - var(--kami-changelog-btn-padding, 10px) * 2);
       cursor: pointer;
     }
 
@@ -128,13 +130,13 @@ export default class KamiChangelog extends LitElement {
     this.display = !this.display;
   }
 
-  private releaseTemplate(release: Release) {
+  private releaseTemplate(release?: Release) {
     return html`
       <div class="kami-changelog__release">
         <h3 class="kami-changelog__title">${this.header || KamiChangelog.tag}</h3>
         <div class="kami-changelog__markdown">
           <kami-markdown>
-            ${release.getContent()}
+            ${release?.getContent()}
           </kami-markdown>
         </div>
       </div>
@@ -150,20 +152,18 @@ export default class KamiChangelog extends LitElement {
   }
 
   public render() {
-    if (!this.release) {
-      return '';
-    }
-
     return html`
-      <div class="kami-changelog">
-        <kami-transition transition="slide-y" duration="200" show="${this.display}">
-          ${this.releaseTemplate(this.release)}
-        </kami-transition>
-        <kami-transition transition="fade" duration="250" easing="linear" show="${this.display}">
-          <div slot="in">${this.btnTemplate(mdiClose)}</div>
-          <div slot="out">${this.btnTemplate(mdiBellBadgeOutline)}</div>
-        </kami-transition>
-      </div>
+      <kami-transition transition="slide-y"  show="${this.release !== undefined}">
+        <div class="kami-changelog">
+          <kami-transition transition="slide-y" duration="200" show="${this.display}">
+            ${this.releaseTemplate(this.release)}
+          </kami-transition>
+          <kami-transition transition="fade" duration="250" easing="linear" show="${this.display}">
+            <div slot="in">${this.btnTemplate(mdiClose)}</div>
+            <div slot="out">${this.btnTemplate(mdiBellBadgeOutline)}</div>
+          </kami-transition>
+        </div>
+      </kami-transition>
     `;
   }
 }
