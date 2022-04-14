@@ -22,6 +22,18 @@ export default class KamiChangelog extends LitElement {
   }
 
   static styles = css`
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb  {
+      background: var(--kami-theme-primary);
+    }
+
     :host {
       position: var(--kami-changelog-position, fixed);
       bottom: var(--kami-changelog-bottom, 0);
