@@ -6,7 +6,7 @@
   ],
   "main": "./dist/kami-transition.umd.js",
   "module": "./dist/kami-transition.es.js",
-  "types": "./dist/transition/src/kami-transition.d.ts",
+  "types": "./dist/kami-transition.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-transition.es.js",

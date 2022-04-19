@@ -6,7 +6,7 @@
   ],
   "main": "./dist/kami-theme.umd.js",
   "module": "./dist/kami-theme.es.js",
-  "types": "./dist/theme/src/kami-theme.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-theme.es.js",

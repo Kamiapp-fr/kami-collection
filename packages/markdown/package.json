@@ -6,7 +6,7 @@
   ],
   "main": "./dist/kami-markdown.umd.js",
   "module": "./dist/kami-markdown.es.js",
-  "types": "./dist/markdown/src/kami-markdown.d.ts",
+  "types": "./dist/kami-markdown.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-markdown.es.js",
