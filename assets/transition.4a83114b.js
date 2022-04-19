@@ -1,0 +1,1 @@
+import"./modulepreload-polyfill.b7f2da20.js";import{K as t}from"./kami-transition.4972eec3.js";import"./vendor.981edf70.js";customElements.define(t.tag,t);const n=document.querySelectorAll("button");document.querySelector("kami-transition");n.forEach(e=>{e.addEventListener("click",()=>{!e.parentElement||e.parentElement.toggle(!e.parentElement.state)})});

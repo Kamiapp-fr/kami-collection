@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  <script type="module" crossorigin src="/assets/transition.4a83114b.js"></script>
+  <link rel="modulepreload" href="/assets/modulepreload-polyfill.b7f2da20.js">
+  <link rel="modulepreload" href="/assets/vendor.981edf70.js">
+  <link rel="modulepreload" href="/assets/kami-transition.4972eec3.js">
+  <link rel="stylesheet" href="/assets/transition.8b2f0355.css">
+</head>
+
+<body>
+    <kami-transition transition="fade" duration="200" show="true">
+        <button slot="in">fade</button>
+        <button slot="out">fade</button>
+    </kami-transition>
+
+    <kami-transition transition="scale" duration="200" show="true">
+        <button slot="in">scale</button>
+        <button slot="out">scale</button>
+    </kami-transition>
+    
+    <kami-transition transition="slide-y" easing="ease-in-out" from="50" duration="200" show="true">
+        <button slot="in">slide-up</button>
+        <button slot="out">slide-up</button>
+    </kami-transition>
+    
+    <kami-transition transition="slide-y" easing="ease-in-out" from="-50" duration="200" show="true">
+        <button slot="in">slide-down</button>
+        <button slot="out">slide-down</button>
+    </kami-transition>
+
+    <kami-transition transition="slide-x" easing="ease-in-out" from="-50" duration="200" show="true">
+        <button slot="in">slide-left</button>
+        <button slot="out">slide-left</button>
+    </kami-transition>
+
+    <kami-transition transition="slide-x" easing="ease-in-out" from="50" duration="200" show="true">
+        <button slot="in">slide-right</button>
+        <button slot="out">slide-right</button>
+    </kami-transition>
+
+    
+</body>
+</html>

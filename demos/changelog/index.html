@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  <script type="module" crossorigin src="/assets/changelog.f04fd25a.js"></script>
+  <link rel="modulepreload" href="/assets/modulepreload-polyfill.b7f2da20.js">
+  <link rel="modulepreload" href="/assets/vendor.981edf70.js">
+  <link rel="modulepreload" href="/assets/kami-theme.34128706.js">
+  <link rel="modulepreload" href="/assets/kami-transition.4972eec3.js">
+  <link rel="stylesheet" href="/assets/kami-theme.463b8d24.css">
+  <link rel="stylesheet" href="/assets/changelog.4e072908.css">
+</head>
+
+<body>
+    <kami-theme  theme="dark">
+        <kami-changelog
+            src="https://api.github.com/repos/Kamiapp-fr/kami-collection/releases"
+            header="🚀 Releases"
+            provider="github"
+        ></kami-changelog>
+    </kami-theme>
+    <kami-changelog
+        class="custom-theme"
+        src="https://gitlab.com/api/v4/projects/35350692/releases/"
+        header="🚀 Releases"
+        provider="gitlab"
+    ></kami-changelog>
+    
+</body>
+</html>
