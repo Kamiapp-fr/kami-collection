@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2022-04-19
+### Added
+- Adding the light and dark kami theme.
+  - Adding the light and dark kami theme.
+  - Adding a base class theme to create custom theme.
+- Convert markdown into html using 
+  - Convert markdown into html using [markdown-it](https://github.com/markdown-it/markdown-it) without any configuration.
+- Display your own changelog into a web component.
+  - Display your own changelog into a web component.
+  - Adds support for github release.
+  - Adds support for gitlab release.
+
 ## [0.1.6] - 2022-03-31
 ### Fixed
 - Pin workspaces order to fix build job. This prevent the `@kamiapp/collection` to be build in first because this package need all other packages.
@@ -43,7 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.6...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.3...v0.1.4
