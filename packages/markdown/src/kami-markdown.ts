@@ -23,7 +23,7 @@ export default class KamiMarkdown extends LitElement {
   }
 
   private reduceHtml(content: string, text: string) {
-    return `${content}${text.trim()} \n`;
+    return `${content}${text} \n`;
   }
 
   private handleSlotchange() {
@@ -44,7 +44,8 @@ export default class KamiMarkdown extends LitElement {
     this.content = texts
       .reduce((a, b) => a + b, '')
       .split('\n')
-      .reduce(this.reduceHtml, '');
+      .reduce(this.reduceHtml, '')
+      .trim();
   }
 
   protected render() {

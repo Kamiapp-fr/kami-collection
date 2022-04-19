@@ -17,6 +17,10 @@ export const style = css`
     padding: .25rem;
   }
 
+  ul ul {
+    padding: 0px 0px 0px 30px;
+  }
+
   @media print {
     *,
     *:before,
@@ -121,7 +125,7 @@ export const style = css`
 
   p {
     font-size: 1rem;
-    margin-bottom: 1.3rem;
+    margin: 5px 0;
   }
 
   h1,

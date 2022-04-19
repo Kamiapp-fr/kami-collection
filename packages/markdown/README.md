@@ -15,11 +15,11 @@ Import the component, declare it using `customElements.define()` and use it dire
 ```html
 <body>
   <kami-markdown>
-    # H1
-    ## H2
-    ### H3
-    #### H4
-    ##### H5
+# H1
+## H2
+### H3
+#### H4
+##### H5
   </kami-markdown>
   <script type="module">
     import KamiMarkdown from '@kamiapp/markdown';
