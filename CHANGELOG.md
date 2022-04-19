@@ -8,15 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2022-04-19
 ### Added
-- Adding the light and dark kami theme.
+- @kamiapp/theme
   - Adding the light and dark kami theme.
   - Adding a base class theme to create custom theme.
-- Convert markdown into html using 
+- @kamiapp/markdown
   - Convert markdown into html using [markdown-it](https://github.com/markdown-it/markdown-it) without any configuration.
-- Display your own changelog into a web component.
+- @kamiapp/changelog
   - Display your own changelog into a web component.
   - Adds support for github release.
   - Adds support for gitlab release.
+- @kamiapp/transition
+  - Add single and in-out transition
+  - Adds fade transition
+  - Adds scale transition
+  - Adds slide transition
 
 ## [0.1.6] - 2022-03-31
 ### Fixed
