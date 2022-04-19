@@ -10,6 +10,10 @@ import{r as m,t as c,s as h,b as p,$ as s,o as g,e as f}from"./vendor.981edf70.j
     padding: .25rem;
   }
 
+  ul ul {
+    padding: 0px 0px 0px 30px;
+  }
+
   @media print {
     *,
     *:before,
@@ -114,7 +118,7 @@ import{r as m,t as c,s as h,b as p,$ as s,o as g,e as f}from"./vendor.981edf70.j
 
   p {
     font-size: 1rem;
-    margin-bottom: 1.3rem;
+    margin: 5px 0;
   }
 
   h1,
@@ -203,9 +207,9 @@ import{r as m,t as c,s as h,b as p,$ as s,o as g,e as f}from"./vendor.981edf70.j
     border-radius: var(--kami-theme-radius);
     padding: 2px 7px;
   }
-`;var k=Object.defineProperty,v=Object.getOwnPropertyDescriptor,w=(n,e,r,i)=>{for(var t=i>1?void 0:i?v(e,r):e,a=n.length-1,o;a>=0;a--)(o=n[a])&&(t=(i?o(e,r,t):o(t))||t);return i&&t&&k(e,r,t),t};class d extends h{static get tag(){return"kami-markdown"}constructor(){super();this.content="",this.parser=new p}reduceHtml(e,r){return`${e}${r.trim()} 
+`;var k=Object.defineProperty,x=Object.getOwnPropertyDescriptor,v=(n,e,r,i)=>{for(var t=i>1?void 0:i?x(e,r):e,a=n.length-1,o;a>=0;a--)(o=n[a])&&(t=(i?o(e,r,t):o(t))||t);return i&&t&&k(e,r,t),t};class d extends h{static get tag(){return"kami-markdown"}constructor(){super();this.content="",this.parser=new p}reduceHtml(e,r){return`${e}${r} 
 `}handleSlotchange(){var t;const e=(t=this.shadowRoot)==null?void 0:t.querySelector("slot");if(!e)return;const i=e.assignedNodes({flatten:!0}).map(a=>a instanceof Text&&a.nodeValue).filter(a=>!!a);this.content=i.reduce((a,o)=>a+o,"").split(`
-`).reduce(this.reduceHtml,"")}render(){return s`
+`).reduce(this.reduceHtml,"").trim()}render(){return s`
       <slot 
         style="display: none" 
         @slotchange=${this.handleSlotchange}
@@ -213,7 +217,7 @@ import{r as m,t as c,s as h,b as p,$ as s,o as g,e as f}from"./vendor.981edf70.j
       <article>
         ${g(this.parser.render(this.content))}
       </article>
-    `}}d.styles=u;w([c()],d.prototype,"content",2);var x=Object.defineProperty,y=Object.getOwnPropertyDescriptor,b=(n,e,r,i)=>{for(var t=i>1?void 0:i?y(e,r):e,a=n.length-1,o;a>=0;a--)(o=n[a])&&(t=(i?o(e,r,t):o(t))||t);return i&&t&&x(e,r,t),t};class l extends h{constructor(){super(...arguments);this.theme="light"}static get tag(){throw new Error("Missing element tag")}updated(e){!e.get("theme")||this.updateTheme(this.theme)}connectedCallback(){super.connectedCallback();const e=localStorage.getItem("kami-theme-mode");!e||this.updateTheme(e)}updateTheme(e){e!=="light"&&e!=="dark"||(this.theme=e,localStorage.setItem("kami-theme-mode",e))}render(){return s`
+    `}}d.styles=u;v([c()],d.prototype,"content",2);var w=Object.defineProperty,y=Object.getOwnPropertyDescriptor,b=(n,e,r,i)=>{for(var t=i>1?void 0:i?y(e,r):e,a=n.length-1,o;a>=0;a--)(o=n[a])&&(t=(i?o(e,r,t):o(t))||t);return i&&t&&w(e,r,t),t};class l extends h{constructor(){super(...arguments);this.theme="light"}static get tag(){throw new Error("Missing element tag")}updated(e){!e.get("theme")||this.updateTheme(this.theme)}connectedCallback(){super.connectedCallback();const e=localStorage.getItem("kami-theme-mode");!e||this.updateTheme(e)}updateTheme(e){e!=="light"&&e!=="dark"||(this.theme=e,localStorage.setItem("kami-theme-mode",e))}render(){return s`
       <slot class="kami-${this.theme||"light"}-mode"></slot>
     `}}b([f({reflect:!0})],l.prototype,"theme",2);class z extends l{static get tag(){return"kami-theme"}}z.styles=m`
     ::slotted(*) {
