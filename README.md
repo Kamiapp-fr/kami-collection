@@ -76,9 +76,14 @@ You can get more informations about each components into the ``packages/<compone
 
 | Repository                                           |  description                             | version  |
 |----------------------------------------------------- |------------------------------------------|----------|
+| [``<kami-changelog>``](./packages/changelog/)|   Display your releases directly into your app.          | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/changelog)    |     
 | [``<kami-flash>``](./packages/flash/)                |   Simple flash web component.            | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/flash)    |                           
 | [``<kami-infinite-list>``](./packages/infinite-list/)|   Infinite list based on web component.          | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/infinite-list)    |     
+| [``<kami-markdown>``](./packages/markdown/)|  Convert markdown in html.       | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/markdown) |   
+| [``<kami-theme>``](./packages/theme/)|   Light and Dark kami theme.        | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/theme) |
+| [``<kami-transition>``](./packages/transition/)|   Predefined transitions for your components.       | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/transition) |   
 | [``<kami-component>``](./packages/component/)|   Abstract class to create simple web component.         | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/component) |    
+
 
 ## Contribute
 
