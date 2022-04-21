@@ -5,7 +5,7 @@ import dts from 'vite-plugin-dts';
 module.exports = defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/kami-{{lowerCase name}}.ts'),
+      entry: resolve(__dirname, 'src/index.ts'),
       name: 'Kami{{pascalCase name}}',
       fileName: (format) => `kami-{{lowerCase name}}.${format}.js`
     },
