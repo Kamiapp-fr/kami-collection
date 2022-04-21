@@ -26,6 +26,24 @@ $ npm run dev
 
 This serve the content of the ``demos`` folder. This folder content a sample of each component which take sources directly from the `packages` folder. Now you can add or edit a component into the `packages` folder.
 
+### Create
+
+You can create a new component easly. To do this just run the following command :
+
+```
+$ npm run create
+```
+
+It will ask you wish name you would set to your component. When you validate it, it will automaticaly create all base files for your component and update all root config file *(like ``tsconfig``, ``vite.config.js``, etc...)* adding the new component. 
+
+Now just run the install command to update the ``package-lock.json`` :
+
+```
+$ npm install
+```
+That it now you can focus on your component.
+
+> By default the new component have the version ``0.0.0``. This will be automaticaly update during the next release, you don't need to update it manually.
 
 ### Build 
 
