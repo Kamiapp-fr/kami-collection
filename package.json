@@ -30,5 +30,8 @@
     "./packages/markdown",
     "./packages/changelog",
     "./packages/collection"
-  ]
+  ],
+  "dependencies": {
+    "lit": "^2.2.2"
+  }
 }
