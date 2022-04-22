@@ -38,7 +38,7 @@ export default class MenuElement extends LitElement {
       <header class="menu">
         <div class="menu__content">
           <div class="menu__logo">
-            <img src="../assets/kami-${this.theme || 'light'}.png">
+            <img src="../img/kami-${this.theme || 'light'}.png">
           </div>
           <nav class="menu__nam">
             <a>components</a>
