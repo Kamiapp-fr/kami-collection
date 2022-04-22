@@ -36,9 +36,9 @@ To do this you must use the `Theme` component and extends it. Now you just need 
 
 ```ts
 import { css } from 'lit';
-import { Theme } from '@kamiapp/theme';
+import { BaseTheme } from '@kamiapp/theme';
 
-export default class CustomTheme extends Theme {
+export default class CustomTheme extends BaseTheme {
   static get tag() {
     return 'my-custom-theme';
   }
@@ -109,7 +109,16 @@ Now to use it just define it and that all !
 *None*
 
 ### Events
-*None*
+
+#### Document events
+
+This event are attached to the `document` object. To use it you must do this `document.addEventListener(<EventName>, <Callback>)`.
+
+
+| name            |  trigger                                | event.detail                                   |
+|---------------- |-----------------------------------------|------------------------------------------------|
+| theme    | When the current theme is updated   |  { theme: *light* or *dark* }   |
+
 
 ### CSS Custom Properties
 
