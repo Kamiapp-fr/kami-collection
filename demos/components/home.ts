@@ -6,7 +6,7 @@ export default class HomeElement extends LitElement {
   static styles = css`
     .home {
       width: 100%;
-      height: 100%;
+      height: calc(100% - 65px);
       display: flex;
       flex-direction: column;
       align-items: center;

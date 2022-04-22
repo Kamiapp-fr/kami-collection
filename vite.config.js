@@ -12,21 +12,6 @@ export const alias = {
   "@kamiapp/transition": resolve(__dirname, "./packages/transition/src/kami-transition.ts"),
 }
 
-const mdPlugin = {
-  name: 'vite-md-plugin',
-  transform (code, id) {
-    if (/\.md$/.test(id)) {
-      const json = JSON.stringify(code)
-        .replace(/\u2028/g, '\\u2028')
-        .replace(/\u2029/g, '\\u2029')
-
-      return {
-        code: `export default ${json}`
-      }
-    }
-  }
-}
-
 export default defineConfig({
   resolve: {
     alias,
@@ -40,8 +25,5 @@ export default defineConfig({
         started: resolve(__dirname, './demos/guide/index.html'),
       }
     }
-  },
-  plugins: [
-    mdPlugin
-  ]
+  }
 })

@@ -4,6 +4,11 @@ import { customElement, state } from 'lit/decorators.js';
 @customElement('menu-element')
 export default class MenuElement extends LitElement {
   static styles = css`
+    :host {
+      display: block;
+      height: 65px;
+    }
+
     .menu {
       display: flex;
       position: fixed;
