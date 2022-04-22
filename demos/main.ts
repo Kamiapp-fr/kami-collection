@@ -1,6 +1,7 @@
 import KamiTheme from '@kamiapp/theme';
 import KamiMarkdown from '@kamiapp/markdown';
 
+import './components/mode';
 import './components/button';
 import './components/app';
 import './components/menu';

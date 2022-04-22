@@ -25,6 +25,10 @@ export default class MenuElement extends LitElement {
       width: 100%;
       max-width: 1000px;
     }
+
+    .menu__nav {
+      display: flex;
+    }
   `;
 
   @state()
@@ -45,9 +49,10 @@ export default class MenuElement extends LitElement {
           <div class="menu__logo">
             <img src="../img/kami-${this.theme || 'light'}.png">
           </div>
-          <nav class="menu__nam">
+          <nav class="menu__nav">
             <a>components</a>
             <a>docs</a>
+            <mode-element></mode-element>
           </nav>
         </div>
       </header>
