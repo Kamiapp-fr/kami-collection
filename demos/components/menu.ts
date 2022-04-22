@@ -1,5 +1,5 @@
 import { css, html, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, state } from 'lit/decorators.js';
 
 @customElement('menu-element')
 export default class MenuElement extends LitElement {
@@ -22,11 +22,24 @@ export default class MenuElement extends LitElement {
     }
   `;
 
+  @state()
+  private theme?: 'light' | 'dark';
+
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    document.addEventListener('theme', ({ detail }) => {
+      this.theme = detail.theme;
+    });
+  }
+
   protected render() {
     return html`
       <header class="menu">
         <div class="menu__content">
-          <div class="menu__logo">Kami</div>
+          <div class="menu__logo">
+            <img src="../assets/kami-${this.theme || 'light'}.png">
+          </div>
           <nav class="menu__nam">
             <a>components</a>
             <a>docs</a>
