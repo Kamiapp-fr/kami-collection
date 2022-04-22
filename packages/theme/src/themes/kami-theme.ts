@@ -23,6 +23,7 @@ export default class KamiTheme extends Theme {
       --kami-theme-accent: #8B8B8F;
       --kami-theme-text: #565656;
       --kami-theme-background: white;
+      --kami-theme-border-color: rgba(0, 0, 0, 0.09);
       --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
       --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
     }
@@ -33,6 +34,7 @@ export default class KamiTheme extends Theme {
       --kami-theme-accent: #8B8B8F;
       --kami-theme-text: white;
       --kami-theme-background: #303032;
+      --kami-theme-border-color: rgba(255, 255, 255, 0.09);
       --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
       --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
     }
