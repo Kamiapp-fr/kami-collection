@@ -1,7 +1,9 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, unsafeCSS } from 'lit';
 import { state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Markdown from 'markdown-it';
+import hljs from 'highlight.js/lib/core';
+import { LanguageFn } from 'highlight.js';
 import { style } from './style';
 
 export default class KamiMarkdown extends LitElement {
@@ -11,6 +13,18 @@ export default class KamiMarkdown extends LitElement {
 
   static styles = style;
 
+  static hljs = hljs;
+
+  static hightlightStyle: string = '';
+
+  static registerHighlightStyle(s: string) {
+    KamiMarkdown.hightlightStyle = s;
+  }
+
+  static registerHighlightLanguage(languageName: string, language: LanguageFn) {
+    KamiMarkdown.hljs.registerLanguage(languageName, language);
+  }
+
   private parser: Markdown;
 
   @state()
@@ -19,7 +33,21 @@ export default class KamiMarkdown extends LitElement {
   constructor() {
     super();
     this.content = '';
-    this.parser = new Markdown();
+    this.parser = new Markdown({
+      highlight: this.setupHighlight.bind(this),
+    });
+  }
+
+  private setupHighlight(str: string, lang: string) {
+    if (lang && KamiMarkdown.hljs.getLanguage(lang)) {
+      try {
+        return `<pre class="hljs"><code class="hljs__code">${this.renderHighlight(str, lang)}</code></pre>`;
+      } catch (__) {
+        return '';
+      }
+    }
+
+    return `<pre><code>${this.parser.utils.escapeHtml(str)}</code></pre>`;
   }
 
   private reduceHtml(content: string, text: string) {
@@ -48,8 +76,20 @@ export default class KamiMarkdown extends LitElement {
       .trim();
   }
 
+  private renderHighlight(str: string, lang: string) {
+    const { value } = KamiMarkdown.hljs.highlight(str, {
+      language: lang,
+      ignoreIllegals: true,
+    });
+
+    return value;
+  }
+
   protected render() {
     return html`
+      <style>
+        ${unsafeCSS(KamiMarkdown.hightlightStyle)}
+      </style>
       <slot 
         style="display: none" 
         @slotchange=${this.handleSlotchange}

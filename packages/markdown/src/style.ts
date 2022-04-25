@@ -89,7 +89,6 @@ export const style = css`
   pre {
     padding: .5rem;
     line-height: 1.25;
-    overflow-x: scroll;
   }
 
   a,
@@ -207,11 +206,22 @@ export const style = css`
     padding: 1rem;
   }
 
-  pre,
-  code {
+  pre:not(.hljs), code:not(.hljs__code) {
     background-color: var(--kami-theme-secondary);
     color: var(--kami-theme-white);
+  }
+
+  pre,
+  code {
     border-radius: var(--kami-theme-radius);
-    padding: 2px 7px;
+    border-radius: 10px;
+  }
+
+  code {
+    padding: 4px 10px;
+  }
+
+  pre {
+    padding: 10px;
   }
 `;
