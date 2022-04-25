@@ -32,7 +32,8 @@
     "./packages/collection"
   ],
   "dependencies": {
-    "lit": "^2.2.2",
-    "@mdi/js": "^6.6.96"
+    "@mdi/js": "^6.6.96",
+    "highlight.js": "^11.5.1",
+    "lit": "^2.2.2"
   }
 }
