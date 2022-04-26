@@ -211,17 +211,22 @@ export const style = css`
     color: var(--kami-theme-white);
   }
 
+  code:not(.hljs__code) {
+    padding: 4px 10px;
+  }
+
   pre,
   code {
     border-radius: var(--kami-theme-radius);
     border-radius: 10px;
   }
 
-  code {
-    padding: 4px 10px;
+  pre {
+    padding: 14px 24px;
   }
 
-  pre {
-    padding: 10px;
+  pre code {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 14px;
   }
 `;
