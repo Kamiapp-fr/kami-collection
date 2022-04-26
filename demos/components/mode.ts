@@ -7,7 +7,8 @@ import { mdiBrightness6, mdiWeatherNight } from '@mdi/js';
 export default class ModeElement extends LitElement {
   static styles = css`
     :host {
-      display: block;
+      display: flex;
+      align-items: center;
     }
 
     .mode {

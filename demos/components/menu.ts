@@ -28,6 +28,17 @@ export default class MenuElement extends LitElement {
 
     .menu__nav {
       display: flex;
+      align-items: center;
+    }
+
+    .menu__link {
+      margin: 0px 10px;
+      text-decoration: none;
+      color: var(--kami-theme-text);
+    }
+
+    .menu__link:hover {
+      color: var(--kami-theme-primary);
     }
   `;
 
@@ -47,12 +58,15 @@ export default class MenuElement extends LitElement {
       <header class="menu">
         <div class="menu__content">
           <div class="menu__logo">
-            <img src="../img/kami-${this.theme || 'light'}.png">
+            <a href="/">
+              <img src="../img/kami-${this.theme || 'light'}.png">
+            </a>
           </div>
           <nav class="menu__nav">
-            <a>components</a>
-            <a>docs</a>
-            <mode-element></mode-element>
+            <a class="menu__link" href="/guide/index.html">guide</a>
+            <a class="menu__link" href="/">components</a>
+            <a class="menu__link" href="https://github.com/Kamiapp-fr/kami-collection">github</a>
+            <mode-element class="menu__link"></mode-element>
           </nav>
         </div>
       </header>
