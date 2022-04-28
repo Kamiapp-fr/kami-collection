@@ -1,4 +1,5 @@
 import 'api-viewer-element';
+import '@api-viewer/demo';
 import KamiTheme from '@kamiapp/theme';
 import KamiMarkdown from '@kamiapp/markdown';
 import javascript from 'highlight.js/lib/languages/javascript';

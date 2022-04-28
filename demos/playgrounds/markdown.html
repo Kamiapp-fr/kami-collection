@@ -14,11 +14,33 @@
     <kami-theme>
         <app-element>
           <menu-element></menu-element>
-          <api-viewer src="/custom-elements.json" selected="kami-markdown">
-                <template data-element="kami-markdown" data-target="slot">
-                    # Hello
-                </template>
-            </api-viewer>
+            <api-demo src="/custom-elements.json" theme="kami" only="kami-markdown" selected="kami-markdown">
+              <template data-element="kami-markdown" data-target="slot">
+# H1
+## H2
+### H3
+#### H4
+##### H5
+
+**bold text**
+
+*italicized text*
+
+> blockquote
+
+1. First item
+2. Second item
+3. Third item
+
+---
+
+* Item 1
+* Item 2
+* Item 3
+
+`code`
+              </template>
+            </api-demo>
         </app-element>
     </kami-theme>
   <script type="module" src="../main.ts"></script>
