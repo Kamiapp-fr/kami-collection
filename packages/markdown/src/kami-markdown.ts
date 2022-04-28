@@ -1,11 +1,12 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { state } from 'lit/decorators.js';
+import { state, customElement } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Markdown from 'markdown-it';
 import hljs from 'highlight.js/lib/core';
 import { LanguageFn } from 'highlight.js';
 import { style } from './style';
 
+@customElement('kami-markdown')
 export default class KamiMarkdown extends LitElement {
   static get tag() {
     return 'kami-markdown';
@@ -13,9 +14,9 @@ export default class KamiMarkdown extends LitElement {
 
   static styles = style;
 
-  static hljs = hljs;
+  private static hljs = hljs;
 
-  static hightlightStyle: string = '';
+  private static hightlightStyle: string = '';
 
   static registerHighlightStyle(s: string) {
     KamiMarkdown.hightlightStyle = s;
