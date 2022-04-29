@@ -25,7 +25,9 @@ export class PlaygroundElement extends ApiDemoBase {
         .playground {
           width: 100%;
           max-width: 1000px;
-          box-shadow: 0 0px 7px -5px var(--kami-theme-text);
+          border-radius: 10px;
+          overflow: hidden;
+          border: 1px solid var(--kami-theme-border-color);
         }
       `,
     ];

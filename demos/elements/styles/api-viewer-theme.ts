@@ -5,7 +5,6 @@ export const theme = css`
     background-color: transparent;
     border: none;
     border-radius: 6px;
-    box-shadow: 0 0px 7px -5px var(--kami-theme-text);
     font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica,
       Arial, sans-serif;
@@ -16,17 +15,48 @@ export const theme = css`
     
   /* kami layout styles */
   header {
+    background-image: var(--kami-theme-gradient-primary);
     padding: 0.75rem 1rem;
   }
     
   api-viewer-tabs {
-    background-color: var(--kami-theme-text);
+    background-color: var(--kami-theme-background);
     border-radius: 5px;
+  }
+
+  api-viewer-tab {
+    color: var(--kami-theme-text);
   }
 
   [part='demo-output']   {
     border-top: none;
     background-color: var(--kami-theme-background);
+  }
+
+  [part="demo-snippet"] {
+    background: #161b22;
+  }
+
+  [part="knobs"] {
+    background: #161b22;
+    color: white;
+  }
+
+  [part="header-title"] {
+    font-family: 'Inter';
+    font-size: 18px;
+    margin: 10px;
+    font-weight: 600;
+  }
+
+  [part="demo-tabs"] {
+    border: none;
+
+  }
+
+  api-viewer-panel {
+    border-radius: 10px;
+    overflow: hidden;
   }
     
   /* kami input styles */
@@ -89,6 +119,23 @@ export const theme = css`
     font-size: 0.875rem;
     text-transform: initial;
     font-weight: normal;
+  }
+
+  pre {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    color: white;
+  }
+
+  .name {
+    color: #7ee787;
+  }
+
+  .attr {
+    color: #79c0ff
+  }
+
+  .string {
+    color: #a5d6ff;
   }
     
   @media (max-width: 480px) {
