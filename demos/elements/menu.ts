@@ -10,12 +10,14 @@ export default class MenuElement extends LitElement {
     }
 
     .menu {
+      z-index: 1000;
       display: flex;
       position: fixed;
       width: 100%;
       align-items: center;
       justify-content: center;
       height: 65px;
+      background-color: var(--kami-theme-background);
       border-bottom:  1px solid var(--kami-theme-border-color);
     }
 
