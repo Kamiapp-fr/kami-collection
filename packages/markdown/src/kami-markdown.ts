@@ -6,6 +6,10 @@ import hljs from 'highlight.js/lib/core';
 import { LanguageFn } from 'highlight.js';
 import { style } from './style';
 
+/**
+ * @summary Convert markdown in html using markdown-it.
+ * @tag kami-markdown
+ */
 @customElement('kami-markdown')
 export default class KamiMarkdown extends LitElement {
   static get tag() {

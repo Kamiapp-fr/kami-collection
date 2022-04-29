@@ -12,6 +12,8 @@ import './elements/app';
 import './elements/menu';
 import './elements/home';
 import './elements/guide';
+import './elements/component';
+import './elements/components';
 import './elements/playground';
 
 KamiMarkdown.registerHighlightLanguage('js', javascript);
