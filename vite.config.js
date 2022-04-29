@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import { resolve, dirname  } from 'path';
 import { fileURLToPath } from 'url';
 import VitePluginCustomElementsManifest from 'vite-plugin-cem';
+import handlebars from 'vite-plugin-handlebars';
+import glob from "glob";
 
 const _dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -24,10 +26,7 @@ export default defineConfig({
   build: {
     outDir: resolve(_dirname, './dist/'),
     rollupOptions: {
-      input: {
-        home: resolve(_dirname, './demos/index.html'),
-        started: resolve(_dirname, './demos/guide/index.html'),
-      }
+      input: glob.sync('./demos/**/*.html'),
     }
   },
   plugins: [
@@ -36,6 +35,9 @@ export default defineConfig({
         './packages/markdown/src/kami-markdown.ts'
       ],
       lit: true,
+    }),
+    handlebars({
+      partialDirectory: resolve(_dirname, './demos/_includes'),
     })
   ]
 })
