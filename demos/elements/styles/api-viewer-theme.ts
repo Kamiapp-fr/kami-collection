@@ -15,8 +15,11 @@ export const theme = css`
     
   /* kami layout styles */
   header {
+    margin: 20px;
     background-image: var(--kami-theme-gradient-primary);
     padding: 0.75rem 1rem;
+    border-radius: 5px;
+
   }
     
   api-viewer-tabs {
@@ -47,6 +50,7 @@ export const theme = css`
     font-size: 18px;
     margin: 10px;
     font-weight: 600;
+    color: var(--kami-theme-white);
   }
 
   [part="demo-tabs"] {
@@ -57,6 +61,7 @@ export const theme = css`
   api-viewer-panel {
     border-radius: 10px;
     overflow: hidden;
+    margin: 0px 30px 30px 30px;
   }
     
   /* kami input styles */
