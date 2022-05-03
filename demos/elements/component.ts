@@ -26,6 +26,12 @@ export default class ComponentElement extends LitElement {
       font-size: 16px;
       margin: 4px 0px;
     }
+
+    .component__cta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
   `;
 
   @property()
@@ -34,11 +40,19 @@ export default class ComponentElement extends LitElement {
   @property()
   public summary: string = '';
 
+  public get nameNoPrefix() {
+    return this.name.split('-').pop();
+  }
+
   protected render() {
     return html`
       <div class="component">
         <h2 class="component__name">${this.name}</h2>
         <h3 class="component__description">${this.summary}</h3>
+        <div class="component__cta">
+          <button-element background="true" small="true">Docs</button-element>
+          <button-element href="/playgrounds/${this.nameNoPrefix}.html" stroke="true" small="true">Playground</button-element>
+        </div>
       </div>
     `;
   }

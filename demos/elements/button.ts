@@ -25,7 +25,7 @@ export default class ButtonElement extends LitElement {
     }
 
     .button--background {
-      color: var(--kami-theme-background);
+      color: var(--kami-theme-white);
       background: linear-gradient(94.7deg, #34D3CE 3.12%, #4E7DE6 102.14%);
     }
 
@@ -33,6 +33,10 @@ export default class ButtonElement extends LitElement {
       color: var(--kami-theme-text);
       background: transparent;
       border: 1px solid var(--kami-theme-text);
+    }
+
+    .button--small {
+      width: 140px;
     }
   `;
 
@@ -42,17 +46,26 @@ export default class ButtonElement extends LitElement {
   @property()
   private readonly background: boolean = false;
 
+  @property()
+  private readonly small: boolean = false;
+
+  @property()
+  private readonly href: string = '';
+
   protected render() {
     return html`
-      <button 
-        class="
-          button
-          ${this.stroke ? 'button--stroke' : ''}
-          ${this.background ? 'button--background' : ''}
-        "
-      >
-        <slot></slot>
-      <button
+      <a href="${this.href}">
+        <button 
+          class="
+            button
+            ${this.stroke ? 'button--stroke' : ''}
+            ${this.background ? 'button--background' : ''}
+            ${this.small ? 'button--small' : ''}
+          "
+        >
+          <slot></slot>
+        </button>
+      </a>
     `;
   }
 }
