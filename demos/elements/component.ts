@@ -11,6 +11,7 @@ export default class ComponentElement extends LitElement {
 
     .component {
       max-width: 300px;
+      width: 100%;
       padding: 20px;
       border: solid 1px var(--kami-theme-border-color);
       border-radius: 8px;

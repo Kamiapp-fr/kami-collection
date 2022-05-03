@@ -38,7 +38,6 @@ export default class ComponentsElement extends LitElement {
 
     .components__content {
       display: flex;
-      align-items: center;
       justify-content: center;
       max-width: 1250px;
       flex-wrap: wrap;
