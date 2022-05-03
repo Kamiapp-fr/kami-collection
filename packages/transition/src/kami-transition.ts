@@ -1,5 +1,5 @@
 import { html, LitElement, PropertyValueMap } from 'lit';
-import { property, query } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { Transitions, transitions } from './transitions';
 
 interface RunAnimation {
@@ -19,6 +19,11 @@ interface RunAnimationInOut {
   options: KeyframeAnimationOptions,
 }
 
+/**
+ * @summary A component to create entering/leaving transitions.
+ * @tag kami-transition
+ */
+@customElement('kami-transition')
 export default class KamiTransition extends LitElement {
   static get tag() {
     return 'kami-transition';

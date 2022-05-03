@@ -32,7 +32,8 @@ export default defineConfig({
   plugins: [
     VitePluginCustomElementsManifest({
       files: [
-        './packages/markdown/src/kami-markdown.ts'
+        './packages/markdown/src/kami-markdown.ts',
+        './packages/transition/src/kami-transition.ts'
       ],
       lit: true,
     }),
