@@ -1,6 +1,7 @@
 import 'api-viewer-element';
 import '@api-viewer/demo';
-import KamiTheme from '@kamiapp/theme';
+import '@kamiapp/theme';
+import '@kamiapp/transition';
 import KamiMarkdown from '@kamiapp/markdown';
 import javascript from 'highlight.js/lib/languages/javascript';
 import shell from 'highlight.js/lib/languages/shell';
@@ -19,4 +20,3 @@ import './elements/playground';
 KamiMarkdown.registerHighlightLanguage('js', javascript);
 KamiMarkdown.registerHighlightLanguage('sh', shell);
 KamiMarkdown.registerHighlightStyle(dark);
-window.customElements.define(KamiTheme.tag, KamiTheme);

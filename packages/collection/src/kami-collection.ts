@@ -13,10 +13,6 @@ import KamiTransition from '@kamiapp/transition';
 [
   KamiFlash,
   KamiInfiniteList,
-  KamiTheme,
-  KamiTransition,
-  KamiMarkdown,
-  KamiChangelog,
 ].forEach((component) => {
   if (customElements.get(component.tag)) {
     return;

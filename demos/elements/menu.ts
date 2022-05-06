@@ -49,6 +49,11 @@ export default class MenuElement extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    const store = localStorage.getItem('kami-theme-mode');
+
+    if (store && ['light', 'dark'].includes(store)) {
+      this.theme = store as 'light' | 'dark';
+    }
 
     document.addEventListener('theme', ({ detail }) => {
       this.theme = detail.theme;

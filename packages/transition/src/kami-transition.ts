@@ -20,15 +20,11 @@ interface RunAnimationInOut {
 }
 
 /**
- * @summary A component to create entering/leaving transitions.
+ * @summary Predefined transitions for your components.
  * @tag kami-transition
  */
 @customElement('kami-transition')
 export default class KamiTransition extends LitElement {
-  static get tag() {
-    return 'kami-transition';
-  }
-
   @query('#single')
   private child?: HTMLSlotElement;
 
@@ -41,37 +37,37 @@ export default class KamiTransition extends LitElement {
   @property({
     converter: (value) => value === 'true',
   })
-  private show?: boolean;
+  public show?: boolean;
 
   @property({
     type: String,
   })
-  private from?: string;
+  public from?: string;
 
   @property({
     type: String,
   })
-  private to?: string;
+  public to?: string;
 
   @property({
     type: Number,
   })
-  private duration: number = 500;
+  public duration: number = 500;
 
   @property({
     type: Number,
   })
-  private delay: number = 0;
+  public delay: number = 0;
 
   @property({
     type: String,
   })
-  private easing: string = 'ease';
+  public easing: string = 'ease';
 
   @property({
     type: String,
   })
-  private transition: keyof Transitions = 'fade';
+  public transition: keyof Transitions = 'fade';
 
   private animation?: Animation;
 

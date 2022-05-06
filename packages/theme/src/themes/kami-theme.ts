@@ -1,7 +1,13 @@
 import './fonts/index.css';
 import { css } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import Theme from './base-theme';
 
+/**
+ * @summary Light and Dark kami theme.
+ * @tag kami-theme
+ */
+@customElement('kami-theme')
 export default class KamiTheme extends Theme {
   static get tag() {
     return 'kami-theme';

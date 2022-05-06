@@ -1,7 +1,7 @@
 import '@material/mwc-icon';
 import { mdiBellBadgeOutline, mdiClose } from '@mdi/js';
 import { LitElement, html, css } from 'lit';
-import { property, state } from 'lit/decorators.js';
+import { property, state, customElement } from 'lit/decorators.js';
 import KamiMarkdown from '@kamiapp/markdown';
 import KamiTransition from '@kamiapp/transition';
 
@@ -16,11 +16,12 @@ if (!customElements.get('kami-transition')) {
   customElements.define('kami-transition', KamiTransition);
 }
 
+/**
+ * @summary Display your releases directly into your app.
+ * @tag kami-changelog
+ */
+@customElement('kami-changelog')
 export default class KamiChangelog extends LitElement {
-  static get tag() {
-    return 'kami-changelog';
-  }
-
   static styles = css`
     ::-webkit-scrollbar {
       width: 12px;
@@ -139,7 +140,7 @@ export default class KamiChangelog extends LitElement {
   private releaseTemplate(release?: Release) {
     return html`
       <div class="kami-changelog__release">
-        <h3 class="kami-changelog__title">${this.header || KamiChangelog.tag}</h3>
+        <h3 class="kami-changelog__title">${this.header || 'kami-changelog'}</h3>
         <div class="kami-changelog__markdown">
           <kami-markdown>
             ${release?.getContent()}

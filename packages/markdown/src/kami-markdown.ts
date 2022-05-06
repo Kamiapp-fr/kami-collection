@@ -12,10 +12,6 @@ import { style } from './style';
  */
 @customElement('kami-markdown')
 export default class KamiMarkdown extends LitElement {
-  static get tag() {
-    return 'kami-markdown';
-  }
-
   static styles = style;
 
   private static hljs = hljs;
