@@ -96,13 +96,13 @@ export default class KamiChangelog extends LitElement {
   `;
 
   @property()
-  private readonly src?: string;
+  public src?: string;
 
   @property()
-  private readonly provider?: ProviderRelease;
+  public provider?: ProviderRelease;
 
   @property()
-  private readonly header?: string;
+  public header?: string;
 
   @state()
   private release?: Release;

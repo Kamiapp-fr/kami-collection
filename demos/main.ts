@@ -2,6 +2,7 @@ import 'api-viewer-element';
 import '@api-viewer/demo';
 import '@kamiapp/theme';
 import '@kamiapp/transition';
+import '@kamiapp/changelog';
 import KamiMarkdown from '@kamiapp/markdown';
 import javascript from 'highlight.js/lib/languages/javascript';
 import shell from 'highlight.js/lib/languages/shell';
