@@ -38,6 +38,7 @@
   ],
   "dependencies": {
     "@api-viewer/demo": "^1.0.0-pre.6",
+    "@hotwired/turbo": "^7.1.0",
     "@mdi/js": "^6.6.96",
     "api-viewer-element": "^1.0.0-pre.3",
     "highlight.js": "^11.5.1",
