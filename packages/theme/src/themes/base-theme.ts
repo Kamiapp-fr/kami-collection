@@ -16,14 +16,10 @@ declare global {
 }
 
 export default abstract class BaseTheme extends LitElement {
-  static get tag(): string {
-    throw new Error('Missing element tag');
-  }
-
   @property({
     reflect: true,
   })
-  private theme: 'light' | 'dark' = 'light';
+  public theme: 'light' | 'dark' = 'light';
 
   protected updated(_changedProperties: PropertyValueMap<any>): void {
     const theme = _changedProperties.get('theme');

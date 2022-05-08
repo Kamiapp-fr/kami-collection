@@ -1,0 +1,19 @@
+{{> header }}
+<playground-element element="kami-theme">
+  <template data-element="kami-theme" data-target="slot">
+    <main style="background-color: var(--kami-theme-background);">
+      <h2 style="color: var(--kami-theme-text)">
+        Hello
+        <span style="color: var(--kami-theme-primary)">World</span>
+      </h2>
+    </main>
+  </template>
+  <template data-element="kami-theme" data-target="knob" data-attr="theme" data-type="select">
+    <select>
+      <option value="" selected></option>
+      <option value="light"></option>
+      <option value="dark"></option>
+    </select> 
+  </template>
+</playground-element>
+{{> footer }}
