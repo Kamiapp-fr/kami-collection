@@ -15,5 +15,108 @@ $ npm install --save @kamiapp/flash
 ```
 
 >  See the [components section](#components) to see all components  available.
+
+# Usage
+
+First you need to declare components into your ``index.js``. With the whole collection a simple import is needed.
+
+```js
+// index.js
+import '@kamiapp/collection';
+```
+
+You can also declare a component individualy.
+
+```js
+// index.js
+import '@kamiapp/markdown';
+```
+
+Now you can use kami components directly from an html page.
+
+```html
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Example App</title>
+  </head>
+  <body>
+
+    <kami-markdown>
+      # Hell world
+    </kami-markdown>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
+```
+
+
+# Theming
+
+Each components are compatible with the `kami-theme` which provide a default light and dark mode. 
+You can also create your own theme, to do this you must use the `Theme` component and extends it. Now you just need to override the static `style` property. For the dark or light variable, these must be into the `kami-{light|dark}-mode` class.
+
+```ts
+import { css } from 'lit';
+import { BaseTheme } from '@kamiapp/theme';
+
+export default class CustomTheme extends BaseTheme {
+  static get tag() {
+    return 'my-custom-theme';
+  }
+
+  static styles = css`
+    ::slotted(*) {
+      --kami-theme-font-primary: "Roboto";
+      --kami-theme-font-secondary: sans-serif;
+      --kami-theme-shadow: 0 0 8px -5px black;
+      --kami-theme-text-shadow: 0 0 4px #0000008a;
+      --kami-theme-radius: 20px;
+      --kami-theme-white: white;
+    }
+
+    .kami-light-mode::slotted(*) {
+      --kami-theme-primary: red;
+      --kami-theme-secondary: blue;
+      --kami-theme-accent: grey;
+      --kami-theme-text: black;
+      --kami-theme-background: white;
+      --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
+      --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
+    }
+  
+    .kami-dark-mode::slotted(*) {
+      --kami-theme-primary: blue;
+      --kami-theme-secondary: red;
+      --kami-theme-accent: grey;
+      --kami-theme-text: white;
+      --kami-theme-background: black;
+      --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
+      --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
+    }
+  `;
+}
+
+```
+
+Now to use it just define it and that all !
+
+```html
+<body>
+  <my-custom-theme mode="light">
+    <kami-markdown>
+      # H1
+    </kami-markdown>
+  </my-custom-theme>
+
+  <script type="module">
+    import '@kamiapp/markdown';
+
+  </script>
+</body>
+```
+
+
 </guide-element>
 {{> footer }}
