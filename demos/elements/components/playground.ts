@@ -4,7 +4,7 @@ import sharedStyles from '@api-viewer/common/lib/shared-styles.js';
 import demoStyle from '@api-viewer/demo/lib/styles.js';
 import { customElement, property } from 'lit/decorators.js';
 import { css, html } from 'lit';
-import { theme } from './styles/api-viewer-theme';
+import { theme } from '../styles/api-viewer-theme';
 
 @customElement('playground-element')
 export class PlaygroundElement extends ApiDemoBase {

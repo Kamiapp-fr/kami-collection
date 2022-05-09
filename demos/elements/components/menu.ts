@@ -70,7 +70,7 @@ export default class MenuElement extends LitElement {
             </a>
           </div>
           <nav class="menu__nav">
-            <a class="menu__link" href="/guide/index.html">guide</a>
+            <a class="menu__link" href="/guide.html">guide</a>
             <a class="menu__link" href="/components.html">components</a>
             <a class="menu__link" href="https://github.com/Kamiapp-fr/kami-collection">github</a>
             <mode-element class="menu__link"></mode-element>

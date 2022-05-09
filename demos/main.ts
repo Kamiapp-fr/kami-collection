@@ -9,15 +9,17 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import shell from 'highlight.js/lib/languages/shell';
 import dark from 'highlight.js/styles/github-dark.css';
 
-import './elements/mode';
-import './elements/button';
+import './elements/components/mode';
+import './elements/components/button';
+import './elements/components/menu';
+import './elements/components/component';
+import './elements/components/playground';
+
+import './elements/views/home';
+import './elements/views/guide';
+import './elements/views/components';
+
 import './elements/app';
-import './elements/menu';
-import './elements/home';
-import './elements/guide';
-import './elements/component';
-import './elements/components';
-import './elements/playground';
 
 KamiMarkdown.registerHighlightLanguage('js', javascript);
 KamiMarkdown.registerHighlightLanguage('sh', shell);
