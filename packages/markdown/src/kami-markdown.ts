@@ -14,6 +14,8 @@ import { style } from './style';
 export default class KamiMarkdown extends LitElement {
   static styles = style;
 
+  private static plugins: Markdown.PluginSimple[] = [];
+
   private static hljs = hljs;
 
   private static hightlightStyle: string = '';
@@ -26,6 +28,10 @@ export default class KamiMarkdown extends LitElement {
     KamiMarkdown.hljs.registerLanguage(languageName, language);
   }
 
+  static use(plugin: Markdown.PluginSimple) {
+    this.plugins.push(plugin);
+  }
+
   private parser: Markdown;
 
   @state()
@@ -36,6 +42,10 @@ export default class KamiMarkdown extends LitElement {
     this.content = '';
     this.parser = new Markdown({
       highlight: this.setupHighlight.bind(this),
+    });
+
+    KamiMarkdown.plugins.forEach((plugin) => {
+      this.parser.use(plugin);
     });
   }
 
