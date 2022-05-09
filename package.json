@@ -42,6 +42,8 @@
     "@mdi/js": "^6.6.96",
     "api-viewer-element": "^1.0.0-pre.3",
     "highlight.js": "^11.5.1",
-    "lit": "^2.2.2"
+    "lit": "^2.2.2",
+    "markdown-it-anchor": "^8.6.3",
+    "markdown-it-table-of-contents": "^0.6.0"
   }
 }

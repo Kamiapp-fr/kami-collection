@@ -10,6 +10,8 @@ import typescript from 'highlight.js/lib/languages/typescript';
 import html from 'highlight.js/lib/languages/xml';
 import shell from 'highlight.js/lib/languages/shell';
 import dark from 'highlight.js/styles/github-dark.css';
+import anchor from 'markdown-it-anchor';
+import toc from 'markdown-it-table-of-contents';
 
 import './elements/components/mode';
 import './elements/components/button';
@@ -28,4 +30,7 @@ KamiMarkdown.registerHighlightLanguage('ts', typescript);
 KamiMarkdown.registerHighlightLanguage('html', html);
 KamiMarkdown.registerHighlightLanguage('sh', shell);
 KamiMarkdown.registerHighlightStyle(dark);
+
+KamiMarkdown.use(anchor);
+KamiMarkdown.use(toc);
 setProgressBarDelay(200);
