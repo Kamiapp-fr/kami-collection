@@ -44,9 +44,7 @@ export default class KamiMarkdown extends LitElement {
       highlight: this.setupHighlight.bind(this),
     });
 
-    KamiMarkdown.plugins.forEach((plugin) => {
-      this.parser.use(plugin);
-    });
+    KamiMarkdown.plugins.forEach((plugin) => this.parser.use(plugin));
   }
 
   private setupHighlight(str: string, lang: string) {
@@ -73,11 +71,17 @@ export default class KamiMarkdown extends LitElement {
     }
 
     // Get childrens nodes into the slot
-    // and get only Text node with some content.
-    // This prevent all trouble with script element.
+    // and sanitize it to prevent XSS attacks.
     const nodes = slot.assignedNodes({ flatten: true });
+
     const texts = nodes
-      .map((node) => node instanceof Text && node.nodeValue)
+      .map((node) => {
+        if (node instanceof HTMLScriptElement && node.type === 'text/markdown') {
+          return node.innerText.replace(/&lt;(\/?script)(.*?)&gt;/g, '<$1$2>');
+        }
+
+        return undefined;
+      })
       .filter((x) => !!x) as string[];
 
     this.content = texts
