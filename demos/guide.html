@@ -98,9 +98,16 @@
   ```html
   <my-custom-theme mode="light">
     <kami-markdown>
-      # H1
+      &lt;script type="text/markdown"&gt;
+        # H1
+      &lt;/script&gt;
     </kami-markdown>
   </my-custom-theme>
+
+  &lt;script type="module"&gt;
+    import '@kamiapp/markdown';
+    import './CustomTheme';
+  &lt;/script&gt;
   ```
   </script>
   

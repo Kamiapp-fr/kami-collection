@@ -86,7 +86,8 @@ export default class KamiMarkdown extends LitElement {
   }
 
   private updateMarkdown(md: HTMLScriptElement) {
-    this.content = dedent(md.innerText.replace(/&lt;(\/?script)(.*?)&gt;/g, '<$1$2>'));
+    const content = md.innerText.replace(/&lt;(\/?script)(.*?)&gt;/g, '<$1$2>');
+    this.content = dedent(content.trim());
   }
 
   private renderHighlight(str: string, lang: string) {
