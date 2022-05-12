@@ -4,6 +4,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import Markdown from 'markdown-it';
 import hljs from 'highlight.js/lib/core';
 import { LanguageFn } from 'highlight.js';
+import dedent from 'ts-dedent';
 import { style } from './style';
 
 /**
@@ -85,7 +86,7 @@ export default class KamiMarkdown extends LitElement {
   }
 
   private updateMarkdown(md: HTMLScriptElement) {
-    this.content = md.innerText.replace(/&lt;(\/?script)(.*?)&gt;/g, '<$1$2>').trim();
+    this.content = dedent(md.innerText.replace(/&lt;(\/?script)(.*?)&gt;/g, '<$1$2>'));
   }
 
   private renderHighlight(str: string, lang: string) {
