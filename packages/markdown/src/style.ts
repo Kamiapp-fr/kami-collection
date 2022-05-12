@@ -206,13 +206,21 @@ export const style = css`
     padding: 1rem;
   }
 
+  .hljs {
+    overflow: auto;
+  }
+
   pre:not(.hljs), code:not(.hljs__code) {
     background-color: var(--kami-theme-secondary);
     color: var(--kami-theme-white);
   }
 
   code:not(.hljs__code) {
-    padding: 4px 10px;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 6px;
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
   }
 
   pre,
