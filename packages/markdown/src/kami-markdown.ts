@@ -47,6 +47,12 @@ export default class KamiMarkdown extends LitElement {
     KamiMarkdown.plugins.forEach((plugin) => this.parser.use(plugin));
   }
 
+  private observer?: MutationObserver;
+
+  private isScriptMarkdown(node: Node) {
+    return node instanceof HTMLScriptElement && node.type === 'text/markdown';
+  }
+
   private setupHighlight(str: string, lang: string) {
     if (lang && KamiMarkdown.hljs.getLanguage(lang)) {
       try {
@@ -59,36 +65,27 @@ export default class KamiMarkdown extends LitElement {
     return `<pre><code>${this.parser.utils.escapeHtml(str)}</code></pre>`;
   }
 
-  private reduceHtml(content: string, text: string) {
-    return `${content}${text} \n`;
-  }
-
-  private handleSlotchange() {
+  private registerMarkdown() {
     const slot = this.shadowRoot?.querySelector('slot');
 
-    if (!slot) {
+    if (!slot || this.observer) {
       return;
     }
 
-    // Get childrens nodes into the slot
-    // and sanitize it to prevent XSS attacks.
     const nodes = slot.assignedNodes({ flatten: true });
+    const md = nodes.find(this.isScriptMarkdown.bind(this)) as HTMLScriptElement | undefined;
 
-    const texts = nodes
-      .map((node) => {
-        if (node instanceof HTMLScriptElement && node.type === 'text/markdown') {
-          return node.innerText.replace(/&lt;(\/?script)(.*?)&gt;/g, '<$1$2>');
-        }
+    if (!md) {
+      return;
+    }
 
-        return undefined;
-      })
-      .filter((x) => !!x) as string[];
+    this.observer = new MutationObserver(() => this.updateMarkdown(md));
+    this.observer.observe(md, { childList: true });
+    this.updateMarkdown(md);
+  }
 
-    this.content = texts
-      .reduce((a, b) => a + b, '')
-      .split('\n')
-      .reduce(this.reduceHtml, '')
-      .trim();
+  private updateMarkdown(md: HTMLScriptElement) {
+    this.content = md.innerText.replace(/&lt;(\/?script)(.*?)&gt;/g, '<$1$2>').trim();
   }
 
   private renderHighlight(str: string, lang: string) {
@@ -105,10 +102,7 @@ export default class KamiMarkdown extends LitElement {
       <style>
         ${unsafeCSS(KamiMarkdown.hightlightStyle)}
       </style>
-      <slot 
-        style="display: none" 
-        @slotchange=${this.handleSlotchange}
-      ></slot>
+      <slot style="display: none" @slotchange=${this.registerMarkdown}></slot>
       <article>
         ${unsafeHTML(this.parser.render(this.content))}
       </article>
