@@ -143,7 +143,9 @@ export default class KamiChangelog extends LitElement {
         <h3 class="kami-changelog__title">${this.header || 'kami-changelog'}</h3>
         <div class="kami-changelog__markdown">
           <kami-markdown>
-            ${release?.getContent()}
+            <script type="text/markdown">
+              ${release?.getContent()}
+            </script>
           </kami-markdown>
         </div>
       </div>
