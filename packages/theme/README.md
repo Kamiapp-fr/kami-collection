@@ -1,91 +1,36 @@
 # `<kami-theme>`
 
-This component contains the kami theme. It also contains a base class to create your own theme.
+This component contains the default theme of the collection called `kami-theme`. 
+It also contains a base class to create your own theme. This base class provide a support
+for **light** and **dark** mode.
 
-## Install 
+## Usage
+
+Install the component using ``npm`` or ``yarn`` or ``pnpm`` :
 
 ```console
 $ npm install --save @kamiapp/theme
 ```
 
-## Usage
 
-Import the component and use it directly into your html file :
+Import the component into your **main** js/ts file :
+
+```js
+import '@kamiapp/markdown';
+import '@kamiapp/theme';
+```
+And use the component directly into your html :
 
 ```html
-<body>
-  <kami-theme mode="dark">
-    <kami-markdown>
+<kami-theme mode="dark">
+  <kami-markdown>
+    <script type="text/markdown">
       # H1
-    </kami-markdown>
-  </kami-theme>
-
-  <script type="module">
-    import '@kamiapp/markdown';
-    import '@kamiapp/theme';
-  </script>
-</body>
+    </script>
+  </kami-markdown>
+</kami-theme>
 ```
 
-> You can create your own theme, to get more information about this go into the [documentation]().
+## Documentation
 
-
-## API
-### Props
-
-| name        |  type                 | description                  | required | default value                  |
-|------------ |:---------------------:|------------------------------|----------|--------------------------------|
-| mode        | `light` or `dark`        | Define which mode should be used | false     | light                               |
-
-
-### Methods
-*None*
-
-### Events
-
-#### Document events
-
-This event are attached to the `document` object. To use it you must do this `document.addEventListener(<EventName>, <Callback>)`.
-
-
-| name            |  trigger                                | event.detail                                   |
-|---------------- |-----------------------------------------|------------------------------------------------|
-| theme    | When the current theme is updated   |  { theme: *light* or *dark* }   |
-
-
-### CSS Custom Properties
-
-This is all variables used be the kami theme and theirs defaults value.
-
-| Name | Default |
-| ------------------------------------- | --------------------------------------------------
-| ``--kami-theme-font-primary``    | Gosha Sans    | 
-| ``--kami-theme-font-secondary``    |  UnB Office  | 
-| ``--kami-theme-shadow``    |  0 0 8px -5px black  | 
-| ``--kami-theme-text-shadow``    |  0 0 4px #0000008a  | 
-| ``--kami-theme-radius``    |  20px  | 
-| ``--kami-theme-white``    | white  | 
-
-### Light
-
-| Name | Default |
-| ------------------------------------- | --------------------------------------------------
-| ``--kami-theme-primary``    | #30E2C9    | 
-| ``--kami-theme-secondary``    |  #5472ea  | 
-| ``--kami-theme-accent``    |  #8B8B8F  | 
-| ``--kami-theme-text``    |  #565656  | 
-| ``--kami-theme-background``    |  white  | 
-| ``--kami-theme-gradient-primary``    | linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%)  | 
-| ``--kami-theme-gradient-secondary``    | linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%) | 
-
-### Dark
-
-| Name | Default |
-| ------------------------------------- | --------------------------------------------------
-| ``--kami-theme-primary``    | #30E2C9    | 
-| ``--kami-theme-secondary``    |  #5472ea  | 
-| ``--kami-theme-accent``    |  #8B8B8F  | 
-| ``--kami-theme-text``    |  white  | 
-| ``--kami-theme-background``    |  #303032  | 
-| ``--kami-theme-gradient-primary``    | linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%)   | 
-| ``--kami-theme-gradient-secondary``    | linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%)   | 
+To get more informations about this component you can go to the [kami-theme](https://www.collection.kamiapp.fr/docs/theme.html) section into the kami collection site web. See the documentation at [collection.kamiapp.fr](https://www.collection.kamiapp.fr/) to get more information about how to use each components. You will also find a playground section to test all components.
