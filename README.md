@@ -45,7 +45,9 @@ Or you can also declare a component individualy.
 import '@kamiapp/markdown';
 ```
 
-See the [documentation]() to get more information about how to use each components.
+## Documentation
+
+See the documentation at [collection.kamiapp.fr](https://www.collection.kamiapp.fr/) to get more information about how to use each components. You will also find a playground section to test all components.
 
 
 ## Components
