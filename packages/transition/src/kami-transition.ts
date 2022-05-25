@@ -75,8 +75,6 @@ export default class KamiTransition extends LitElement {
 
   private animationOut?: Animation;
 
-  public state?: boolean;
-
   public get options() {
     return {
       duration: this.duration,
@@ -157,7 +155,6 @@ export default class KamiTransition extends LitElement {
 
     if (this.show && this.single) {
       this.displayEl(this.child);
-      this.state = true;
     }
 
     if (!this.show && this.in && this.out) {
@@ -168,7 +165,6 @@ export default class KamiTransition extends LitElement {
     if (this.show && this.in && this.out) {
       this.displayEl(this.childIn);
       this.hideEl(this.childOut);
-      this.state = true;
     }
 
     this.updateHostSize(this.in);
@@ -234,8 +230,6 @@ export default class KamiTransition extends LitElement {
       keyframes: transitions[this.transition](this.from, this.to),
       options: this.options,
     });
-
-    this.state = true;
   }
 
   public displayInOut() {
@@ -254,8 +248,6 @@ export default class KamiTransition extends LitElement {
 
     this.animationIn = animationIn;
     this.animationOut = animationOut;
-
-    this.state = true;
   }
 
   public hide() {
@@ -273,8 +265,6 @@ export default class KamiTransition extends LitElement {
         direction: 'reverse',
       },
     });
-
-    this.state = false;
   }
 
   public hideInOut() {
@@ -293,8 +283,6 @@ export default class KamiTransition extends LitElement {
 
     this.animationIn = animationOut;
     this.animationOut = animationIn;
-
-    this.state = false;
   }
 
   public updateHostSize(el?: Element) {
