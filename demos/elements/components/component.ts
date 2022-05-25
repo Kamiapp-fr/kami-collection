@@ -51,7 +51,7 @@ export default class ComponentElement extends LitElement {
         <h2 class="component__name">${this.name}</h2>
         <h3 class="component__description">${this.summary}</h3>
         <div class="component__cta">
-          <button-element background="true" small="true">Docs</button-element>
+          <button-element href="/docs/${this.nameNoPrefix}.html" background="true" small="true">Docs</button-element>
           <button-element href="/playgrounds/${this.nameNoPrefix}.html" stroke="true" small="true">Playground</button-element>
         </div>
       </div>

@@ -1,0 +1,68 @@
+{{> header }}
+<guide-element name="Markdown">
+  <script type="text/markdown">
+    Convert markdown in html using [markdown-it](https://github.com/markdown-it/markdown-it).
+    
+    ## Install 
+    
+    ```console
+    $ npm install --save @kamiapp/markdown
+    ```
+    
+    ## Usage
+    
+    Import the component, declare it using `customElements.define()` and use it directly into your html file :
+    
+    ```html
+    <body>
+      <kami-markdown>
+        &lt;script type="text/markdown"&gt;
+          # H1
+          ## H2
+          ### H3
+          #### H4
+          ##### H5
+        &lt;/script&gt;
+      </kami-markdown>
+      &lt;script type="module"&gt;
+        import '@kamiapp/markdown';
+      &lt;/script&gt;
+    </body>
+    ```
+    
+    ## API
+    ### Props
+    
+    *None*
+    
+    ### Methods
+    *None*
+    
+    ### Events
+    *None*
+    
+    ### CSS Custom Properties
+    
+    #### Global Custom Properties
+    
+    This component exposes the following global [theming](../theme/) custom properties.
+    
+    | Name | 
+    | ------------------------------------- |
+    | ``--kami-theme-primary``    |
+    | ``--kami-theme-secondary``    |
+    | ``--kami-theme-text``    |
+    | ``--kami-theme-background``    |
+    | ``--kami-theme-gradient-primary``    |
+    | ``--kami-theme-font-secondary``    |
+    | ``--kami-theme-font-primary``    |
+    | ``--kami-theme-white``    |
+    | ``--kami-theme-shadow``    |
+    | ``--kami-theme-text-shadow``    |
+    | ``--kami-theme-radius``    |
+    
+    
+    
+  </script>
+</guide-element>
+{{> footer }}

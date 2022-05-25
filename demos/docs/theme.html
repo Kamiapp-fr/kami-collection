@@ -1,0 +1,95 @@
+{{> header }}
+<guide-element name="Theme">
+  <script type="text/markdown">    
+      This component contains the kami theme. It also contains a base class to create your own theme.
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/theme
+      ```
+      
+      ## Usage
+      
+      Import the component and use it directly into your html file :
+      
+      ```html
+      <body>
+        <kami-theme mode="dark">
+          <kami-markdown>
+            # H1
+          </kami-markdown>
+        </kami-theme>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/markdown';
+          import '@kamiapp/theme';
+        &lt;/script&gt;
+      </body>
+      ```
+      
+      > You can create your own theme, to get more information about this go into the [documentation]().
+      
+      
+      ## API
+      ### Props
+      
+      | name        |  type                 | description                  | required | default value                  |
+      |------------ |:---------------------:|------------------------------|----------|--------------------------------|
+      | mode        | `light` or `dark`        | Define which mode should be used | false     | light                               |
+      
+      
+      ### Methods
+      *None*
+      
+      ### Events
+      
+      #### Document events
+      
+      This event are attached to the `document` object. To use it you must do this `document.addEventListener(<EventName>, <Callback>)`.
+      
+      
+      | name            |  trigger                                | event.detail                                   |
+      |---------------- |-----------------------------------------|------------------------------------------------|
+      | theme    | When the current theme is updated   |  { theme: *light* or *dark* }   |
+      
+      
+      ### CSS Custom Properties
+      
+      This is all variables used be the kami theme and theirs defaults value.
+      
+      | Name | Default |
+      | ------------------------------------- | --------------------------------------------------
+      | ``--kami-theme-font-primary``    | Gosha Sans    | 
+      | ``--kami-theme-font-secondary``    |  UnB Office  | 
+      | ``--kami-theme-shadow``    |  0 0 8px -5px black  | 
+      | ``--kami-theme-text-shadow``    |  0 0 4px #0000008a  | 
+      | ``--kami-theme-radius``    |  20px  | 
+      | ``--kami-theme-white``    | white  | 
+      
+      ### Light
+      
+      | Name | Default |
+      | ------------------------------------- | --------------------------------------------------
+      | ``--kami-theme-primary``    | #30E2C9    | 
+      | ``--kami-theme-secondary``    |  #5472ea  | 
+      | ``--kami-theme-accent``    |  #8B8B8F  | 
+      | ``--kami-theme-text``    |  #565656  | 
+      | ``--kami-theme-background``    |  white  | 
+      | ``--kami-theme-gradient-primary``    | linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%)  | 
+      | ``--kami-theme-gradient-secondary``    | linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%) | 
+      
+      ### Dark
+      
+      | Name | Default |
+      | ------------------------------------- | --------------------------------------------------
+      | ``--kami-theme-primary``    | #30E2C9    | 
+      | ``--kami-theme-secondary``    |  #5472ea  | 
+      | ``--kami-theme-accent``    |  #8B8B8F  | 
+      | ``--kami-theme-text``    |  white  | 
+      | ``--kami-theme-background``    |  #303032  | 
+      | ``--kami-theme-gradient-primary``    | linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%)   | 
+      | ``--kami-theme-gradient-secondary``    | linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%)   | 
+  </script>
+</guide-element>
+{{> footer }}
