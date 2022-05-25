@@ -1,7 +1,12 @@
 {{> header }}
 <guide-element name="Getting Started">
   <script type="text/markdown">
-  # Install
+  
+  Kami-collection is a set of web components which aims to help you to brings your application faster.
+  In contrast to a design system, the style of each component can be modify with your on theme. This collection
+  also provide a default theme called `kami-theme` which support **light** and **dark** mode.
+
+  ## Install
   
   You can install the whole collection using the `@kamiapp/collection` package.
   
@@ -17,7 +22,7 @@
   
   >  See the [components section](#components) to see all components  available.
   
-  # Usage
+  ## Usage
   
   First you need to declare components into your ``index.js``. With the whole collection a simple import is needed.
   
@@ -43,7 +48,7 @@
   ```
   
   
-  # Theming
+  ## Theming
   
   Each components are compatible with the `kami-theme` which provide a default light and dark mode. 
   You can also create your own theme, to do this you must use the `Theme` component and extends it. Now you just need to override the static `style` property. For the dark or light variable, these must be into the `kami-{light|dark}-mode` class.
@@ -73,8 +78,8 @@
         --kami-theme-accent: grey;
         --kami-theme-text: black;
         --kami-theme-background: white;
-        --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
-        --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
+        --kami-theme-gradient-primary: linear-gradient(45deg, blue, red);
+        --kami-theme-gradient-secondary: linear-gradient(45deg, blue, red);
       }
     
       .kami-dark-mode::slotted(*) {
@@ -83,8 +88,8 @@
         --kami-theme-accent: grey;
         --kami-theme-text: white;
         --kami-theme-background: black;
-        --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
-        --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
+        --kami-theme-gradient-primary: linear-gradient(45deg, blue, red);
+        --kami-theme-gradient-secondary: linear-gradient(45deg, blue, red);
       }
     `;
   }

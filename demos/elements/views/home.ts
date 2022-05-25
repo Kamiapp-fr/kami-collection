@@ -71,8 +71,8 @@ export default class HomeElement extends LitElement {
           <button-element href="/guide.html" class="home__button" background="true">
             Getting Started
           </button-element>
-          <button-element href="https://github.com/Kamiapp-fr/kami-collection" class="home__button" stroke="true">
-            Github
+          <button-element href="/components.html" class="home__button" stroke="true">
+            Components
           </button-element>
         </div>
       </main>

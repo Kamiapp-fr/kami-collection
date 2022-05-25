@@ -1,7 +1,9 @@
 {{> header }}
 <guide-element name="Theme">
   <script type="text/markdown">    
-      This component contains the kami theme. It also contains a base class to create your own theme.
+      This component contains the default theme of the collection called `kami-theme`. 
+      It also contains a base class to create your own theme. This base class provide a support
+      for **light** and **dark** mode.
       
       ## Install 
       
@@ -11,7 +13,7 @@
       
       ## Usage
       
-      Import the component and use it directly into your html file :
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file.
       
       ```html
       <body>
@@ -28,14 +30,14 @@
       </body>
       ```
       
-      > You can create your own theme, to get more information about this go into the [documentation]().
+      > To get more information about theme customization, see the [guide](/guide.html).
       
       
       ## API
       ### Props
       
       | name        |  type                 | description                  | required | default value                  |
-      |------------ |:---------------------:|------------------------------|----------|--------------------------------|
+      |------------ |:---------------------:|------------------------------|:--------:|--------------------------------|
       | mode        | `light` or `dark`        | Define which mode should be used | false     | light                               |
       
       
@@ -46,8 +48,20 @@
       
       #### Document events
       
-      This event are attached to the `document` object. To use it you must do this `document.addEventListener(<EventName>, <Callback>)`.
-      
+      This event are attached to the `document` object. To use it you must do this : 
+
+      ```js
+      document.addEventListener('<EventName>', () => { /* Do what you want */ });
+      ```
+
+      For example with the `theme` event: 
+
+      ```js
+      document.addEventListener('theme',  ({ detail }) => {
+        // Display name of the new theme set.
+        console.log(detail.theme);
+      });
+      ```
       
       | name            |  trigger                                | event.detail                                   |
       |---------------- |-----------------------------------------|------------------------------------------------|

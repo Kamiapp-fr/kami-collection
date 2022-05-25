@@ -1,7 +1,10 @@
 {{> header }}
 <guide-element name="Changelog">
   <script type="text/markdown">    
-      This component allow you to display your releases directly into your app.
+      This component allow you to display your releases directly into your app. 
+      Currently this component only provide support for [github](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) 
+      and [gitlab](https://docs.gitlab.com/ee/user/project/releases/) releases. 
+      If you want use an another provider you can make a PR to add it.
       
       ## Install 
       
@@ -11,7 +14,7 @@
       
       ## Usage
       
-      Import the component, declare it using `customElements.define()` and use it directly into your html file :
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
       
       ```html
       <body>
@@ -31,7 +34,7 @@
       ### Props
       
       | name        |  type                 | description                  | required | default value                  |
-      |------------ |:---------------------:|------------------------------|----------|--------------------------------|
+      |------------ |:---------------------:|------------------------------|:--------:|--------------------------------|
       | src         | string                | Url used to get release data.| true     |                                |
       | provider    | [Provider](#provider) | Type of release.             | true     |                                |
       | header      | string                | Text display into the header.| false    | Kami-changelog                 |
@@ -70,7 +73,7 @@
       
       #### Global Custom Properties
       
-      This component exposes the following global [theming](../theme/) custom properties.
+      This component exposes the following global [theming](/docs/theme.html) custom properties.
       
       | Name | 
       | ------------------------------------- |
