@@ -15,6 +15,7 @@ export default class AppElement extends LitElement {
       color: var(--kami-theme-text);
       font-family: 'Inter', sans-serif;
       overflow: auto;
+      overflow-x: hidden;
     }
   `;
 

@@ -19,13 +19,15 @@ export default class MenuElement extends LitElement {
       height: 65px;
       background-color: var(--kami-theme-background);
       border-bottom:  1px solid var(--kami-theme-border-color);
+      padding: 0px 30px;
+      box-sizing: border-box;
     }
 
     .menu__content {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      max-width: 1000px;
+      max-width: 940px;
     }
 
     .menu__nav {

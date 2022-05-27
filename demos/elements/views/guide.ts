@@ -5,7 +5,9 @@ import { customElement, property } from 'lit/decorators.js';
 export default class AppElement extends LitElement {
   static styles = css`
     .guide {
+      padding: 0 40px;    
       margin: 40px 0px;
+      box-sizing: border-box;
     }
 
     .guide__title {

@@ -10,9 +10,12 @@ export default class ComponentElement extends LitElement {
     }
 
     .component {
-      max-width: 300px;
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 190px;
+      width: 340px;
       padding: 20px;
+      box-sizing: border-box;
       border: solid 1px var(--kami-theme-border-color);
       border-radius: 8px;
       background-color: var(--kami-theme-background)
@@ -32,6 +35,8 @@ export default class ComponentElement extends LitElement {
       display: flex;
       justify-content: space-between;
       margin-top: 25px;
+      height: 100%;
+      align-items: end;
     }
   `;
 
