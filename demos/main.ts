@@ -18,6 +18,7 @@ import './elements/components/button';
 import './elements/components/menu';
 import './elements/components/component';
 import './elements/components/playground';
+import './elements/components/footer';
 
 import './elements/views/home';
 import './elements/views/guide';
