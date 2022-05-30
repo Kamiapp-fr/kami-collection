@@ -1,6 +1,6 @@
 <div align="center">
   <br/><br/>
-  <img src="./.github/logo.png" width="300" />
+  <img src="./.github/kami.png" width="300" />
   <br/><br/>
   
   # Kami Collection
