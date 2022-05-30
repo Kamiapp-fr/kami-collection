@@ -98,9 +98,6 @@ export default class MenuElement extends LitElement {
   private width: number = 0;
 
   @state()
-  private height: number = 0;
-
-  @state()
   private navIsOpen: boolean = false;
 
   connectedCallback(): void {
@@ -123,10 +120,6 @@ export default class MenuElement extends LitElement {
     this.width = window.innerWidth
       || document.documentElement.clientWidth
       || document.body.clientWidth;
-
-    this.height = window.innerHeight
-      || document.documentElement.clientHeight
-      || document.body.clientHeight;
   }
 
   public openNav() {
