@@ -8,6 +8,7 @@ export default class AppElement extends LitElement {
       padding: 0 40px;    
       margin: 40px 0px;
       box-sizing: border-box;
+      min-height: calc(100vh - 185px);
     }
 
     .guide__title {

@@ -1,24 +1,26 @@
 {{> header }}
-<playground-element element="kami-changelog">
-  <template data-element="kami-changelog" data-target="host">
-    <kami-changelog
-      src="https://api.github.com/repos/Kamiapp-fr/kami-collection/releases"
-      header="🚀 Releases"
-      provider="github"
-    ></kami-changelog>
-  </template>
-
-  <template data-element="kami-changelog" data-target="knob" data-attr="provider" data-type="select">
-    <select>
-      <option value="github" selected></option>
-      <option value="gitlab"></option>
-    </select> 
-  </template>
-</playground-element>
-<style>
-  ::part(demo-output) {
-    height: 60vh;
-    overflow: inherit;
-  }
-</style>
+<div class="playground">
+  <playground-element element="kami-changelog">
+    <template data-element="kami-changelog" data-target="host">
+      <kami-changelog
+        src="https://api.github.com/repos/Kamiapp-fr/kami-collection/releases"
+        header="🚀 Releases"
+        provider="github"
+      ></kami-changelog>
+    </template>
+  
+    <template data-element="kami-changelog" data-target="knob" data-attr="provider" data-type="select">
+      <select>
+        <option value="github" selected></option>
+        <option value="gitlab"></option>
+      </select> 
+    </template>
+  </playground-element>
+  <style>
+    ::part(demo-output) {
+      height: 60vh;
+      overflow: inherit;
+    }
+  </style>
+</div>
 {{> footer }}

@@ -11,3 +11,7 @@
 kami-theme:not(:defined) {
     opacity: 0;
 }
+
+.playground {
+    min-height: calc(100vh - 125px);
+}

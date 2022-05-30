@@ -22,7 +22,9 @@ export default class AppElement extends LitElement {
   protected render() {
     return html`
       <div class="app">
+        <menu-element></menu-element>
         <slot></slot>
+        <footer-element></footer-element>
       </div>
     `;
   }

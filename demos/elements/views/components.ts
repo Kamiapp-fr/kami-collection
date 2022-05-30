@@ -14,6 +14,7 @@ export default class ComponentsElement extends LitElement {
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: calc(100vh - 185px);
     }
   
     .components__title {
