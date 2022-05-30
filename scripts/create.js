@@ -10,7 +10,17 @@ module.exports = function (plop) {
             {
                 type: 'addMany',
                 destination: '../packages/{{lowerCase name}}',
-                templateFiles: 'templates/**/*.hbs'
+                templateFiles: 'templates/package/**/*.hbs'
+            },
+            {
+                type: 'add',
+                destination: '../demos/docs/{{lowerCase name}}.html',
+                templateFile: 'templates/docs.hbs'
+            },
+            {
+                type: 'add',
+                destination: '../demos/playgrounds/{{lowerCase name}}.html',
+                templateFile: 'templates/playground.hbs'
             },
             {
                 type: 'append',
@@ -23,6 +33,12 @@ module.exports = function (plop) {
                 path: '../vite.config.js',
                 pattern: /export const alias = {/,
                 template: '  "@kamiapp/{{lowerCase name}}": resolve(__dirname, "./packages/{{lowerCase name}}/src/index.ts"),'
+            },
+            {
+                type: 'append',
+                path: '../vite.config.js',
+                pattern: /files: \[/,
+                template: "  './packages/{{lowerCase name}}/src/index.ts',"
             },
             {
                 type: 'append',
