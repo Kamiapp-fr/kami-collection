@@ -1,10 +1,8 @@
 import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
+@customElement('kami-{{lowerCase name}}')
 export default class Kami{{pascalCase name}} extends LitElement {
-  static get tag() {
-    return 'kami-{{lowerCase name}}';
-  }
-
   protected render() {
     return html`
       <h1>{{lowerCase name}}</h1>
