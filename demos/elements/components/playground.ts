@@ -25,9 +25,28 @@ export class PlaygroundElement extends ApiDemoBase {
         .playground {
           width: 100%;
           max-width: 1000px;
-          border-radius: 10px;
+          border-radius: 20px;
           overflow: hidden;
           border: 1px solid var(--kami-theme-border-color);
+        }
+
+        [part="header"] {
+          border-radius: 10px;
+          background: linear-gradient(94.7deg, rgb(52, 211, 206) 3.12%, rgb(78, 125, 230) 102.14%);
+        }
+
+        [part="header-title"] {
+          color: var(--kami-theme-white);
+          text-shadow: var(--kami-theme-text-shadow);
+          text-transform: uppercase;
+          margin: 0px;
+          padding: 15px;
+          font-size: 23px;
+          font-family: Inter;
+        }
+
+        header [part="select"] {
+          display: none;
         }
       `,
     ];
