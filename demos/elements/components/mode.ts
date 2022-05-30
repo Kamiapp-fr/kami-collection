@@ -9,12 +9,13 @@ export default class ModeElement extends LitElement {
     :host {
       display: flex;
       align-items: center;
+      height: 27px;
     }
 
     .mode {
-        height: 27px;
-        fill: var(--kami-theme-text);
-        cursor: pointer;
+      height: 100%;
+      fill: var(--kami-theme-text);
+      cursor: pointer;
     }
   `;
 
