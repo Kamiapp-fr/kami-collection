@@ -9,8 +9,8 @@
     "test": "echo '@TODO add tests'",
     "lint": "eslint .",
     "preview": "vite preview",
-    "release": "node ./scripts/version",
-    "create": "plop --plopfile ./scripts/create.js"
+    "release": "node ./scripts/version.cjs",
+    "create": "plop --plopfile ./scripts/create.cjs"
   },
   "devDependencies": {
     "@geut/chan": "^3.2.6",

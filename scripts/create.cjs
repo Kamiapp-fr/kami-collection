@@ -9,6 +9,7 @@ module.exports = function (plop) {
         actions: [
             {
                 type: 'addMany',
+                base: 'templates/package/',
                 destination: '../packages/{{lowerCase name}}',
                 templateFiles: 'templates/package/**/*.hbs'
             },
