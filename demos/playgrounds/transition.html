@@ -1,0 +1,58 @@
+{{> header }}
+<div class="playground">
+  <playground-element element="kami-transition">
+    <template data-element="kami-transition" data-target="host">
+      <kami-transition show="true"></kami-transition>
+    </template>
+  
+    <template data-element="kami-transition" data-target="suffix">
+      <style>
+        ::part(demo) {
+          height: 150px;
+          width: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--kami-theme-secondary);
+          background-image: var(--kami-theme-gradient-primary);
+          color: var(--kami-theme-white);
+          border-radius: 5px;
+        }
+      </style>
+    </template>
+  
+    <template data-element="kami-transition" data-target="slot">
+      <div part="demo">
+        <p>Animate me !</p> 
+      </div>
+    </template>
+  
+    <template data-element="kami-transition" data-target="knob" data-attr="easing" data-type="select">
+      <select>
+        <option value="ease" selected></option>
+        <option value="ease-in"></option>
+        <option value="ease-out"></option>
+        <option value="ease-in-out"></option>
+      </select> 
+    </template>
+    
+    <template data-element="kami-transition" data-target="knob" data-attr="transition" data-type="select">
+      <select>
+        <option value="fade" selected></option>
+        <option value="slide-y"></option>
+        <option value="slide-x"></option>
+        <option value="scale"></option>
+      </select> 
+    </template>
+  
+  </playground-element>
+  <style>
+    ::part(demo-output) {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</div>
+{{> footer }}

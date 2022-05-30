@@ -1,0 +1,97 @@
+{{> header }}
+<guide-element name="Markdown">
+  <script type="text/markdown">
+    Convert markdown in html using [markdown-it](https://github.com/markdown-it/markdown-it). 
+    This component is inspirated by this two components [wc-markdown](https://github.com/vanillawc/wc-markdown) and [zero-md](https://github.com/zerodevx/zero-md).
+    Like all other elements of this collection `kami-markdown` support light and dark theme.
+    
+    ## Install 
+    
+    ```console
+    $ npm install --save @kamiapp/markdown
+    ```
+    
+    ## Usage
+    
+    Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
+    
+    ```html
+    <body>
+      <kami-markdown>
+        &lt;script type="text/markdown"&gt;
+          # H1
+          ## H2
+          ### H3
+          #### H4
+          ##### H5
+        &lt;/script&gt;
+      </kami-markdown>
+      &lt;script type="module"&gt;
+        import '@kamiapp/markdown';
+      &lt;/script&gt;
+    </body>
+    ```
+
+    > Like the **wc-markdown** component the script tag cannot be used inside here, 
+    you'll have to use the escaped *&amp;lt;/script&amp;gt;*  version instead, 
+    you may also use *&amp;lt;script&amp;gt;* for the opening <script> tag if you wish to.
+
+    ## Configuration
+    
+    This component support [highlight.js](https://highlightjs.org/) for code hightlighting. 
+    You can configure languages and style of this plugin using these two static methods `registerHighlightLanguage` and `registerHighlightStyle`.
+    For highlight.js plugins you can use the static `use` method.
+    This is an example of configuration :
+
+    ```ts
+    import KamiMarkdown from '@kamiapp/markdown';
+    import javascript from 'highlight.js/lib/languages/javascript';
+    import dark from 'highlight.js/styles/github-dark.css';
+    import toc from 'markdown-it-table-of-contents';
+    
+    // register language
+    KamiMarkdown.registerHighlightLanguage('js', javascript);
+    
+    // register style
+    KamiMarkdown.registerHighlightStyle(dark);
+    
+    // register plugin
+    KamiMarkdown.use(toc);
+    ```
+    
+    ## API
+    ### Props
+    
+    *None*
+    
+    ### Methods
+    *None*
+    
+    ### Events
+    *None*
+    
+    ### CSS Custom Properties
+    
+    #### Global Custom Properties
+    
+    This component exposes the following global [theming](/docs/theme.html) custom properties.
+    
+    | Name | 
+    | ------------------------------------- |
+    | ``--kami-theme-primary``    |
+    | ``--kami-theme-secondary``    |
+    | ``--kami-theme-text``    |
+    | ``--kami-theme-background``    |
+    | ``--kami-theme-gradient-primary``    |
+    | ``--kami-theme-font-secondary``    |
+    | ``--kami-theme-font-primary``    |
+    | ``--kami-theme-white``    |
+    | ``--kami-theme-shadow``    |
+    | ``--kami-theme-text-shadow``    |
+    | ``--kami-theme-radius``    |
+    
+    
+    
+  </script>
+</guide-element>
+{{> footer }}

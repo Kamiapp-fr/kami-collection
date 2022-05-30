@@ -1,62 +1,35 @@
 # `<kami-markdown>`
 
-Convert markdown in html using [markdown-it](https://github.com/markdown-it/markdown-it).
+Convert markdown in html using [markdown-it](https://github.com/markdown-it/markdown-it). 
+This component is inspirated by this two components [wc-markdown](https://github.com/vanillawc/wc-markdown) and [zero-md](https://github.com/zerodevx/zero-md).
+Like all other elements of this collection `kami-markdown` support light and dark theme.
 
-## Install 
+## Usage
+
+Install the component using ``npm`` or ``yarn`` or ``pnpm`` :
 
 ```console
 $ npm install --save @kamiapp/markdown
 ```
 
-## Usage
+Import the component into your **main** js/ts file :
 
-Import the component, declare it using `customElements.define()` and use it directly into your html file :
+```js
+import '@kamiapp/markdown';
+```
+And use the component directly into your html :
 
 ```html
-<body>
-  <kami-markdown>
-# H1
-## H2
-### H3
-#### H4
-##### H5
-  </kami-markdown>
-  <script type="module">
-    import KamiMarkdown from '@kamiapp/markdown';
-
-    customElements.define(KamiMarkdown.tag, KamiMarkdown);
+<kami-markdown>
+  <script type="text/markdown">
+    # H1
+    ## H2
+    ### H3
+    #### H4
+    ##### H5
   </script>
-</body>
+</kami-markdown>
 ```
+## Documentation
 
-## API
-### Props
-
-*None*
-
-### Methods
-*None*
-
-### Events
-*None*
-
-### CSS Custom Properties
-
-#### Global Custom Properties
-
-This component exposes the following global [theming](../theme/) custom properties.
-
-| Name | 
-| ------------------------------------- |
-| ``--kami-theme-primary``    |
-| ``--kami-theme-secondary``    |
-| ``--kami-theme-text``    |
-| ``--kami-theme-background``    |
-| ``--kami-theme-gradient-primary``    |
-| ``--kami-theme-font-secondary``    |
-| ``--kami-theme-font-primary``    |
-| ``--kami-theme-white``    |
-| ``--kami-theme-shadow``    |
-| ``--kami-theme-text-shadow``    |
-| ``--kami-theme-radius``    |
-
+To get more informations about this component you can go to the [kami-markdown](https://www.collection.kamiapp.fr/docs/markdown.html) section into the kami collection site web. See the documentation at [collection.kamiapp.fr](https://www.collection.kamiapp.fr/) to get more information about how to use each components. You will also find a playground section to test all components.

@@ -2,15 +2,24 @@ import './fonts/index.css';
 import { html, LitElement, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 
-export default abstract class BaseTheme extends LitElement {
-  static get tag(): string {
-    throw new Error('Missing element tag');
-  }
+interface ThemeEventMap {
+  'theme': CustomEvent<{
+    theme: 'light' | 'dark'
+  }>;
+}
 
+declare global {
+  interface Document {
+    addEventListener<K extends keyof ThemeEventMap>(type: K,
+      listener: (this: Document, ev: ThemeEventMap[K]) => void): void;
+  }
+}
+
+export default abstract class BaseTheme extends LitElement {
   @property({
     reflect: true,
   })
-  private theme: 'light' | 'dark' = 'light';
+  public theme: 'light' | 'dark' = 'light';
 
   protected updated(_changedProperties: PropertyValueMap<any>): void {
     const theme = _changedProperties.get('theme');
@@ -39,7 +48,18 @@ export default abstract class BaseTheme extends LitElement {
     }
 
     this.theme = theme;
+    this.emitUpdateTheme(theme);
     localStorage.setItem('kami-theme-mode', theme);
+  }
+
+  protected emitUpdateTheme(theme: 'light' | 'dark') {
+    const event = new CustomEvent('theme', {
+      detail: {
+        theme,
+      },
+    });
+
+    document.dispatchEvent(event);
   }
 
   protected render() {

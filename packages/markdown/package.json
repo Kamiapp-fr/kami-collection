@@ -20,8 +20,10 @@
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.6.0",
+    "highlight.js": "^11.5.1",
     "lit": "^2.2.1",
     "markdown-it": "^12.3.2",
+    "ts-dedent": "^2.2.0",
     "web-animations-js": "^2.3.1"
   },
   "devDependencies": {

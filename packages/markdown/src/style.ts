@@ -21,6 +21,31 @@ export const style = css`
     padding: 0px 0px 0px 30px;
   }
 
+  table {
+    border-radius: 5px;
+    border-style: hidden;
+    border-collapse: collapse;
+    box-shadow: 0 0 0 1px var(--kami-theme-border-color);
+    margin: 20px 0;
+  }
+
+  th {
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 7px 15px;
+  }
+
+  tr {
+    border-bottom: 1px solid var(--kami-theme-border-color);
+  }
+
+  td, th {
+    border-right: solid 1px var(--kami-theme-border-color);
+  }
+
   @media print {
     *,
     *:before,
@@ -89,7 +114,6 @@ export const style = css`
   pre {
     padding: .5rem;
     line-height: 1.25;
-    overflow-x: scroll;
   }
 
   a,
@@ -146,6 +170,8 @@ export const style = css`
 
   h2 {
     font-size: 2rem;
+    margin-top: 24px;
+    margin-bottom: 10px;
   }
 
   h3 {
@@ -205,13 +231,38 @@ export const style = css`
   blockquote {
     border-left: 8px solid var(--kami-theme-secondary);
     padding: 1rem;
+    margin-left: 15px;
+  }
+
+  .hljs {
+    overflow: auto;
+  }
+
+  pre:not(.hljs), code:not(.hljs__code) {
+    background-color: var(--kami-theme-secondary);
+    color: var(--kami-theme-white);
+  }
+
+  code:not(.hljs__code) {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 6px;
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
   }
 
   pre,
   code {
-    background-color: var(--kami-theme-secondary);
-    color: var(--kami-theme-white);
     border-radius: var(--kami-theme-radius);
-    padding: 2px 7px;
+    border-radius: 10px;
+  }
+
+  pre {
+    padding: 14px 24px;
+  }
+
+  pre code {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 14px;
   }
 `;

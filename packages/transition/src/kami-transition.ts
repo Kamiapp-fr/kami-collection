@@ -1,5 +1,5 @@
 import { html, LitElement, PropertyValueMap } from 'lit';
-import { property, query } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { Transitions, transitions } from './transitions';
 
 interface RunAnimation {
@@ -19,11 +19,12 @@ interface RunAnimationInOut {
   options: KeyframeAnimationOptions,
 }
 
+/**
+ * @summary Predefined transitions for your components.
+ * @tag kami-transition
+ */
+@customElement('kami-transition')
 export default class KamiTransition extends LitElement {
-  static get tag() {
-    return 'kami-transition';
-  }
-
   @query('#single')
   private child?: HTMLSlotElement;
 
@@ -36,45 +37,43 @@ export default class KamiTransition extends LitElement {
   @property({
     converter: (value) => value === 'true',
   })
-  private show?: boolean;
+  public show?: boolean;
 
   @property({
     type: String,
   })
-  private from?: string;
+  public from?: string;
 
   @property({
     type: String,
   })
-  private to?: string;
+  public to?: string;
 
   @property({
     type: Number,
   })
-  private duration: number = 500;
+  public duration: number = 500;
 
   @property({
     type: Number,
   })
-  private delay: number = 0;
+  public delay: number = 0;
 
   @property({
     type: String,
   })
-  private easing: string = 'ease';
+  public easing: string = 'ease';
 
   @property({
     type: String,
   })
-  private transition: keyof Transitions = 'fade';
+  public transition: keyof Transitions = 'fade';
 
   private animation?: Animation;
 
   private animationIn?: Animation;
 
   private animationOut?: Animation;
-
-  public state?: boolean;
 
   public get options() {
     return {
@@ -156,7 +155,6 @@ export default class KamiTransition extends LitElement {
 
     if (this.show && this.single) {
       this.displayEl(this.child);
-      this.state = true;
     }
 
     if (!this.show && this.in && this.out) {
@@ -167,7 +165,6 @@ export default class KamiTransition extends LitElement {
     if (this.show && this.in && this.out) {
       this.displayEl(this.childIn);
       this.hideEl(this.childOut);
-      this.state = true;
     }
 
     this.updateHostSize(this.in);
@@ -233,8 +230,6 @@ export default class KamiTransition extends LitElement {
       keyframes: transitions[this.transition](this.from, this.to),
       options: this.options,
     });
-
-    this.state = true;
   }
 
   public displayInOut() {
@@ -253,8 +248,6 @@ export default class KamiTransition extends LitElement {
 
     this.animationIn = animationIn;
     this.animationOut = animationOut;
-
-    this.state = true;
   }
 
   public hide() {
@@ -272,8 +265,6 @@ export default class KamiTransition extends LitElement {
         direction: 'reverse',
       },
     });
-
-    this.state = false;
   }
 
   public hideInOut() {
@@ -292,8 +283,6 @@ export default class KamiTransition extends LitElement {
 
     this.animationIn = animationOut;
     this.animationOut = animationIn;
-
-    this.state = false;
   }
 
   public updateHostSize(el?: Element) {

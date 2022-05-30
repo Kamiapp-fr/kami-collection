@@ -1,6 +1,6 @@
 <div align="center">
   <br/><br/>
-  <img src="./.github/logo.png" width="200" />
+  <img src="./.github/logo.png" width="300" />
   <br/><br/>
   
   # Kami Collection
@@ -33,41 +33,21 @@ $ npm install --save @kamiapp/flash
 
 ### Usage
 
-First you need to declare components into your ``index.js``. With the whole collection a simple import is needed.
+First you need to declare components into your ``index.js``. You can import the whole collection of components.
 
 ```js
-// index.js
 import '@kamiapp/collection';
 ```
 
-For individual install, you need to use the `customElements.define` method.
+Or you can also declare a component individualy.
 
 ```js
-// index.js
-import KamiFlash from '@kamiapp/flash';
-
-// Define the flash component. You can also customise the tag.
-customElements.define(KamiFlash.tag, KamiFlash);
+import '@kamiapp/markdown';
 ```
 
-Now you can use kami components directly from an html page.
+## Documentation
 
-```html
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>My Example App</title>
-  </head>
-  <body>
-    <!-- Generate an error message with the text 'An error message !'-->
-    <kami-flash type="ERROR" message="An error message !"></kami-flash>
-    
-     <!-- Kami uses standard JavaScript modules. -->
-    <script type="module" src="./index.js"></script>
-  </body>
-</html>
-```
+See the documentation at [collection.kamiapp.fr](https://www.collection.kamiapp.fr/) to get more information about how to use each components. You will also find a playground section to test all components.
 
 
 ## Components

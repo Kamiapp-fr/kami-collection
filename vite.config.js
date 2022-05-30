@@ -1,35 +1,46 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path';
+import { resolve, dirname  } from 'path';
+import { fileURLToPath } from 'url';
+import VitePluginCustomElementsManifest from 'vite-plugin-cem';
+import handlebars from 'vite-plugin-handlebars';
+import glob from "glob";
+
+const _dirname = dirname(fileURLToPath(import.meta.url));
 
 export const alias = {
-  "@kamiapp/component": resolve(__dirname, "./packages/component/src/kami-component.ts"),
-  "@kamiapp/flash": resolve(__dirname, "./packages/flash/src/index.ts"),
-  "@kamiapp/infinite-list": resolve(__dirname, "./packages/infinite-list/src/index.ts"),
-  "@kamiapp/collection": resolve(__dirname, "./packages/collection/src/kami-collection.ts"),
-  "@kamiapp/markdown": resolve(__dirname, "./packages/markdown/src/kami-markdown.ts"),
-  "@kamiapp/changelog": resolve(__dirname, "./packages/changelog/src/kami-changelog.ts"),
-  "@kamiapp/theme": resolve(__dirname, "./packages/theme/src/index.ts"),
-  "@kamiapp/transition": resolve(__dirname, "./packages/transition/src/kami-transition.ts"),
+  "@kamiapp/component": resolve(_dirname, "./packages/component/src/kami-component.ts"),
+  "@kamiapp/flash": resolve(_dirname, "./packages/flash/src/index.ts"),
+  "@kamiapp/infinite-list": resolve(_dirname, "./packages/infinite-list/src/index.ts"),
+  "@kamiapp/collection": resolve(_dirname, "./packages/collection/src/kami-collection.ts"),
+  "@kamiapp/markdown": resolve(_dirname, "./packages/markdown/src/kami-markdown.ts"),
+  "@kamiapp/changelog": resolve(_dirname, "./packages/changelog/src/kami-changelog.ts"),
+  "@kamiapp/theme": resolve(_dirname, "./packages/theme/src/index.ts"),
+  "@kamiapp/transition": resolve(_dirname, "./packages/transition/src/kami-transition.ts"),
 }
 
 export default defineConfig({
   resolve: {
     alias,
   },
+  root: resolve(_dirname, './demos/'),
   build: {
+    outDir: resolve(_dirname, './dist/'),
     rollupOptions: {
-      input: {
-        counter: resolve(__dirname, './demos/component/counter/index.html'),
-        drawing: resolve(__dirname, './demos/component/drawing/index.html'),
-        flash: resolve(__dirname, './demos/flash/index.html'),
-        flex: resolve(__dirname, './demos/infinite-list/flex/index.html'),
-        nested: resolve(__dirname, './demos/infinite-list/nested/index.html'),
-        issues: resolve(__dirname, './demos/infinite-list/issues/index.html'),
-        simple: resolve(__dirname, './demos/infinite-list/simple/index.html'),
-        changelog: resolve(__dirname, './demos/changelog/index.html'),
-        markdown: resolve(__dirname, './demos/markdown/index.html'),
-        transition: resolve(__dirname, './demos/transition/index.html')
-      }
+      input: glob.sync('./demos/**/*.html'),
     }
-  }
+  },
+  plugins: [
+    VitePluginCustomElementsManifest({
+      files: [
+        './packages/changelog/src/kami-changelog.ts',
+        './packages/markdown/src/kami-markdown.ts',
+        './packages/theme/src/themes/kami-theme.ts',
+        './packages/transition/src/kami-transition.ts'
+      ],
+      lit: true,
+    }),
+    handlebars({
+      partialDirectory: resolve(_dirname, './demos/_includes'),
+    })
+  ]
 })
