@@ -10,6 +10,16 @@ export default class AppElement extends LitElement {
       box-sizing: border-box;
       min-height: calc(100vh - 185px);
     }
+
+    @media screen and (max-width: 700px) {
+      .guide {
+        padding: 0px 30px;
+      }
+
+      title-element {
+        margin-bottom: 10px;
+      }
+    }
   `;
 
   @property()

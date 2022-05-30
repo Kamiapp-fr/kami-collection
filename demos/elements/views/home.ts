@@ -40,10 +40,33 @@ export default class HomeElement extends LitElement {
     .home__buttons {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
     }
 
     .home__button {
       margin: 20px 10px;
+    }
+
+    @media screen and (max-width: 700px) {
+      .home {
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+
+      .home__logo {
+        width: 80%;
+        margin-bottom: 25px;
+      }
+
+      .home__buttons {
+        flex-direction: column;
+      }
+
+      .home__button {
+        margin: 0;
+        margin-top: 10px;
+      }
     }
   `;
 

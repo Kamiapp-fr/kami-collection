@@ -23,6 +23,16 @@ export default class ComponentsElement extends LitElement {
       max-width: 1250px;
       flex-wrap: wrap;
     }
+
+    @media screen and (max-width: 700px) {
+      .components {
+        margin: 40px 0px;
+      }
+
+      title-element {
+        margin-bottom: 15px;
+      }
+    }
   `;
 
   private get components() {

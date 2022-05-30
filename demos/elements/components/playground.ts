@@ -48,6 +48,20 @@ export class PlaygroundElement extends ApiDemoBase {
         header [part="select"] {
           display: none;
         }
+
+        @media screen and (max-width: 700px) {
+          :host {
+            padding: 25px 15px !important;
+            margin: 0 !important;
+            box-sizing: border-box;
+          }
+
+          [part="demo-tabs"] [part="tab-panel"] {
+            width: auto !important;
+            max-width: 100vw !important;
+            margin-top: 25px !important;
+          }
+        }
       `,
     ];
   }
