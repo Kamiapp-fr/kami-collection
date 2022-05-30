@@ -15,12 +15,12 @@ module.exports = function (plop) {
             },
             {
                 type: 'add',
-                destination: '../demos/docs/{{lowerCase name}}.html',
+                path: '../demos/docs/{{lowerCase name}}.html',
                 templateFile: 'templates/docs.hbs'
             },
             {
                 type: 'add',
-                destination: '../demos/playgrounds/{{lowerCase name}}.html',
+                path: '../demos/playgrounds/{{lowerCase name}}.html',
                 templateFile: 'templates/playground.hbs'
             },
             {
@@ -39,7 +39,7 @@ module.exports = function (plop) {
                 type: 'append',
                 path: '../vite.config.js',
                 pattern: /files: \[/,
-                template: "  './packages/{{lowerCase name}}/src/index.ts',"
+                template: "        './packages/{{lowerCase name}}/src/index.ts',"
             },
             {
                 type: 'append',
