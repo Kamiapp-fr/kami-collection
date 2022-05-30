@@ -25,6 +25,12 @@ module.exports = function (plop) {
             },
             {
                 type: 'append',
+                path: '../demos/main.ts',
+                pattern: /import '@kamiapp\/changelog';/,
+                template: "import '@kamiapp/{{lowerCase name}}';"
+            },
+            {
+                type: 'append',
                 path: '../package.json',
                 pattern: /".\/packages\/component",/,
                 template: '    "./packages/{{lowerCase name}}",'
@@ -33,7 +39,7 @@ module.exports = function (plop) {
                 type: 'append',
                 path: '../vite.config.js',
                 pattern: /export const alias = {/,
-                template: '  "@kamiapp/{{lowerCase name}}": resolve(__dirname, "./packages/{{lowerCase name}}/src/index.ts"),'
+                template: '  "@kamiapp/{{lowerCase name}}": resolve(_dirname, "./packages/{{lowerCase name}}/src/index.ts"),'
             },
             {
                 type: 'append',
