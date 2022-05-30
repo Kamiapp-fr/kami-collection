@@ -17,21 +17,6 @@ export default class HomeElement extends LitElement {
       width: 35%;
     }
 
-    .home__title {
-      font-style: normal;
-      font-weight: 900;
-      font-size: 64px;
-      line-height: 77px;
-      text-align: center;
-      margin: 20px 0 0 0;
-
-      background: linear-gradient(90.45deg, #34D3CE 9.1%, #4F7BE7 95.02%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
-
     .home__description {
       max-width: 475px;
       font-style: normal;
@@ -66,7 +51,7 @@ export default class HomeElement extends LitElement {
     return html`
       <main class="home">
         <img class="home__logo" src="../img/logo.png">
-        <h1 class="home__title">KAMI COLLECTION</h1>
+        <title-element size="64" margin="20px 0 0 0" >KAMI COLLECTION</title-element>
         <h2 class="home__description">
           A collection of web component develloped by the <a href="https://www.kamiapp.fr">Kami</a> team. 
           It contain a list of usefull component for all your project.

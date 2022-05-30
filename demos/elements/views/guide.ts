@@ -10,25 +10,6 @@ export default class AppElement extends LitElement {
       box-sizing: border-box;
       min-height: calc(100vh - 185px);
     }
-
-    .guide__title {
-      max-width: 52rem;
-      width: 100%;
-      margin: 0 auto;
-      margin-bottom: 20px;
-      font-style: normal;
-      font-weight: 900;
-      font-size: 64px;
-      line-height: 77px;
-    }
-
-    .guide__title span {
-      background: linear-gradient(90.45deg, #34D3CE 9.1%, #4F7BE7 95.02%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
   `;
 
   @property()
@@ -37,9 +18,7 @@ export default class AppElement extends LitElement {
   protected render() {
     return html`
       <main class="guide">
-        <h1 class="guide__title">
-          <span>${this.name}</span>
-        </h1>
+        <title-element>${this.name}</title-element>
         <kami-markdown>
           <slot></slot>
         </kami-markdown>

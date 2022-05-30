@@ -15,6 +15,7 @@ import toc from 'markdown-it-table-of-contents';
 
 import './elements/components/mode';
 import './elements/components/button';
+import './elements/components/title';
 import './elements/components/menu';
 import './elements/components/component';
 import './elements/components/playground';

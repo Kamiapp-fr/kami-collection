@@ -16,26 +16,6 @@ export default class ComponentsElement extends LitElement {
       align-items: center;
       min-height: calc(100vh - 185px);
     }
-  
-    .components__title {
-      max-width: 52rem;
-      width: 100%;
-      margin: 0 auto;
-      margin-bottom: 20px;
-      font-style: normal;
-      font-weight: 900;
-      font-size: 72px;
-      line-height: 77px;
-      text-align: center;
-    }
-
-    .components__title span {
-      background: linear-gradient(90.45deg, #34D3CE 9.1%, #4F7BE7 95.02%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-    }
 
     .components__content {
       display: flex;
@@ -87,9 +67,7 @@ export default class ComponentsElement extends LitElement {
   protected render() {
     return html`
       <main class="components">
-        <h1 class="components__title">
-          <span>Components</span>
-        </h1>
+        <title-element align="center">Components</title-element>
         <div class="components__content">
           ${this.components.map(({ name, summary }) => html`
             <component-element name="${name}" summary="${summary}"></component-element>
