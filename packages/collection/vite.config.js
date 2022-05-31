@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { alias } from '../../vite.config';
 
 module.exports = defineConfig({
   build: {
