@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2022-05-31
+### Added
+- **theme**: Added `--kami-theme-border-color` variable.
+- **markdown**: Added support for [highlight.js](https://highlightjs.org/).
+- **markdown**: Added support for [markdown-it](https://github.com/markdown-it/markdown-it) plugins.
+- Create the [documentation](https://www.collection.kamiapp.fr/) site. [#1](https://github.com/Kamiapp-fr/kami-collection/issues/1)
+- Adding a create script to generate a new package pre-configured.
+
+### Changed
+- Now these packages use 
+  - `changelog`
+  - `markdown`
+  - `theme`
+  - `transition`
+- **markdown**: Uses **\<script type="text/markdown">** instead of slot to get content to display.
+
 ## [0.2.1] - 2022-04-19
 ### Fixed
 - Fixed types path for these packages :
@@ -68,7 +84,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.6...v0.2.0
 [0.1.6]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.5...v0.1.6
