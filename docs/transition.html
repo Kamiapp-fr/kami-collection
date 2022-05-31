@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="turbo-cache-control" content="no-cache">
+  <title>Kami | Collection</title>
+  <link rel="icon" type="image/png" href="../img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script type="module" crossorigin src="/assets/main.680d8d7d.js"></script>
+  <link rel="stylesheet" href="/assets/main.2f394ff1.css">
+</head>
+<body>
+  <kami-theme>
+    <app-element><guide-element name="Transition">
+  <script type="text/markdown">    
+      This component allow to use pre-defini transitions directly into your html without any css declaration. 
+      If you want add more transitions just open a PR with your transition.
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/transition
+      ```
+      
+      ## Usage
+      
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file.
+      
+      ### Single
+      
+      You can animate a single element like this :
+      
+      ```html
+      <kami-transition show="false">
+        <button>transition</button>
+      </kami-transition>
+      ```
+      
+      ### Mode In-Out
+      
+      Or you can animate two elements using the `in-out` mode like this :
+      
+      ```html
+      <kami-transition transition="slide-x" from="-50" duration="200" show="true">
+        <button slot="in">slide-left</button>
+        <button slot="out">slide-left</button>
+      </kami-transition>
+      ```
+      
+      ## API
+      ### Props
+      
+      | name        |  type                 | description                  | required | default value                  |
+      |------------ |:---------------------:|------------------------------|----------|--------------------------------|
+      | show         | boolean                | Show or hide the element.   | true     |                                |
+      | transition    | string                | Name of the transition used.                | false     |   fade                             |
+      | from      | string                | From value depending on [Transition](#transition) | false    | Depending on [Transition](#transition)                |
+      | to      | string                | To value depending on [Transition](#transition)| false    | Depending on [Transition](#transition)                 |
+      | duration      | number                | Duration of the transition. | false    | 500                 |
+      | easing      | string                | Easing of the transition.| false    | ease                 |
+      
+      ### Transition
+      
+      This the list of the current transitions implemented and theirs default values.
+      
+      | name    | property    |  from                 | to                  | 
+      |---------|------------- |:---------------------:|------------------------------
+      | ``fade``    | opacity   | 0                | 1   |
+      | ``scale``    | scale   | 0                | 1   | 
+      | ``slide-x``    | translateX   | 50                | 1   | 
+      | ``slide-y``    | translateY   | 50                | 0   | 
+      
+      ### Methods
+      *None*
+      
+      ### Events
+      *None*
+      
+      ### CSS Custom Properties
+      *None*
+      
+  </script>
+</guide-element>
+    </app-element>
+  </kami-theme>
+  
+</body>
+</html>
