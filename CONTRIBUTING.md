@@ -24,7 +24,9 @@ To develop a new or existing component, run the following command :
 $ npm run dev
 ```
 
-This serve the content of the ``demos`` folder. This folder content a sample of each component which take sources directly from the `packages` folder. Now you can add or edit a component into the `packages` folder.
+This serve the content of the ``demos`` folder. This folder contain the documentation web site which contain a ``playground`` section. In this section you can easly work on your component without any configuration.
+
+> If you want create a new component see the [create](#create) section.
 
 ### Create
 
@@ -34,7 +36,7 @@ You can create a new component easly. To do this just run the following command 
 $ npm run create
 ```
 
-It will ask you wish name you would set to your component. When you validate it, it will automaticaly create all base files for your component and update all root config file *(like ``tsconfig``, ``vite.config.js``, etc...)* adding the new component. 
+It will ask you wish name you would set to your component. When you validate it, it will automaticaly create all base files for your component and update all root config file *(like ``tsconfig``, ``vite.config.js``, etc...)* adding the new component. It also add the `playground` section and the `docs` section into the demos web site. 
 
 Now just run the install command to update the ``package-lock.json`` :
 
@@ -44,6 +46,10 @@ $ npm install
 That it now you can focus on your component.
 
 > By default the new component have the version ``0.0.0``. This will be automaticaly update during the next release, you don't need to update it manually.
+
+### Documentation
+
+When you add or update a component, you must write the documentation about it. To write it go into the `demos/docs/<component name>.html` file and update it. The *README* of the component is already write you **don't** must update it. You can also update the `demos/playgrounds/<component name>.html` file with your new feature if needed. The ``playground`` section use the ``api-viewer-element``, go [here](https://github.com/open-wc/api-viewer-element) to get more information about it.
 
 ### Build 
 
@@ -96,3 +102,14 @@ If you work on a specific component you can use scoped commit, for example if I 
 
 
 Finally send a [GitHub Pull Request](https://github.com/alexjoverm/typescript-library-starter/compare?expand=1) with a clear list of what you've done (read more [about pull requests](https://help.github.com/articles/about-pull-requests/)). Make sure all of your commits are atomic (one feature per commit).
+
+### Release 
+
+Before release a new version the changelog must be updated. `Kami Collection` use [keep a changelog](https://keepachangelog.com/en/1.0.0/) as changelog convention. After this run the following command :
+
+```console
+$ npm run release -- version
+$ npm run release -- 1.0.0
+```
+
+This command will automaticaly update package.json version of all components. Create the new tag and push it to the online repository.
