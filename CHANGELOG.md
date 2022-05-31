@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adding a create script to generate a new package pre-configured.
 
 ### Changed
-- Now these packages use 
+- Now these packages use the `customElement` decorator to declare the component. It's not longer needed to declare it using the `customElements.define` method.
   - `changelog`
   - `markdown`
   - `theme`
