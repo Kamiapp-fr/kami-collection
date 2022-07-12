@@ -1,12 +1,12 @@
 {
   "name": "@kamiapp/flash",
-  "version": "0.3.0",
+  "version": "0.0.0",
   "files": [
     "dist"
   ],
   "main": "./dist/kami-flash.umd.js",
   "module": "./dist/kami-flash.es.js",
-  "types": "./dist/flash/src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-flash.es.js",
@@ -19,8 +19,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@kamiapp/component": "^0.x",
     "@webcomponents/webcomponentsjs": "^2.6.0",
+    "lit": "^2.2.1",
     "web-animations-js": "^2.3.1"
   },
   "devDependencies": {

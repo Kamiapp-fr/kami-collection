@@ -1,14 +1,11 @@
-// polyfill
-import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter';
-import '@webcomponents/webcomponentsjs/webcomponents-bundle';
-import 'web-animations-js';
+import { html, LitElement } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
-import KamiFlash from './components/KamiFlash';
-import KamiProgressBar from './components/KamiProgressBar';
-
-// define the search if is not already define
-if (!customElements.get(KamiProgressBar.tag)) {
-  customElements.define(KamiProgressBar.tag, KamiProgressBar);
+@customElement('kami-flash')
+export default class KamiFlash extends LitElement {
+  protected render() {
+    return html`
+      <h1>flash</h1>
+    `;
+  }
 }
-
-export default KamiFlash;
