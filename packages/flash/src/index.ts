@@ -1,31 +1,6 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-
-export function enumConverter<T>(enumValue: T, defaultValue: keyof typeof enumValue) {
-  return (value: string | null) => {
-    if (!value || !Object.keys(enumValue).includes(value)) {
-      return enumValue[defaultValue];
-    }
-
-    return enumValue[value as keyof typeof enumValue];
-  };
-}
-
-export enum KamiFlashType {
-  info = 'info',
-  success = 'success',
-  warning = 'warning',
-  error = 'error',
-}
-
-export enum KamiFlashPosition {
-  'top-center' = 'top-center',
-  'top-left' = 'top-left',
-  'top-right' = 'top-right',
-  'bottom-center' = 'bottom-center',
-  'bottom-left' = 'bottom-left',
-  'bottom-right' = 'bottom-right',
-}
+import { KamiFlashPosition, KamiFlashType, enumConverter } from './enum';
 
 @customElement('kami-flash')
 export default class KamiFlash extends LitElement {
@@ -51,9 +26,21 @@ export default class KamiFlash extends LitElement {
   @property({ type: Boolean })
   public progress = false;
 
+  public connectedCallback(): void {
+    super.connectedCallback();
+  }
+
   protected render() {
     return html`
-      <h1>${this.type} ${this.position}</h1>
+      <kami-transition transition="slide-y" appear>
+        <div class="kami-flash">
+          <div class="kami-flash__icon"></div>
+          <div class="kami-flash__msg">
+            ${this.message}
+          </div>
+          <div class="kami-flash__close"></div>
+        </div>
+      </kami-transition>
     `;
   }
 }
