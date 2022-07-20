@@ -39,6 +39,9 @@ export default class KamiTransition extends LitElement {
   })
   public show?: boolean;
 
+  @property({ type: Boolean })
+  public appear: boolean = false;
+
   @property({
     type: String,
   })
@@ -171,6 +174,10 @@ export default class KamiTransition extends LitElement {
     this.updateHostSize(this.out);
     this.style.display = 'block';
     this.style.opacity = '1';
+
+    if (this.appear) {
+      this.toggle(true);
+    }
   }
 
   public runAnimation({
