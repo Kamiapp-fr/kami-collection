@@ -2,7 +2,7 @@ import { ApiDemoBase } from '@api-viewer/demo/lib/base.js';
 import { setTemplates } from '@api-viewer/common/lib/templates.js';
 import sharedStyles from '@api-viewer/common/lib/shared-styles.js';
 import demoStyle from '@api-viewer/demo/lib/styles.js';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { css, html } from 'lit';
 import { theme } from '../styles/api-viewer-theme';
 
@@ -33,6 +33,11 @@ export class PlaygroundElement extends ApiDemoBase {
         [part="header"] {
           border-radius: 10px;
           background: linear-gradient(94.7deg, rgb(52, 211, 206) 3.12%, rgb(78, 125, 230) 102.14%);
+        }
+
+        [part="demo-tabs"] [part="tab-panel"] {
+          background: rgb(22, 27, 34);
+          color: white;
         }
 
         [part="header-title"] {
@@ -69,12 +74,15 @@ export class PlaygroundElement extends ApiDemoBase {
   @property()
   private element?: string;
 
+  @query('[part="demo-output"]')
+  public demo!: HTMLDivElement;
+
   constructor() {
     super();
     this.src = '/custom-elements.json';
   }
 
-  connectedCallback(): void {
+  async connectedCallback(): Promise<void> {
     super.connectedCallback();
     if (!this.element) {
       throw new Error('Missing element');

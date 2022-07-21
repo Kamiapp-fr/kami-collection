@@ -5,6 +5,50 @@
       <kami-flash message="Hello world"></kami-flash>
     </template>
 
+    <template data-element="kami-flash" data-target="suffix">
+      <div part="demo-form">
+        <input part="demo-input" id="message" placeholder="message" value="Hello world">
+        <select part="demo-select" id="type">
+          <option value="info" selected>info</option>
+          <option value="success">success</option>
+          <option value="warning">warning</option>
+          <option value="error">error</option>
+        </select>
+        <select part="demo-select" id="position">
+          <option value="bottom-center" selected>bottom-center</option>
+          <option value="bottom-right">bottom-right</option>
+          <option value="bottom-left">bottom-left</option>
+          <option value="top-center">top-center</option>
+          <option value="top-right">top-right</option>
+          <option value="top-left">top-left</option>
+        </select> 
+        <button part="demo-btn" id="create" >Create</button>
+      </div>
+      <script>
+        function main() {
+          const playground = document.querySelector('playground-element');
+          const btn = playground.demo.querySelector('#create');
+          const message = playground.demo.querySelector('#message');
+          const type = playground.demo.querySelector('#type');
+          const position = playground.demo.querySelector('#position');
+
+          // same as `import KamiFlash from '@kamiapp/flash'`
+          const KamiFlash = playground.demo.querySelector('kami-flash').constructor;
+
+          btn.addEventListener('click', () => {
+            KamiFlash.create({ 
+              message: message.value,
+              type: type.value,
+              position: position.value,
+              container: playground.demo, 
+            })
+          })
+        }
+        
+        main();
+      </script>
+    </template>
+
     <template data-element="kami-flash" data-target="knob" data-attr="type" data-type="select">
       <select>
         <option value="info" selected></option>
@@ -29,6 +73,28 @@
     ::part(demo-output) {
       height: 500px;
       overflow: inherit;
+    }
+
+    ::part(demo-form) {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    ::part(demo-input) {
+      width: 20%; border-radius: 4px; padding: 13px; border: none;
+    }
+
+    ::part(demo-select) {
+      width: 20%;
+    }
+
+    ::part(demo-btn) {
+      position: inherit;
+      padding: 13px;
+      background-color: var(--kami-theme-primary);
     }
   </style>
 </div>

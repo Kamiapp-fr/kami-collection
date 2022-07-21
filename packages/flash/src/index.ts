@@ -6,6 +6,14 @@ import {
 import KamiTransition from '@kamiapp/transition';
 import { KamiFlashPosition, KamiFlashType, enumConverter } from './enum';
 
+interface KamiFlashOptions {
+  message?: string,
+  type?: KamiFlashType,
+  position?: KamiFlashPosition,
+  outlined?: boolean,
+  container?: HTMLElement
+}
+
 @customElement('kami-flash')
 export default class KamiFlash extends LitElement {
   static styles = css`
@@ -18,12 +26,15 @@ export default class KamiFlash extends LitElement {
       border-radius: 10px;
       box-sizing: border-box;
       line-height: 0;
-      backdrop-filter: blur(6px);
     }
 
     .kami-flash--outlined {
       border: 0.15rem solid;
       padding: 12.6px;
+    }
+
+    .kami-flash--blured {
+      backdrop-filter: blur(6px);
     }
 
     .kami-flash--info {
@@ -131,6 +142,29 @@ export default class KamiFlash extends LitElement {
     }
   `;
 
+  static create({
+    message = '',
+    type = KamiFlashType.info,
+    position = KamiFlashPosition['bottom-center'],
+    outlined = false,
+    container,
+  }: KamiFlashOptions) {
+    const root = container || document.body;
+    const flash = document.createElement('kami-flash');
+
+    flash.setAttribute('message', message);
+    flash.setAttribute('type', type);
+    flash.setAttribute('position', position);
+
+    if (outlined) {
+      flash.setAttribute('outlined', '');
+    }
+
+    root.append(flash);
+
+    return flash;
+  }
+
   get from() {
     switch (this.position) {
       case KamiFlashPosition['top-center']:
@@ -190,6 +224,9 @@ export default class KamiFlash extends LitElement {
   @property({ type: Boolean })
   public outlined = false;
 
+  @property({ type: Boolean })
+  public blured = false;
+
   @query('#transition')
   public transitionEl!: KamiTransition;
 
@@ -234,6 +271,7 @@ export default class KamiFlash extends LitElement {
           kami-flash 
           kami-flash--${this.type}
           ${this.outlined ? 'kami-flash--outlined' : ''}
+          ${this.blured ? 'kami-flash--blured' : ''}
         ">
           <div class="kami-flash__icon">
             ${this.renderIcon(this.icon)}
