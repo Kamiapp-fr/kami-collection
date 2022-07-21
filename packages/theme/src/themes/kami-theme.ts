@@ -29,10 +29,22 @@ export default class KamiTheme extends Theme {
     ::slotted(*) {
       --kami-theme-font-primary: "Gosha Sans";
       --kami-theme-font-secondary: "UnB Office";
+
       --kami-theme-shadow: 0 0 8px -5px black;
       --kami-theme-text-shadow: 0 0 4px #0000008a;
       --kami-theme-radius: 20px;
+
       --kami-theme-white: white;
+      --kami-theme-info: #38CFFF;
+      --kami-theme-success: #47D6C2;
+      --kami-theme-warning: #FF9F89;
+      --kami-theme-error: #FC77A4;
+
+      --kami-theme-white-rgb: 255, 255, 255;
+      --kami-theme-info-rgb: 56, 207, 255;
+      --kami-theme-success-rgb: 71, 214, 194;
+      --kami-theme-warning-rgb: 255, 159, 137;
+      --kami-theme-error-rgb: 252, 119, 164;
     }
 
     .kami-light-mode::slotted(*) {
