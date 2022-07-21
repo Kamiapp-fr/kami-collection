@@ -196,8 +196,10 @@ export default class KamiTransition extends LitElement {
     animation.onfinish = () => {
       if (show) {
         this.displayEl(child);
+        this.dispatchEvent(new CustomEvent('display'));
       } else {
         this.hideEl(child);
+        this.dispatchEvent(new CustomEvent('hide'));
       }
     };
 
