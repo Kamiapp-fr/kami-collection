@@ -5,6 +5,7 @@ import {
 } from '@mdi/js';
 import KamiTransition from '@kamiapp/transition';
 import { KamiFlashPosition, KamiFlashType, enumConverter } from './enum';
+import { KamiFlashStore } from './store';
 
 interface KamiFlashOptions {
   message?: string,
@@ -165,6 +166,13 @@ export default class KamiFlash extends LitElement {
     return flash;
   }
 
+  static clear() {
+    const { stored } = KamiFlashStore;
+    const closes = async (flash: KamiFlash) => flash.close();
+
+    return Promise.all(stored.map(closes));
+  }
+
   get from() {
     switch (this.position) {
       case KamiFlashPosition['top-center']:
@@ -230,22 +238,49 @@ export default class KamiFlash extends LitElement {
   @query('#transition')
   public transitionEl!: KamiTransition;
 
+  @property({ attribute: false })
+  public index?: number;
+
+  private isClosing = false;
+
   public connectedCallback(): void {
     super.connectedCallback();
+
+    KamiFlashStore.add(this);
   }
 
-  private onClickClose() {
+  public setIndex(index: number) {
+    this.index = index;
+  }
+
+  public close() {
+    if (this.isClosing) {
+      return;
+    }
+
+    this.isClosing = true;
     this.transitionEl.toggle(false);
+    this.dispatchEvent(new CustomEvent('close'));
   }
 
-  private async onCloseFinish() {
-    this.dispatchEvent(new CustomEvent('close'));
+  public async delete() {
+    this.dispatchEvent(new CustomEvent('delete'));
 
     // This is needed to wait the full update
     // Else when you remove the component you
     // get an error due to lit render
     await this.getUpdateComplete();
+
     this.remove();
+    KamiFlashStore.remove(this);
+  }
+
+  private onClickClose() {
+    this.close();
+  }
+
+  private onCloseFinish() {
+    this.delete();
   }
 
   private renderIcon(path: string) {

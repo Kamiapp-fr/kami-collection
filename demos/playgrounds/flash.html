@@ -23,11 +23,13 @@
           <option value="top-left">top-left</option>
         </select> 
         <button part="demo-btn" id="create" >Create</button>
+        <button part="demo-btn" id="clear" >Clear</button>
       </div>
       <script>
         function main() {
           const playground = document.querySelector('playground-element');
-          const btn = playground.demo.querySelector('#create');
+          const create = playground.demo.querySelector('#create');
+          const clear = playground.demo.querySelector('#clear');
           const message = playground.demo.querySelector('#message');
           const type = playground.demo.querySelector('#type');
           const position = playground.demo.querySelector('#position');
@@ -35,14 +37,18 @@
           // same as `import KamiFlash from '@kamiapp/flash'`
           const KamiFlash = playground.demo.querySelector('kami-flash').constructor;
 
-          btn.addEventListener('click', () => {
+          create.addEventListener('click', () => {
             KamiFlash.create({ 
               message: message.value,
               type: type.value,
               position: position.value,
               container: playground.demo, 
             })
-          })
+          });
+
+          clear.addEventListener('click', async () => {
+            await KamiFlash.clear();
+          });
         }
         
         main();
