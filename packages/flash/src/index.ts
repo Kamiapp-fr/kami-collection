@@ -1,8 +1,9 @@
 import { html, LitElement, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import {
   mdiInformation, mdiAlertCircle, mdiCheckCircle, mdiAlert, mdiClose,
 } from '@mdi/js';
+import KamiTransition from '@kamiapp/transition';
 import { KamiFlashPosition, KamiFlashType, enumConverter } from './enum';
 
 @customElement('kami-flash')
@@ -18,7 +19,6 @@ export default class KamiFlash extends LitElement {
       box-sizing: border-box;
       line-height: 0;
       backdrop-filter: blur(6px);
-      position: fixed;
     }
 
     .kami-flash--outlined {
@@ -90,7 +90,61 @@ export default class KamiFlash extends LitElement {
     .kami-flash__close {
       cursor: pointer;
     }
+
+    .position {
+      position: fixed;
+      width: fit-content;
+    }
+
+    .position--bottom-center {
+      bottom: 0;
+      margin: 0% auto;
+      left: 0;
+      right: 0;
+    }
+
+    .position--bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+
+    .position--bottom-left {
+      bottom: 0;
+      left: 0;
+    }
+
+    .position--top-center {
+      top: 0;
+      margin: 0% auto;
+      left: 0;
+      right: 0;
+    }
+
+    .position--top-right {
+      top: 0;
+      right: 0;
+    }
+
+    .position--top-left {
+      top: 0;
+      left: 0;
+    }
   `;
+
+  get from() {
+    switch (this.position) {
+      case KamiFlashPosition['top-center']:
+      case KamiFlashPosition['top-left']:
+      case KamiFlashPosition['top-right']:
+        return -50;
+
+      case KamiFlashPosition['bottom-center']:
+      case KamiFlashPosition['bottom-left']:
+      case KamiFlashPosition['bottom-right']:
+      default:
+        return 50;
+    }
+  }
 
   get icon() {
     switch (this.type) {
@@ -136,11 +190,28 @@ export default class KamiFlash extends LitElement {
   @property({ type: Boolean })
   public outlined = false;
 
+  @query('#transition')
+  public transitionEl!: KamiTransition;
+
   public connectedCallback(): void {
     super.connectedCallback();
   }
 
-  renderIcon(path: string) {
+  private onClickClose() {
+    this.transitionEl.toggle(false);
+  }
+
+  private async onCloseFinish() {
+    this.dispatchEvent(new CustomEvent('close'));
+
+    // This is needed to wait the full update
+    // Else when you remove the component you
+    // get an error due to lit render
+    await this.getUpdateComplete();
+    this.remove();
+  }
+
+  private renderIcon(path: string) {
     return html`
       <svg class="kami-flash__icon" viewBox="0 0 24 25">
         <path d=${path}></path>
@@ -150,11 +221,18 @@ export default class KamiFlash extends LitElement {
 
   protected render() {
     return html`
-      <kami-transition transition="slide-y" appear>
+      <kami-transition 
+        id="transition" 
+        class="position position--${this.position}" 
+        transition="slide-y" 
+        appear
+        from="${this.from}"
+        to="0"
+        @hide="${this.onCloseFinish}"
+      >
         <div class="
           kami-flash 
-          kami-flash--${this.type} 
-          kami-flash--${this.position}
+          kami-flash--${this.type}
           ${this.outlined ? 'kami-flash--outlined' : ''}
         ">
           <div class="kami-flash__icon">
@@ -163,7 +241,7 @@ export default class KamiFlash extends LitElement {
           <div class="kami-flash__msg">
             ${this.message}
           </div>
-          <div class="kami-flash__close">
+          <div @click="${this.onClickClose}" class="kami-flash__close">
             ${this.renderIcon(mdiClose)}
           </div>
         </div>
