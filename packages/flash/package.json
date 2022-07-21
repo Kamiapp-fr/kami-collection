@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@kamiapp/transition": "^0.x",
+    "@mdi/js": "^6.6.96",
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "lit": "^2.2.1",
     "web-animations-js": "^2.3.1"
