@@ -17,10 +17,13 @@ export default class KamiFlash extends LitElement {
       border-radius: 10px;
       box-sizing: border-box;
       line-height: 0;
+      backdrop-filter: blur(6px);
+      position: fixed;
     }
 
     .kami-flash--outlined {
-      border: solid;
+      border: 0.15rem solid;
+      padding: 12.6px;
     }
 
     .kami-flash--info {
@@ -29,10 +32,22 @@ export default class KamiFlash extends LitElement {
       fill: var(--kami-theme-white);
     }
 
+    .kami-flash--outlined.kami-flash--info {
+      background-color: rgb(var(--kami-theme-info-rgb), 0.1);
+      color: var(--kami-theme-info);
+      fill: var(--kami-theme-info);
+    }
+
     .kami-flash--success {
       background-color: rgb(var(--kami-theme-success-rgb), 0.75);
       color: var(--kami-theme-white);
       fill: var(--kami-theme-white);
+    }
+
+    .kami-flash--outlined.kami-flash--success {
+      background-color: rgb(var(--kami-theme-success-rgb), 0.1);
+      color: var(--kami-theme-success);
+      fill: var(--kami-theme-success);
     }
 
     .kami-flash--warning {
@@ -41,10 +56,22 @@ export default class KamiFlash extends LitElement {
       fill: var(--kami-theme-white);
     }
 
+    .kami-flash--outlined.kami-flash--warning {
+      background-color: rgb(var(--kami-theme-warning-rgb), 0.1);
+      color: var(--kami-theme-warning);
+      fill: var(--kami-theme-warning);
+    }
+
     .kami-flash--error {
       background-color: rgb(var(--kami-theme-error-rgb), 0.75);
       color: var(--kami-theme-white);
       fill: var(--kami-theme-white);
+    }
+
+    .kami-flash--outlined.kami-flash--error {
+      background-color: rgb(var(--kami-theme-error-rgb), 0.1);
+      color: var(--kami-theme-error);
+      fill: var(--kami-theme-error);
     }
 
     .kami-flash__icon {
@@ -106,6 +133,9 @@ export default class KamiFlash extends LitElement {
   @property({ type: Boolean })
   public progress = false;
 
+  @property({ type: Boolean })
+  public outlined = false;
+
   public connectedCallback(): void {
     super.connectedCallback();
   }
@@ -121,7 +151,12 @@ export default class KamiFlash extends LitElement {
   protected render() {
     return html`
       <kami-transition transition="slide-y" appear>
-        <div class="kami-flash kami-flash--${this.type} kami-flash--${this.position}">
+        <div class="
+          kami-flash 
+          kami-flash--${this.type} 
+          kami-flash--${this.position}
+          ${this.outlined ? 'kami-flash--outlined' : ''}
+        ">
           <div class="kami-flash__icon">
             ${this.renderIcon(this.icon)}
           </div>
