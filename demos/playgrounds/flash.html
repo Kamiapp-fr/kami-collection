@@ -4,6 +4,15 @@
     <template data-element="kami-flash" data-target="host">
       <kami-flash message="Hello world"></kami-flash>
     </template>
+
+    <template data-element="kami-flash" data-target="knob" data-attr="type" data-type="select">
+      <select>
+        <option value="info" selected></option>
+        <option value="success"></option>
+        <option value="warning"></option>
+        <option value="error"></option>
+      </select> 
+    </template>
   </playground-element>
 </div>
 {{> footer }}
