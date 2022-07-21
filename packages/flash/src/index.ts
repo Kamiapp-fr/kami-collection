@@ -1,18 +1,28 @@
 import { html, LitElement, css } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import {
-  mdiInformation, mdiAlertCircle, mdiCheckCircle, mdiAlert, mdiClose,
+  mdiInformation,
+  mdiAlertCircle,
+  mdiCheckCircle,
+  mdiAlert,
+  mdiClose,
 } from '@mdi/js';
 import KamiTransition from '@kamiapp/transition';
 import { KamiFlashPosition, KamiFlashType, enumConverter } from './enum';
 import { KamiFlashStore } from './store';
+
+const DEFAULT_GAP = 10;
+const DEFAULT_SIZE = 60;
 
 interface KamiFlashOptions {
   message?: string,
   type?: KamiFlashType,
   position?: KamiFlashPosition,
   outlined?: boolean,
-  container?: HTMLElement
+  blured?: boolean,
+  container?: HTMLElement,
+  gap?: number,
+  size?: number,
 }
 
 @customElement('kami-flash')
@@ -106,6 +116,7 @@ export default class KamiFlash extends LitElement {
     .position {
       position: fixed;
       width: fit-content;
+      transition: all 0.5s ease;
     }
 
     .position--bottom-center {
@@ -148,6 +159,9 @@ export default class KamiFlash extends LitElement {
     type = KamiFlashType.info,
     position = KamiFlashPosition['bottom-center'],
     outlined = false,
+    blured = false,
+    gap = DEFAULT_GAP,
+    size = DEFAULT_SIZE,
     container,
   }: KamiFlashOptions) {
     const root = container || document.body;
@@ -156,9 +170,15 @@ export default class KamiFlash extends LitElement {
     flash.setAttribute('message', message);
     flash.setAttribute('type', type);
     flash.setAttribute('position', position);
+    flash.setAttribute('gap', gap.toString());
+    flash.setAttribute('size', size.toString());
 
     if (outlined) {
       flash.setAttribute('outlined', '');
+    }
+
+    if (blured) {
+      flash.setAttribute('blured', '');
     }
 
     root.append(flash);
@@ -173,19 +193,34 @@ export default class KamiFlash extends LitElement {
     return Promise.all(stored.map(closes));
   }
 
-  get from() {
-    switch (this.position) {
-      case KamiFlashPosition['top-center']:
-      case KamiFlashPosition['top-left']:
-      case KamiFlashPosition['top-right']:
-        return -50;
+  private static refresh(position: KamiFlashPosition) {
+    KamiFlashStore.items[position].forEach((f) => f.updatePosition());
+  }
 
-      case KamiFlashPosition['bottom-center']:
-      case KamiFlashPosition['bottom-left']:
-      case KamiFlashPosition['bottom-right']:
-      default:
-        return 50;
-    }
+  get isLeft() {
+    return this.position === KamiFlashPosition['bottom-left']
+      || this.position === KamiFlashPosition['top-left'];
+  }
+
+  get isRight() {
+    return this.position === KamiFlashPosition['bottom-right']
+      || this.position === KamiFlashPosition['top-right'];
+  }
+
+  get isTop() {
+    return this.position === KamiFlashPosition['top-center']
+      || this.position === KamiFlashPosition['top-left']
+      || this.position === KamiFlashPosition['top-right'];
+  }
+
+  get isBottom() {
+    return this.position === KamiFlashPosition['bottom-center']
+      || this.position === KamiFlashPosition['bottom-left']
+      || this.position === KamiFlashPosition['bottom-right'];
+  }
+
+  get from() {
+    return this.isTop ? -50 : 50;
   }
 
   get icon() {
@@ -220,9 +255,6 @@ export default class KamiFlash extends LitElement {
   @property({ type: String })
   public message = '';
 
-  @property({ type: Boolean })
-  public stack = true;
-
   @property({ type: Number })
   public time?: number;
 
@@ -235,8 +267,17 @@ export default class KamiFlash extends LitElement {
   @property({ type: Boolean })
   public blured = false;
 
+  @property({ type: Number })
+  public gap = DEFAULT_GAP;
+
+  @property({ type: Number })
+  public size = DEFAULT_SIZE;
+
   @query('#transition')
   public transitionEl!: KamiTransition;
+
+  @query('#flash')
+  public flashEl!: HTMLDivElement;
 
   @property({ attribute: false })
   public index?: number;
@@ -245,8 +286,35 @@ export default class KamiFlash extends LitElement {
 
   public connectedCallback(): void {
     super.connectedCallback();
-
     KamiFlashStore.add(this);
+  }
+
+  protected firstUpdated(): void {
+    this.updatePosition();
+  }
+
+  private updatePosition() {
+    const length = this.index;
+    const direction = this.isTop ? 'top' : 'bottom';
+
+    if (Number.isNaN(length) || length === undefined) {
+      return;
+    }
+
+    if (this.isRight) {
+      this.transitionEl.style.right = `${this.gap}px`;
+    }
+
+    if (this.isLeft) {
+      this.transitionEl.style.left = `${this.gap}px`;
+    }
+
+    if (length === 0) {
+      this.transitionEl.style[direction] = `${this.gap}px`;
+      return;
+    }
+
+    this.transitionEl.style[direction] = `${(this.size * length) + this.gap * (length + 1)}px`;
   }
 
   public setIndex(index: number) {
@@ -259,6 +327,10 @@ export default class KamiFlash extends LitElement {
     }
 
     this.isClosing = true;
+    this.transitionEl.to = '1';
+    this.transitionEl.from = '0.8';
+    this.transitionEl.duration = 275;
+    this.transitionEl.transition = 'scale';
     this.transitionEl.toggle(false);
     this.dispatchEvent(new CustomEvent('close'));
   }
@@ -273,6 +345,7 @@ export default class KamiFlash extends LitElement {
 
     this.remove();
     KamiFlashStore.remove(this);
+    KamiFlash.refresh(this.position);
   }
 
   private onClickClose() {
@@ -302,12 +375,15 @@ export default class KamiFlash extends LitElement {
         to="0"
         @hide="${this.onCloseFinish}"
       >
-        <div class="
-          kami-flash 
-          kami-flash--${this.type}
-          ${this.outlined ? 'kami-flash--outlined' : ''}
-          ${this.blured ? 'kami-flash--blured' : ''}
-        ">
+        <div
+          id="flash" 
+          class="
+            kami-flash 
+            kami-flash--${this.type}
+            ${this.outlined ? 'kami-flash--outlined' : ''}
+            ${this.blured ? 'kami-flash--blured' : ''}
+          "
+        >
           <div class="kami-flash__icon">
             ${this.renderIcon(this.icon)}
           </div>
