@@ -38,6 +38,7 @@ export class PlaygroundElement extends ApiDemoBase {
         [part="demo-tabs"] [part="tab-panel"] {
           background: rgb(22, 27, 34);
           color: white;
+          margin: 0px 20px 20px;
         }
 
         [part="header-title"] {
@@ -52,6 +53,12 @@ export class PlaygroundElement extends ApiDemoBase {
 
         header [part="select"] {
           display: none;
+        }
+
+        [part="demo-output"] {
+          margin: 0px 21px 20px;
+          border: 1px solid var(--kami-theme-border-color);
+          border-radius: 10px;
         }
 
         @media screen and (max-width: 700px) {
