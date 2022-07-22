@@ -1,6 +1,6 @@
 # `<kami-flash>`
 
-TODO: Add description
+A simple alert component for your notifications.
 
 ## Usage
 

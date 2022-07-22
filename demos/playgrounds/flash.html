@@ -23,7 +23,7 @@
           <option value="top-left">top-left</option>
         </select> 
         <button part="demo-btn" id="create" >Create</button>
-        <button part="demo-btn" id="clear" >Clear</button>
+        <button part="demo-btn-clear" id="clear" >Clear</button>
       </div>
       <script>
         function main() {
@@ -90,17 +90,28 @@
     }
 
     ::part(demo-input) {
-      width: 20%; border-radius: 4px; padding: 13px; border: none;
+      width: 15%;
+      border-radius: 4px; 
+      padding: 13px; 
+      border: none;
     }
 
     ::part(demo-select) {
-      width: 20%;
+      width: 15%;
     }
 
-    ::part(demo-btn) {
+    ::part(demo-btn), ::part(demo-btn-clear) {
+      width: 15%;
       position: inherit;
       padding: 13px;
       background-color: var(--kami-theme-primary);
+      font-family: 'UnB Office';
+      text-transform: capitalize;
+      font-size: 15px;
+    }
+
+    ::part(demo-btn-clear) {
+      background-color: var(--kami-theme-error);
     }
   </style>
 </div>

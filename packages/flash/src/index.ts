@@ -25,6 +25,10 @@ interface KamiFlashOptions {
   size?: number,
 }
 
+/**
+ * @summary A simple alert component for your notifications.
+ * @tag kami-flash
+ */
 @customElement('kami-flash')
 export default class KamiFlash extends LitElement {
   static styles = css`
