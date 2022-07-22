@@ -296,9 +296,6 @@ export default class KamiFlash extends LitElement {
   public time?: number;
 
   @property({ type: Boolean })
-  public progress = false;
-
-  @property({ type: Boolean })
   public outlined = false;
 
   @property({ type: Boolean })
