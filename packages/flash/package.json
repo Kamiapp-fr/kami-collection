@@ -19,6 +19,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kamiapp/progress-bar": "^0.x",
     "@kamiapp/transition": "^0.x",
     "@mdi/js": "^6.6.96",
     "@webcomponents/webcomponentsjs": "^2.6.0",

@@ -7,6 +7,7 @@ import {
   mdiAlert,
   mdiClose,
 } from '@mdi/js';
+import KamiProgressBar from '@kamiapp/progress-bar';
 import KamiTransition from '@kamiapp/transition';
 import { KamiFlashPosition, KamiFlashType, enumConverter } from './enum';
 import { KamiFlashStore } from './store';
@@ -18,6 +19,7 @@ interface KamiFlashOptions {
   message?: string,
   type?: KamiFlashType,
   position?: KamiFlashPosition,
+  time?: number;
   outlined?: boolean,
   blured?: boolean,
   container?: HTMLElement,
@@ -41,11 +43,17 @@ export default class KamiFlash extends LitElement {
       border-radius: 10px;
       box-sizing: border-box;
       line-height: 0;
+      overflow: hidden;
+      position: relative;
     }
 
     .kami-flash--outlined {
       border: 0.15rem solid;
       padding: 12.6px;
+    }
+
+    .kami-flash--outlined .kami-flash__progress {
+      --kami-progress-bar-height: 3px;
     }
 
     .kami-flash--blured {
@@ -64,6 +72,10 @@ export default class KamiFlash extends LitElement {
       fill: var(--kami-theme-info);
     }
 
+    .kami-flash--info .kami-flash__progress {
+      --kami-theme-primary: var(--kami-theme-info);
+    }
+
     .kami-flash--success {
       background-color: rgb(var(--kami-theme-success-rgb), 0.75);
       color: var(--kami-theme-white);
@@ -74,6 +86,10 @@ export default class KamiFlash extends LitElement {
       background-color: rgb(var(--kami-theme-success-rgb), 0.1);
       color: var(--kami-theme-success);
       fill: var(--kami-theme-success);
+    }
+
+    .kami-flash--success .kami-flash__progress {
+      --kami-theme-primary: var(--kami-theme-success);
     }
 
     .kami-flash--warning {
@@ -88,6 +104,10 @@ export default class KamiFlash extends LitElement {
       fill: var(--kami-theme-warning);
     }
 
+    .kami-flash--warning .kami-flash__progress {
+      --kami-theme-primary: var(--kami-theme-warning);
+    }
+
     .kami-flash--error {
       background-color: rgb(var(--kami-theme-error-rgb), 0.75);
       color: var(--kami-theme-white);
@@ -98,6 +118,10 @@ export default class KamiFlash extends LitElement {
       background-color: rgb(var(--kami-theme-error-rgb), 0.1);
       color: var(--kami-theme-error);
       fill: var(--kami-theme-error);
+    }
+
+    .kami-flash--error .kami-flash__progress {
+      --kami-theme-primary: var(--kami-theme-error);
     }
 
     .kami-flash__icon {
@@ -111,6 +135,10 @@ export default class KamiFlash extends LitElement {
       flex-grow: 1;
       padding: 0 10px;
       box-sizing: border-box;
+    }
+
+    .kami-flash__progress {
+      --kami-progress-bar-container-opacity: 0;
     }
 
     .kami-flash__close {
@@ -166,6 +194,7 @@ export default class KamiFlash extends LitElement {
     blured = false,
     gap = DEFAULT_GAP,
     size = DEFAULT_SIZE,
+    time,
     container,
   }: KamiFlashOptions) {
     const root = container || document.body;
@@ -176,6 +205,10 @@ export default class KamiFlash extends LitElement {
     flash.setAttribute('position', position);
     flash.setAttribute('gap', gap.toString());
     flash.setAttribute('size', size.toString());
+
+    if (time) {
+      flash.setAttribute('time', time.toString());
+    }
 
     if (outlined) {
       flash.setAttribute('outlined', '');
@@ -283,6 +316,9 @@ export default class KamiFlash extends LitElement {
   @query('#flash')
   public flashEl!: HTMLDivElement;
 
+  @query('#progress')
+  public progressEl?: KamiProgressBar;
+
   @property({ attribute: false })
   public index?: number;
 
@@ -295,6 +331,10 @@ export default class KamiFlash extends LitElement {
 
   protected firstUpdated(): void {
     this.updatePosition();
+
+    if (this.time && this.progressEl) {
+      this.progressEl.go(0);
+    }
   }
 
   private updatePosition() {
@@ -397,6 +437,16 @@ export default class KamiFlash extends LitElement {
           <div @click="${this.onClickClose}" class="kami-flash__close">
             ${this.renderIcon(mdiClose)}
           </div>
+          ${this.time ? html`
+            <kami-progress-bar 
+              id="progress" 
+              class="kami-flash__progress"
+              value="100" 
+              time="${this.time}"
+              absolute
+              @finish="${this.onClickClose}"
+            ></kami-progress-bar>
+          ` : ''}
         </div>
       </kami-transition>
     `;
