@@ -28,6 +28,7 @@
   },
   "workspaces": [
     "./packages/component",
+    "./packages/progress-bar",
     "./packages/flash",
     "./packages/theme",
     "./packages/transition",

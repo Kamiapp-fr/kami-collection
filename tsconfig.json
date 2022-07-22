@@ -18,6 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@kamiapp/component": ["./packages/component/src/kami-component.ts"],
+      "@kamiapp/progress-bar": ["./packages/progress-bar/src/index.ts"],
       "@kamiapp/flash": ["./packages/flash/src/index.ts"],
       "@kamiapp/infinite-list": ["./packages/infinite-list/src/index.ts"],
       "@kamiapp/markdown": ["./packages/markdown/src/kami-markdown.ts"],
