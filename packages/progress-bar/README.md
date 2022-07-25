@@ -1,6 +1,6 @@
 # `<kami-progress-bar>`
 
-TODO: Add description
+A simple horizontal progress bar.
 
 ## Usage
 
