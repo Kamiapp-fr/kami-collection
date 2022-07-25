@@ -30,6 +30,26 @@ interface KamiFlashOptions {
 /**
  * @summary A simple alert component for your notifications.
  * @tag kami-flash
+ *
+ * @cssprop [--kami-flash-min-width=300px] - Min size of the flash.
+ * @cssprop [--kami-flash-padding=15px] - Padding of the flash.
+ * @cssprop [--kami-flash-border-radius=10px] - Border radius of the flash.
+ * @cssprop [--kami-flash-border-outlined=0.15rem solid] - Border for an outlined flash.
+ * @cssprop [--kami-flash-padding-outlined=12.6px] - Padding for an outlined flash.
+ * @cssprop [--kami-flash-blured=6px] - Blur for an blured flash.
+ * @cssprop [--kami-flash-icon-size=30px] - Icons size.
+ * @cssprop [--kami-flash-font-size=20px] - Font size.
+ *
+ * @cssprop [--kami-theme-font-secondary] - Font of the flash.
+ * @cssprop [--kami-theme-white] - Color of the text when isn't outlined.
+ * @cssprop [--kami-theme-info] - Color of an info flash.
+ * @cssprop [--kami-theme-info-rgb] - RGB color of an info flash.
+ * @cssprop [--kami-theme-success] - Color of a success flash.
+ * @cssprop [--kami-theme-success-rgb] - RGB color of a success flash.
+ * @cssprop [--kami-theme-warning] - Color of a warning flash.
+ * @cssprop [--kami-theme-warning-rgb] - RGB color of a warning flash.
+ * @cssprop [--kami-theme-error] - Color of an error flash.
+ * @cssprop [--kami-theme-error-rgb] - RGB color of an error flash.
  */
 @customElement('kami-flash')
 export default class KamiFlash extends LitElement {
@@ -37,10 +57,10 @@ export default class KamiFlash extends LitElement {
     .kami-flash {
       display: flex;
       align-items: center;
-      min-width: 300px;
+      min-width: var(--kami-flash-min-width, 300px); 
       width: fit-content;
-      padding: 15px;
-      border-radius: 10px;
+      padding: var(--kami-flash-padding, 15px); 
+      border-radius: var(--kami-flash-border-radius, 10px); 
       box-sizing: border-box;
       line-height: 0;
       overflow: hidden;
@@ -48,8 +68,8 @@ export default class KamiFlash extends LitElement {
     }
 
     .kami-flash--outlined {
-      border: 0.15rem solid;
-      padding: 12.6px;
+      border: var(--kami-flash-border-outlined, 0.15rem solid); 
+      padding: var(--kami-flash-padding-outlined, 12.6px); 
     }
 
     .kami-flash--outlined .kami-flash__progress {
@@ -57,7 +77,7 @@ export default class KamiFlash extends LitElement {
     }
 
     .kami-flash--blured {
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(var(--kami-flash-blured, 6px));
     }
 
     .kami-flash--info {
@@ -125,13 +145,13 @@ export default class KamiFlash extends LitElement {
     }
 
     .kami-flash__icon {
-      width: 30px;
-      height: 30px;
+      width: var(--kami-flash-icon-size, 30px);
+      height: var(--kami-flash-icon-size, 30px);
     }
 
     .kami-flash__msg {
-      font-family: "UnB Office";
-      font-size: 20px;
+      font-family: var(--kami-theme-font-secondary);
+      font-size: var(--kami-flash-font-size, 20px);
       flex-grow: 1;
       padding: 0 10px;
       box-sizing: border-box;
