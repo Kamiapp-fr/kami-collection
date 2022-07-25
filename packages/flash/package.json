@@ -6,7 +6,7 @@
   ],
   "main": "./dist/kami-flash.umd.js",
   "module": "./dist/kami-flash.es.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/flash/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-flash.es.js",
