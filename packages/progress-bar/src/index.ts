@@ -6,6 +6,22 @@ import {
 } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
+/**
+ * @summary A simple horizontal progress bar.
+ * @element kami-progress-bar
+ *
+ * @property {number} value - Percentage of the progress bar completed
+ * @property {number?} time - Define the time used when you call the ``go()`` method.
+ * @property {boolean} absolute - Set the position of progress-bar on the top of the parent element.
+ * @property {boolean} bottom - Working only with the absolute attr. Set the position to the bottom.
+ *
+ * @cssprop [--kami-progress-bar-height=5px] - Height of the progress-bar.
+ * @cssprop [--kami-progress-bar-container-opacity=0.5] - Opacity of the progress-bar container.
+ * @cssprop [--kami-theme-primary-rgb=0, 0, 0] - RGB color of the progress-bar container.
+ * @cssprop [--kami-theme-primary=black] - Color of the progress-bar value.
+ *
+ * @fires finish - Called when the ``go()`` method is done.
+ */
 @customElement('kami-progress-bar')
 export default class KamiProgressBar extends LitElement {
   static styles = css`
@@ -64,6 +80,12 @@ export default class KamiProgressBar extends LitElement {
     }
   }
 
+  /**
+   * This method allow you to set the value of the progress bar using an animation.
+   * The duration of this animation is defined by the attr ``time``.
+   * If the time is not set the value of the progress-bar will be updated without any animation.
+   * @param {number} to - set the progress-bar to this value
+   */
   public go(to = 0) {
     if (this.interval) {
       return;
