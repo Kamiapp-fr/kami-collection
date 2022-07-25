@@ -30,13 +30,13 @@ export default class KamiProgressBar extends LitElement {
     }
 
     .kami-progress-bar__container {
-      background-color: rgba(var(--kami-theme-primary-rgb), var(--kami-progress-bar-container-opacity, 0.5));
+      background-color: rgba(var(--kami-theme-primary-rgb, 0, 0, 0), var(--kami-progress-bar-container-opacity, 0.5));
       height: 100%;
       position: relative;
     }
 
     .kami-progress-bar__loading {
-      background-color: var(--kami-theme-primary);
+      background-color: var(--kami-theme-primary, black);
       height: 100%;
       position: absolute;
     }
