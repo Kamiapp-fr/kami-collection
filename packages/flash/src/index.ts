@@ -31,6 +31,18 @@ interface KamiFlashOptions {
  * @summary A simple alert component for your notifications.
  * @tag kami-flash
  *
+ * @property {"info" | "success" | "warning" | "error"} type - Define the type of flash.
+ * @property {
+ *  "bottom-center" | "bottom-right" | "bottom-left" | "top-center" | "top-left" | "top-right"
+ * } position - Define the position of the flash.
+ * @property {string} message - Set the message into the flash.
+ * @property {number?} time - Define the time before the flash will be close.
+ * @property {boolean} outlined - Set the flash in outline mode.
+ * @property {boolean} blured - Set the flash in blur mode **(this can cause performance issue)**.
+ * @property {number} gap - Define the gap between stacked flash.
+ * @property {number} size - Define the size of a stacked flash.
+ * @property {number?} index - Index of the flash.
+ *
  * @cssprop [--kami-flash-min-width=300px] - Min size of the flash.
  * @cssprop [--kami-flash-padding=15px] - Padding of the flash.
  * @cssprop [--kami-flash-border-radius=10px] - Border radius of the flash.
@@ -50,6 +62,9 @@ interface KamiFlashOptions {
  * @cssprop [--kami-theme-warning-rgb] - RGB color of a warning flash.
  * @cssprop [--kami-theme-error] - Color of an error flash.
  * @cssprop [--kami-theme-error-rgb] - RGB color of an error flash.
+ *
+ * @fires close - Called when the flash is closing.
+ * @fires delete - Called when the flash is complete deleted.
  */
 @customElement('kami-flash')
 export default class KamiFlash extends LitElement {
@@ -206,6 +221,12 @@ export default class KamiFlash extends LitElement {
     }
   `;
 
+  /**
+   * A **static** method which allow you to create a
+   * `<kami-flash>` and to attach it to any element.
+   * It also return the instance of the element create.
+   * @returns {KamiFlash}
+   */
   static create({
     message = '',
     type = KamiFlashType.info,
@@ -243,6 +264,11 @@ export default class KamiFlash extends LitElement {
     return flash;
   }
 
+  /**
+   * A **static** method which allow you to clear all the
+   * current flash display on the screen.
+   * @static
+   */
   static clear() {
     const { stored } = KamiFlashStore;
     const closes = async (flash: KamiFlash) => flash.close();
@@ -254,33 +280,27 @@ export default class KamiFlash extends LitElement {
     KamiFlashStore.items[position].forEach((f) => f.updatePosition());
   }
 
-  get isLeft() {
+  private get isLeft() {
     return this.position === KamiFlashPosition['bottom-left']
       || this.position === KamiFlashPosition['top-left'];
   }
 
-  get isRight() {
+  private get isRight() {
     return this.position === KamiFlashPosition['bottom-right']
       || this.position === KamiFlashPosition['top-right'];
   }
 
-  get isTop() {
+  private get isTop() {
     return this.position === KamiFlashPosition['top-center']
       || this.position === KamiFlashPosition['top-left']
       || this.position === KamiFlashPosition['top-right'];
   }
 
-  get isBottom() {
-    return this.position === KamiFlashPosition['bottom-center']
-      || this.position === KamiFlashPosition['bottom-left']
-      || this.position === KamiFlashPosition['bottom-right'];
-  }
-
-  get from() {
+  private get from() {
     return this.isTop ? -50 : 50;
   }
 
-  get icon() {
+  private get icon() {
     switch (this.type) {
       case KamiFlashType.info:
         return mdiInformation;
@@ -328,13 +348,10 @@ export default class KamiFlash extends LitElement {
   public size = DEFAULT_SIZE;
 
   @query('#transition')
-  public transitionEl!: KamiTransition;
-
-  @query('#flash')
-  public flashEl!: HTMLDivElement;
+  private transitionEl!: KamiTransition;
 
   @query('#progress')
-  public progressEl?: KamiProgressBar;
+  private progressEl?: KamiProgressBar;
 
   @property({ attribute: false })
   public index?: number;
@@ -378,10 +395,17 @@ export default class KamiFlash extends LitElement {
     this.transitionEl.style[direction] = `${(this.size * length) + this.gap * (length + 1)}px`;
   }
 
+  /**
+   * Update the index of the flash.
+   * @param {number} index - an index
+   */
   public setIndex(index: number) {
     this.index = index;
   }
 
+  /**
+   * Remove the flash from the screen.
+   */
   public close() {
     if (this.isClosing) {
       return;
@@ -396,6 +420,11 @@ export default class KamiFlash extends LitElement {
     this.dispatchEvent(new CustomEvent('close'));
   }
 
+  /**
+   * Delete completely the flash.
+   * This will directly delete the flash without any animation.
+   * If you when remove a flash use the `close()` method instead of.
+   */
   public async delete() {
     this.dispatchEvent(new CustomEvent('delete'));
 
