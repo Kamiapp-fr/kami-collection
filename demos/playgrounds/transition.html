@@ -2,23 +2,7 @@
 <div class="playground">
   <playground-element element="kami-transition">
     <template data-element="kami-transition" data-target="host">
-      <kami-transition appear></kami-transition>
-    </template>
-  
-    <template data-element="kami-transition" data-target="suffix">
-      <style>
-        ::part(demo) {
-          height: 150px;
-          width: 150px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: var(--kami-theme-secondary);
-          background-image: var(--kami-theme-gradient-primary);
-          color: var(--kami-theme-white);
-          border-radius: 5px;
-        }
-      </style>
+      <kami-transition appear transition="slide-y"></kami-transition>
     </template>
   
     <template data-element="kami-transition" data-target="slot">
@@ -52,6 +36,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    ::part(demo) {
+      height: 150px;
+      width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--kami-theme-secondary);
+      background-image: var(--kami-theme-gradient-primary);
+      color: var(--kami-theme-white);
+      border-radius: 5px;
     }
   </style>
 </div>
