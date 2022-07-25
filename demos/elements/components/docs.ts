@@ -27,6 +27,14 @@ export class DocsElement extends ApiDocsBase {
           overflow: hidden;
           border: 1px solid var(--kami-theme-border-color);
         }
+
+        [part="docs-item"] {
+          border-bottom: 1px solid var(--kami-theme-border-color);
+        }
+
+        [part="docs-item"]:last-child {
+          border-bottom: none;
+        }
       `,
     ];
   }
