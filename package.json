@@ -28,9 +28,10 @@
   },
   "workspaces": [
     "./packages/component",
-    "./packages/theme",
-    "./packages/transition",
+    "./packages/progress-bar",
     "./packages/flash",
+    "./packages/theme",
+    "./packages/transition",
     "./packages/infinite-list",
     "./packages/markdown",
     "./packages/changelog",

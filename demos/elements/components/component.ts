@@ -47,7 +47,9 @@ export default class ComponentElement extends LitElement {
   public summary: string = '';
 
   public get nameNoPrefix() {
-    return this.name.split('-').pop();
+    const name = this.name.split('-');
+    name.shift();
+    return name.join('-');
   }
 
   protected render() {

@@ -11,6 +11,10 @@ export default class AppElement extends LitElement {
       min-height: calc(100vh - 185px);
     }
 
+    .guide docs-element {
+      margin: auto;
+    }
+
     @media screen and (max-width: 700px) {
       .guide {
         padding: 0px 30px;
@@ -25,6 +29,9 @@ export default class AppElement extends LitElement {
   @property()
   private name: string = 'Guide';
 
+  @property()
+  private element: string = '';
+
   protected render() {
     return html`
       <main class="guide">
@@ -32,6 +39,9 @@ export default class AppElement extends LitElement {
         <kami-markdown>
           <slot></slot>
         </kami-markdown>
+        ${this.element ? html`
+          <docs-element selected="${this.element}" src="/custom-elements.json"></docs-element> 
+        ` : ''}
       </main>
     `;
   }

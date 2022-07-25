@@ -3,6 +3,8 @@ import '@api-viewer/demo';
 import '@kamiapp/theme';
 import '@kamiapp/transition';
 import '@kamiapp/changelog';
+import '@kamiapp/progress-bar';
+import '@kamiapp/flash';
 import { setProgressBarDelay } from '@hotwired/turbo';
 import KamiMarkdown from '@kamiapp/markdown';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -18,6 +20,7 @@ import './elements/components/button';
 import './elements/components/title';
 import './elements/components/menu';
 import './elements/components/component';
+import './elements/components/docs';
 import './elements/components/playground';
 import './elements/components/footer';
 

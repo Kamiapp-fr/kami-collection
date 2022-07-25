@@ -7,11 +7,11 @@ import KamiInfiniteList from '@kamiapp/infinite-list';
 import KamiComponent from '@kamiapp/component';
 import KamiChangelog from '@kamiapp/changelog';
 import KamiMarkdown from '@kamiapp/markdown';
+import KamiProgressBar from '@kamiapp/progress-bar';
 import KamiTheme from '@kamiapp/theme';
 import KamiTransition from '@kamiapp/transition';
 
 [
-  KamiFlash,
   KamiInfiniteList,
 ].forEach((component) => {
   if (customElements.get(component.tag)) {
@@ -27,6 +27,7 @@ export {
   KamiComponent,
   KamiTheme,
   KamiTransition,
+  KamiProgressBar,
   KamiMarkdown,
   KamiChangelog,
 };

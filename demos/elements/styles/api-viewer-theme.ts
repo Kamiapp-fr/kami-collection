@@ -55,7 +55,25 @@ export const theme = css`
 
   [part="demo-tabs"] {
     border: none;
+  }
 
+  header [part="select"] {
+    display: none;
+  }
+
+  [part="header"] {
+    border-radius: 10px;
+    background: linear-gradient(94.7deg, rgb(52, 211, 206) 3.12%, rgb(78, 125, 230) 102.14%);
+  }
+
+  [part="header-title"] {
+    color: var(--kami-theme-white);
+    text-shadow: var(--kami-theme-text-shadow);
+    text-transform: uppercase;
+    margin: 0px;
+    padding: 15px;
+    font-size: 23px;
+    font-family: Inter;
   }
 
   api-viewer-panel {

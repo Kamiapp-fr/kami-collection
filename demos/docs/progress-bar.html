@@ -1,0 +1,69 @@
+{{> header }}
+<guide-element name="ProgressBar" element="kami-progress-bar">
+  <script type="text/markdown">    
+      A simple horizontal progress bar.
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/progress-bar
+      ```
+      
+      ## Usage
+      
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
+      
+      ```html
+      <body>
+        <kami-progress-bar></kami-progress-bar>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/progress-bar';
+        &lt;/script&gt;
+      </body>
+      ```
+
+      To update the percentage of the progress just use the `value` attribute.
+
+      ```html
+        <!-- Set the progress bar at 75% -->
+        <kami-progress-bar value="75"></kami-progress-bar>
+      ```
+
+      You can also easly set the progress bar at the top or bottom of any html element.
+      To do this just use the `absolute` and `bottom` attributes.
+
+      ```html
+        <!-- Set the progress bar at the top of an element -->
+        <kami-progress-bar absolute value="75"></kami-progress-bar>
+
+        <!-- Set the progress bar at the bottom of an element -->
+        <kami-progress-bar absolute bottom value="75"></kami-progress-bar>
+      ```
+
+      > *Warning:* The `bottom` attribute work only if the `absolute` attribute is set !
+      
+      If you want animate the progress bar to a certain precentage you can use the `go()` method
+      and the `time` attribute.
+
+      ```html
+      <body>
+        <kami-progress-bar id="progress" value="0" time="10000"></kami-progress-bar>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/progress-bar';
+          const progress = document.querySelector('#progress');
+
+          // It will take 10 seconds to go at 100%.
+          progress.go(100):
+        &lt;/script&gt;
+      </body>
+      ```
+
+      > *Warning:* If you use the `go` method the `time` attribute must be set 
+      > else it will not animate the progress bar.
+
+      ## API
+  </script>
+</guide-element>
+{{> footer }}

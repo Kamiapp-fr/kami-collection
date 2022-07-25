@@ -6,8 +6,8 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'KamiFlash',
-      fileName: (format) => `kami-flash.${format}.js`
+      name: 'KamiProgressBar',
+      fileName: (format) => `kami-progress-bar.${format}.js`
     },
   },
   plugins: [dts()]

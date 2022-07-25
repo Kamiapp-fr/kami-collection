@@ -1,59 +1,25 @@
-
 # `<kami-flash>`
 
-A simple flash component.
-
-<p align="center">
-  <img  src="https://emilienleroy.fr/assets/flash.gif">
-</p>
-
-## Installation
-
-
-```sh
-npm install --save @kamiapp/flash
-```
-
+A simple alert component for your notifications.
 
 ## Usage
 
+Install the component using ``npm`` or ``yarn`` or ``pnpm`` :
 
-```ts
-// ES6 Modules or TypeScript
-import KamiFlash from '@kamiapp/flash'
-
-// register the component with the name you want
-window.customElements.define(KamiFlash.tag, KamiFlash);
+```console
+$ npm install --save @kamiapp/flash
 ```
 
+Import the component into your **main** js/ts file :
 
-## Examples
-
-
-Just add into your html the flash component like this.
-See the *props section* to customize your flash component.
-
-<p align="center">
-  <img  src="https://emilienleroy.fr/assets/error.gif">
-</p>
+```js
+import '@kamiapp/flash';
+```
+And use the component directly into your html :
 
 ```html
-
-<!-- Generate an error message with the text 'An error message !'-->
-<flash-exemple
-    type="ERROR"
-    message="An error message !"
->
-</flash-exemple>
-
+<kami-flash></kami-flash>
 ```
-## Props
+## Documentation
 
-| name          |  type    | description                 | required | default value                  |
-|-------------- |:--------:|-----------------------------|----------|--------------------------------|
-| type          | Type     | The flash type              | false    | OK                             |
-| message       | String   | The flash message           | false    | 'Write your message flash here'|
-| position      | Position | The flash position          | false    | BOTTOM                         |
-| stack         | Boolean  | Stack or not all flash      | false    | true                           |
-| time          | Number   | Time to wait before remove the flash | false | null                     |
-| progressbar   | Boolean  | Display a progress bar if time is set| false | false                    |
+To get more informations about this component you can go to the [kami-flash](https://www.collection.kamiapp.fr/docs/flash.html) section into the kami collection site web. See the documentation at [collection.kamiapp.fr](https://www.collection.kamiapp.fr/) to get more information about how to use each components. You will also find a playground section to test all components.

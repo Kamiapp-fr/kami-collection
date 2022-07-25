@@ -2,7 +2,7 @@ import { ApiDemoBase } from '@api-viewer/demo/lib/base.js';
 import { setTemplates } from '@api-viewer/common/lib/templates.js';
 import sharedStyles from '@api-viewer/common/lib/shared-styles.js';
 import demoStyle from '@api-viewer/demo/lib/styles.js';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { css, html } from 'lit';
 import { theme } from '../styles/api-viewer-theme';
 
@@ -30,23 +30,16 @@ export class PlaygroundElement extends ApiDemoBase {
           border: 1px solid var(--kami-theme-border-color);
         }
 
-        [part="header"] {
+        [part="demo-tabs"] [part="tab-panel"] {
+          background: rgb(22, 27, 34);
+          color: white;
+          margin: 0px 20px 20px;
+        }
+
+        [part="demo-output"] {
+          margin: 0px 21px 20px;
+          border: 1px solid var(--kami-theme-border-color);
           border-radius: 10px;
-          background: linear-gradient(94.7deg, rgb(52, 211, 206) 3.12%, rgb(78, 125, 230) 102.14%);
-        }
-
-        [part="header-title"] {
-          color: var(--kami-theme-white);
-          text-shadow: var(--kami-theme-text-shadow);
-          text-transform: uppercase;
-          margin: 0px;
-          padding: 15px;
-          font-size: 23px;
-          font-family: Inter;
-        }
-
-        header [part="select"] {
-          display: none;
         }
 
         @media screen and (max-width: 700px) {
@@ -69,12 +62,15 @@ export class PlaygroundElement extends ApiDemoBase {
   @property()
   private element?: string;
 
+  @query('[part="demo-output"]')
+  public demo!: HTMLDivElement;
+
   constructor() {
     super();
     this.src = '/custom-elements.json';
   }
 
-  connectedCallback(): void {
+  async connectedCallback(): Promise<void> {
     super.connectedCallback();
     if (!this.element) {
       throw new Error('Missing element');
