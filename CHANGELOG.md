@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.2] - 2022-07-26
+### Fixed
+- **flash**: Fixed the CI build of this package updating the order of all build.
+
 ## [0.4.1] - 2022-07-26
 ### Fixed
 - **flash**: Defines `kami-transition` and `kami-progress-bar` if isn't already made.
@@ -43,12 +47,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **transition**: Add `appear` attribute. This allow you to run a transition when the component is connected.
 
 ### Changed
-- : Update 
+- : Update
   - `info`
   - `success`
   - `warning`
   - `error`
-- : Update 
+- : Update
   - `bottom-center`
   - `bottom-left`
   - `bottom-right`
@@ -72,7 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adding a create script to generate a new package pre-configured.
 
 ### Changed
-- Now these packages use the 
+- Now these packages use the
   - `changelog`
   - `markdown`
   - `theme`
@@ -141,7 +145,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.2...HEAD
+[0.4.2]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.1...v0.3.0
