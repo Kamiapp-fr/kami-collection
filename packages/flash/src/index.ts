@@ -193,7 +193,7 @@ export default class KamiFlash extends LitElement {
       position: fixed;
       width: fit-content;
       transition: all 0.5s ease;
-      z-index: var(kami-flash-z-index, 10);
+      z-index: var(--kami-flash-z-index, 10);
     }
 
     .position--bottom-center {
