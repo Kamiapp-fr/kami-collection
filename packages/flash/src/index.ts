@@ -59,6 +59,7 @@ if (!customElements.get('kami-transition')) {
  * @cssprop [--kami-flash-blured=6px] - Blur for an blured flash.
  * @cssprop [--kami-flash-icon-size=30px] - Icons size.
  * @cssprop [--kami-flash-font-size=20px] - Font size.
+ * @cssprop [--kami-flash-z-index=10] - Value of the z-index.
  *
  * @cssprop [--kami-theme-font-secondary] - Font of the flash.
  * @cssprop [--kami-theme-white] - Color of the text when isn't outlined.
@@ -192,6 +193,7 @@ export default class KamiFlash extends LitElement {
       position: fixed;
       width: fit-content;
       transition: all 0.5s ease;
+      z-index: var(kami-flash-z-index, 10);
     }
 
     .position--bottom-center {
