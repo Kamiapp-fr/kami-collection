@@ -27,6 +27,14 @@ interface KamiFlashOptions {
   size?: number,
 }
 
+if (!customElements.get('kami-progress-bar')) {
+  customElements.define('kami-progress-bar', KamiProgressBar);
+}
+
+if (!customElements.get('kami-transition')) {
+  customElements.define('kami-transition', KamiTransition);
+}
+
 /**
  * @summary A simple alert component for your notifications.
  * @tag kami-flash
