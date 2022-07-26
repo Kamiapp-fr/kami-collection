@@ -6,63 +6,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.1] - 2022-07-26
+### Fixed
+- **flash**: Defines `kami-transition` and `kami-progress-bar` if isn't already made.
+- **flash**: Adding missing css variable `--kami-flash-z-index` to update the z-index of a flash.
+
 ## [0.4.0] - 2022-07-26
 ### Added
-
 - @kamiapp/progress-bar
-  - Add a ``value`` attribute to set the percentage of the progress bar.
-  - Add an ``absolute`` and ``bottom`` attributes to fixed the bar on the top or bottom of any element.
-  - Add a ``go()`` method and an `time` attribute to animate the progress bar.
+  - Add a `value` attribute to set the percentage of the progress bar.
+  - Add an `absolute` and `bottom` attributes to fixed the bar on the top or bottom of any element.
+  - Add a `go()` method and an `time` attribute to animate the progress bar.
+- : Add two new events.
+  - `close`: Called when is closing.
+  - `delete`: Called when is deleted.
+- : Add two new events.
+  - `display`: Called when the component is display.
+  - `hide`: Called when the component is hide.
+- : Add more css variables
+  - `--kami-theme-info`
+  - `--kami-theme-success`
+  - `--kami-theme-warning`
+  - `--kami-theme-error`
+  - `--kami-theme-primary-rgb`
+  - `--kami-theme-secondary-rgb`
+  - `--kami-theme-white-rgb`
+  - `--kami-theme-info-rgb`
+  - `--kami-theme-success-rgb`
+  - `--kami-theme-warning-rgb`
+  - `--kami-theme-error-rgb`
 - **flash**: Add css variables to customize flash. See the documentation to get more information about it.
 - **flash**: Add an outlined mode.
-- **flash**: Add a blured mode. 
+- **flash**: Add a blured mode.
 - **flash**: add a `gap` attribute to define space between each flash.
 - **flash**: add a `size` attribute to define the size of a stacked flash.
-- **flash**: Add two new events.
-  - ``close``: Called when is closing.
-  - ``delete``: Called when is deleted.
 - **transition**: Add `appear` attribute. This allow you to run a transition when the component is connected.
-- **transition**: Add two new events.
-  - ``display``: Called when the component is display.
-  - ``hide``: Called when the component is hide.
-- **theme**: Add more css variables
-  - ``--kami-theme-info``
-  - ``--kami-theme-success``
-  - ``--kami-theme-warning``
-  - ``--kami-theme-error``
-  - ``--kami-theme-primary-rgb``
-  - ``--kami-theme-secondary-rgb``
-  - ``--kami-theme-white-rgb``
-  - ``--kami-theme-info-rgb``
-  - ``--kami-theme-success-rgb``
-  - ``--kami-theme-warning-rgb``
-  - ``--kami-theme-error-rgb``
 
 ### Changed
-
+- : Update 
+  - `info`
+  - `success`
+  - `warning`
+  - `error`
+- : Update 
+  - `bottom-center`
+  - `bottom-left`
+  - `bottom-right`
+  - `top-center`
+  - `top-right`
+  - `top-left`
 - **flash**: Rewrite using [lit](https://lit.dev).
-- **BREAKING flash**: Update ``type`` attribute. Now it only accept
-  - ``info``
-  - ``success``
-  - ``warning``
-  - ``error``
-- **BREAKING flash**: Update ``position`` attribute. Now it only accept
-  - ``bottom-center``
-  - ``bottom-left``
-  - ``bottom-right``
-  - ``top-center``
-  - ``top-right``
-  - ``top-left``
-- **BREAKING flash**: Rename ``createFlash()`` into `create()`
+- **BREAKING flash**: Rename `createFlash()` into `create()`
 - **BREAKING flash**: Rename `closeAll()` into `clear()`
 
 ### Removed
-
 - **flash**: Removed the `stack` attribute. Now by default it will stack flashs.
-- **flash**: Removed `progressbar` attribute. Now it automaticaly set the progress bar when the time ``attribute`` is set. If you want to remove it use css variables instead.
-
-
-### Fixed
+- **flash**: Removed `progressbar` attribute. Now it automaticaly set the progress bar when the time `attribute` is set. If you want to remove it use css variables instead.
 
 ## [0.3.0] - 2022-05-31
 ### Added
@@ -73,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adding a create script to generate a new package pre-configured.
 
 ### Changed
-- Now these packages use the `customElement` decorator to declare the component. It's not longer needed to declare it using the `customElements.define` method.
+- Now these packages use the 
   - `changelog`
   - `markdown`
   - `theme`
@@ -142,8 +141,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.0...v0.2.1
