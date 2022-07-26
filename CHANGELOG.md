@@ -6,6 +6,64 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2022-07-26
+### Added
+
+- @kamiapp/progress-bar
+  - Add a ``value`` attribute to set the percentage of the progress bar.
+  - Add an ``absolute`` and ``bottom`` attributes to fixed the bar on the top or bottom of any element.
+  - Add a ``go()`` method and an `time` attribute to animate the progress bar.
+- **flash**: Add css variables to customize flash. See the documentation to get more information about it.
+- **flash**: Add an outlined mode.
+- **flash**: Add a blured mode. 
+- **flash**: add a `gap` attribute to define space between each flash.
+- **flash**: add a `size` attribute to define the size of a stacked flash.
+- **flash**: Add two new events.
+  - ``close``: Called when is closing.
+  - ``delete``: Called when is deleted.
+- **transition**: Add `appear` attribute. This allow you to run a transition when the component is connected.
+- **transition**: Add two new events.
+  - ``display``: Called when the component is display.
+  - ``hide``: Called when the component is hide.
+- **theme**: Add more css variables
+  - ``--kami-theme-info``
+  - ``--kami-theme-success``
+  - ``--kami-theme-warning``
+  - ``--kami-theme-error``
+  - ``--kami-theme-primary-rgb``
+  - ``--kami-theme-secondary-rgb``
+  - ``--kami-theme-white-rgb``
+  - ``--kami-theme-info-rgb``
+  - ``--kami-theme-success-rgb``
+  - ``--kami-theme-warning-rgb``
+  - ``--kami-theme-error-rgb``
+
+### Changed
+
+- **flash**: Rewrite using [lit](https://lit.dev).
+- **BREAKING flash**: Update ``type`` attribute. Now it only accept
+  - ``info``
+  - ``success``
+  - ``warning``
+  - ``error``
+- **BREAKING flash**: Update ``position`` attribute. Now it only accept
+  - ``bottom-center``
+  - ``bottom-left``
+  - ``bottom-right``
+  - ``top-center``
+  - ``top-right``
+  - ``top-left``
+- **BREAKING flash**: Rename ``createFlash()`` into `create()`
+- **BREAKING flash**: Rename `closeAll()` into `clear()`
+
+### Removed
+
+- **flash**: Removed the `stack` attribute. Now by default it will stack flashs.
+- **flash**: Removed `progressbar` attribute. Now it automaticaly set the progress bar when the time ``attribute`` is set. If you want to remove it use css variables instead.
+
+
+### Fixed
+
 ## [0.3.0] - 2022-05-31
 ### Added
 - **theme**: Added `--kami-theme-border-color` variable.
@@ -84,7 +142,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.3.0...HEAD
+
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.1.6...v0.2.0
