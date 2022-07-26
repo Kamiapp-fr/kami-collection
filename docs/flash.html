@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="turbo-cache-control" content="no-cache">
+  <title>Kami | Collection</title>
+  <link rel="icon" type="image/png" href="../img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script type="module" crossorigin src="/assets/main.ba991e29.js"></script>
+  <link rel="stylesheet" href="/assets/main.2f394ff1.css">
+</head>
+<body>
+  <kami-theme>
+    <app-element><guide-element name="Flash" element="kami-flash">
+  <script type="text/markdown">    
+      A simple alert component for your notifications.
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/flash
+      ```
+      
+      ## Usage
+      
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
+      
+      ```html
+      <body>
+        <kami-flash></kami-flash>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/flash';
+        &lt;/script&gt;
+      </body>
+      ```
+
+      To set your own message into a flash, you just need to set the `message` with your text.
+
+      ```html
+      <kami-flash message="My super message"></kami-flash>
+      ```
+
+      The `<kami-flash>` component can take four types :
+
+      * info
+      * success
+      * warning
+      * error
+        
+      To get the default color the simple way is to use the `<kami-theme>` component.
+
+      ```html
+      <kami-theme>
+        <kami-flash type="info" message="New message for you"></kami-flash>
+        <kami-flash type="success" message="All is okay"></kami-flash>
+        <kami-flash type="warning" message="Something is wrong"></kami-flash>
+        <kami-flash type="error" message="Everything is down"></kami-flash>
+      </kami-theme>
+      ```
+
+      You can also set a timer before the flash will be remove. To do this set the `time` attibute.
+
+      ```html
+      <!-- this flash will be automaticaly remove after 10 secondes -->
+      <kami-flash type="success" time="10000" message="All is okay"></kami-flash>
+      ```
+
+      ## Static methods
+      The `<kami-flash>` have some static methods that allow you to manage flash instance easly.
+
+      ### Create
+      This method allow you to create flash programmaticaly and to attach it to any element.
+
+      ```js
+      import KamiFlash from '@kamiapp/flash';
+
+      // Create a success flash at the top of the window
+      // And attach it to the document.body
+      KamiFlash.create({
+        message: 'Hello World',
+        position: 'top-center',
+        type: 'success'
+      })
+      ```
+
+      By default it will attach the flash to the `document.body` but this element doesn't have
+      the necessaries css variables to get the type style of a flash. A better way is to attach
+      the flash to a `<kami-theme>` element. This will inject css variables to the flash component.
+    
+      ```html
+      <body>
+        <kami-theme id="theme"></kami-theme>
+      </body>
+      ```
+
+      ```js
+      import '@kami/theme';
+      import KamiFlash from '@kamiapp/flash';
+
+      const theme = document.body.querySelector('#theme');
+
+      // Create a flash and attach it to a kami-theme component.
+      KamiFlash.create({
+        message: 'Hello World',
+        container: theme,
+      })
+      ```
+
+      ### Clear
+
+      This method allow you to close all the current flash display on the screen.
+
+      ```js
+      import KamiFlash from '@kamiapp/flash';
+
+      // Delete all flash instance.
+      KamiFlash.clear();
+      ```
+      
+      ## API
+  </script>
+</guide-element>
+    </app-element>
+  </kami-theme>
+  
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="turbo-cache-control" content="no-cache">
+  <title>Kami | Collection</title>
+  <link rel="icon" type="image/png" href="../img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script type="module" crossorigin src="/assets/main.ba991e29.js"></script>
+  <link rel="stylesheet" href="/assets/main.2f394ff1.css">
+</head>
+<body>
+  <kami-theme>
+    <app-element><div class="playground">
+  <playground-element element="kami-flash">
+    <template data-element="kami-flash" data-target="host">
+      <kami-flash message="Hello world"></kami-flash>
+    </template>
+
+    <template data-element="kami-flash" data-target="suffix">
+      <div part="demo-form">
+        <input part="demo-input" id="message" placeholder="message" value="Hello world">
+        <select part="demo-select" id="type">
+          <option value="info" selected>info</option>
+          <option value="success">success</option>
+          <option value="warning">warning</option>
+          <option value="error">error</option>
+        </select>
+        <select part="demo-select" id="position">
+          <option value="bottom-center" selected>bottom-center</option>
+          <option value="bottom-right">bottom-right</option>
+          <option value="bottom-left">bottom-left</option>
+          <option value="top-center">top-center</option>
+          <option value="top-right">top-right</option>
+          <option value="top-left">top-left</option>
+        </select> 
+        <button part="demo-btn" id="create" >Create</button>
+        <button part="demo-btn-clear" id="clear" >Clear</button>
+      </div>
+      <script>
+        function main() {
+          const playground = document.querySelector('playground-element');
+          const create = playground.demo.querySelector('#create');
+          const clear = playground.demo.querySelector('#clear');
+          const message = playground.demo.querySelector('#message');
+          const type = playground.demo.querySelector('#type');
+          const position = playground.demo.querySelector('#position');
+
+          // same as `import KamiFlash from '@kamiapp/flash'`
+          const KamiFlash = playground.demo.querySelector('kami-flash').constructor;
+
+          create.addEventListener('click', () => {
+            KamiFlash.create({ 
+              message: message.value,
+              type: type.value,
+              position: position.value,
+              container: playground.demo,
+              time: 5000,
+              outlined: true,
+            })
+          });
+
+          clear.addEventListener('click', async () => {
+            await KamiFlash.clear();
+          });
+        }
+        
+        main();
+      </script>
+    </template>
+
+    <template data-element="kami-flash" data-target="knob" data-attr="type" data-type="select">
+      <select>
+        <option value="info" selected></option>
+        <option value="success"></option>
+        <option value="warning"></option>
+        <option value="error"></option>
+      </select> 
+    </template>
+
+    <template data-element="kami-flash" data-target="knob" data-attr="position" data-type="select">
+      <select>
+        <option value="bottom-center" selected></option>
+        <option value="bottom-right"></option>
+        <option value="bottom-left"></option>
+        <option value="top-center"></option>
+        <option value="top-right"></option>
+        <option value="top-left"></option>
+      </select> 
+    </template>
+  </playground-element>
+  <style>
+    ::part(demo-output) {
+      height: 500px;
+      overflow: inherit;
+    }
+
+    ::part(demo-form) {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    ::part(demo-input) {
+      width: 15%;
+      border-radius: 4px; 
+      padding: 13px; 
+      border: none;
+    }
+
+    ::part(demo-select) {
+      width: 15%;
+    }
+
+    ::part(demo-btn), ::part(demo-btn-clear) {
+      width: 15%;
+      position: inherit;
+      padding: 13px;
+      background-color: var(--kami-theme-primary);
+      font-family: 'UnB Office';
+      text-transform: capitalize;
+      font-size: 15px;
+    }
+
+    ::part(demo-btn-clear) {
+      background-color: var(--kami-theme-error);
+    }
+  </style>
+</div>
+    </app-element>
+  </kami-theme>
+  
+</body>
+</html>

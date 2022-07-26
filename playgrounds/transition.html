@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <script type="module" crossorigin src="/assets/main.680d8d7d.js"></script>
+  <script type="module" crossorigin src="/assets/main.ba991e29.js"></script>
   <link rel="stylesheet" href="/assets/main.2f394ff1.css">
 </head>
 <body>
@@ -19,23 +19,7 @@
     <app-element><div class="playground">
   <playground-element element="kami-transition">
     <template data-element="kami-transition" data-target="host">
-      <kami-transition show="true"></kami-transition>
-    </template>
-  
-    <template data-element="kami-transition" data-target="suffix">
-      <style>
-        ::part(demo) {
-          height: 150px;
-          width: 150px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: var(--kami-theme-secondary);
-          background-image: var(--kami-theme-gradient-primary);
-          color: var(--kami-theme-white);
-          border-radius: 5px;
-        }
-      </style>
+      <kami-transition appear transition="slide-y"></kami-transition>
     </template>
   
     <template data-element="kami-transition" data-target="slot">
@@ -69,6 +53,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    ::part(demo) {
+      height: 150px;
+      width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--kami-theme-secondary);
+      background-image: var(--kami-theme-gradient-primary);
+      color: var(--kami-theme-white);
+      border-radius: 5px;
     }
   </style>
 </div>
