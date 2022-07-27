@@ -7,21 +7,36 @@ import Theme from './base-theme';
  * @summary Light and Dark kami theme.
  * @tag kami-theme
  *
+ * @attr {"light" | "dark"} mode - Define which mode should be used.
+ *
  * @cssprop [--kami-theme-font-primary="Gosha Sans"]
  * @cssprop [--kami-theme-font-secondary="UnB Office"]
  * @cssprop [--kami-theme-shadow=0 0 8px -5px black]
  * @cssprop [--kami-theme-text-shadow=0 0 4px #0000008a]
  * @cssprop [--kami-theme-radius-white=20px]
  * @cssprop [--kami-theme-white=white]
- *
  * @cssprop [--kami-theme-primary=#30E2C9]
  * @cssprop [--kami-theme-secondary=#5472ea]
+ * @cssprop [--kami-theme-info=#38CFFF]
+ * @cssprop [--kami-theme-success=#47D6C2]
+ * @cssprop [--kami-theme-warning=#FF9F89]
+ * @cssprop [--kami-theme-error=#FC77A4]
+ * @cssprop [--kami-theme-white-rgb=255, 255, 255]
+ * @cssprop [--kami-theme-primary-rgb=48, 226, 201]
+ * @cssprop [--kami-theme-secondary-rgb=84, 114, 234]
+ * @cssprop [--kami-theme-info-rgb=56, 207, 255]
+ * @cssprop [--kami-theme-success-rgb=71, 214, 194]
+ * @cssprop [--kami-theme-warning-rgb=255, 159, 137]
+ * @cssprop [--kami-theme-error-rgb=252, 119, 164]
+ *
  * @cssprop [--kami-theme-accent=#8B8B8F]
  * @cssprop [--kami-theme-text=#565656]
  * @cssprop [--kami-theme-background=white]
  * @cssprop [--kami-theme-border-color=rgba(0, 0, 0, 0.09)]
  * @cssprop [--kami-theme-gradient-primary=116.95deg, #41B5FF -37.42%, #30E3CA 66.57%]
  * @cssprop [--kami-theme-gradient-secondary=116.95deg, #30E3CA 32.17%, #41B5FF 116.16%]
+ *
+ * @fires theme - When the current theme is updated.
  */
 @customElement('kami-theme')
 export default class KamiTheme extends Theme {
