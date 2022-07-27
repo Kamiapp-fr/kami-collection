@@ -55,46 +55,37 @@
   
   ```ts
   import { css } from 'lit';
-  import { BaseTheme } from '@kamiapp/theme';
+  import KamiTheme, { BaseTheme } from '@kamiapp/theme';
+  import { customElement } from 'lit/decorators.js';
   
+  @customElement('my-custom-theme')
   export default class CustomTheme extends BaseTheme {
-    static get tag() {
-      return 'my-custom-theme';
-    }
-  
-    static styles = css`
-      ::slotted(*) {
-        --kami-theme-font-primary: "Roboto";
-        --kami-theme-font-secondary: sans-serif;
-        --kami-theme-shadow: 0 0 8px -5px black;
-        --kami-theme-text-shadow: 0 0 4px #0000008a;
-        --kami-theme-radius: 20px;
-        --kami-theme-white: white;
-      }
-  
-      .kami-light-mode::slotted(*) {
-        --kami-theme-primary: red;
-        --kami-theme-secondary: blue;
-        --kami-theme-accent: grey;
-        --kami-theme-text: black;
-        --kami-theme-background: white;
-        --kami-theme-gradient-primary: linear-gradient(45deg, blue, red);
-        --kami-theme-gradient-secondary: linear-gradient(45deg, blue, red);
-      }
-    
-      .kami-dark-mode::slotted(*) {
-        --kami-theme-primary: blue;
-        --kami-theme-secondary: red;
-        --kami-theme-accent: grey;
-        --kami-theme-text: white;
-        --kami-theme-background: black;
-        --kami-theme-gradient-primary: linear-gradient(45deg, blue, red);
-        --kami-theme-gradient-secondary: linear-gradient(45deg, blue, red);
-      }
-    `;
+      static styles = [
+          KamiTheme.styles, 
+          css`
+            /* update for both themes */
+            ::slotted(*) {
+                --kami-theme-primary: #ca5e34;
+                --kami-theme-secondary: #f0f0f5;
+            }
+
+            /* update for light theme */
+            .kami-light-mode::slotted(*) {
+              --kami-theme-text: black;
+              --kami-theme-background: white;
+            }
+
+            /* update for dark theme */
+            .kami-dark-mode::slotted(*) {
+              --kami-theme-text: white;
+              --kami-theme-background: black;
+            }
+          `
+      ];
   }
-  
   ```
+
+  > See the [<kami-theme>](/docs/theme.html) documentation to see all css variables.
   
   Now to use it just define it and that all !
   
