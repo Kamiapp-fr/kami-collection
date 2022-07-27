@@ -1,5 +1,5 @@
 {{> header }}
-<guide-element name="Changelog">
+<guide-element name="Changelog" element="kami-changelog">
   <script type="text/markdown">    
       This component allow you to display your releases directly into your app. 
       Currently this component only provide support for [github](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) 
@@ -29,62 +29,15 @@
         &lt;/script&gt;
       </body>
       ```
-      
-      ## API
-      ### Props
-      
-      | name        |  type                 | description                  | required | default value                  |
-      |------------ |:---------------------:|------------------------------|:--------:|--------------------------------|
-      | src         | string                | Url used to get release data.| true     |                                |
-      | provider    | [Provider](#provider) | Type of release.             | true     |                                |
-      | header      | string                | Text display into the header.| false    | Kami-changelog                 |
-      
-      ### Provider
+
+      ## Provider
       
       This is the current list of provider compatible with this component :
       
-      * github
-      * gitlab
+      * `github`
+      * `gitlab`
       
-      ### Methods
-      *None*
-      
-      ### Events
-      *None*
-      
-      ### CSS Custom Properties
-      
-      | Name | Default |
-      | ------------------------------------- | --------------------------------------------------
-      | ``--kami-changelog-position``    | fixed    | 
-      | ``--kami-changelog-bottom``    |  0  | 
-      | ``--kami-changelog-right``    |  0  | 
-      | ``--kami-changelog-left``    |  auto  | 
-      | ``--kami-changelog-top``    |  auto  | 
-      | ``--kami-changelog-margin``    | 30px 40px   | 
-      | ``--kami-changelog-release-width``  | 70px | 
-      | ``--kami-changelog-release-height``  | 70px | 
-      | ``--kami-changelog-release-bottom``  | 90px  | 
-      | ``--kami-changelog-release-right``  | 0px | 
-      | ``--kami-changelog-release-width``  | 400px | 
-      | ``--kami-changelog-release-height``  | 50vh | 
-      | ``--kami-changelog-btn-radius``  | 100%  | 
-      | ``--kami-changelog-btn-padding``  | 10px | 
-      
-      #### Global Custom Properties
-      
-      This component exposes the following global [theming](/docs/theme.html) custom properties.
-      
-      | Name | 
-      | ------------------------------------- |
-      | ``--kami-theme-primary``    |
-      | ``--kami-theme-gradient-primary``    |
-      | ``--kami-theme-white``    |
-      | ``--kami-theme-background``    |
-      | ``--kami-theme-shadow``    |
-      | ``--kami-theme-text-shadow``    |
-      | ``--kami-theme-radius``    |
-      
+      ## API    
   </script>
 </guide-element>
 {{> footer }}

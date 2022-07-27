@@ -19,6 +19,31 @@ if (!customElements.get('kami-transition')) {
 /**
  * @summary Display your releases directly into your app.
  * @tag kami-changelog
+ *
+ * @property {string} src - Url used to get release data.
+ * @property {"github" | "gitlab"} provider - Type of release.
+ * @property {string?} header -  Text display into the header.
+ *
+ * @cssprop [--kami-changelog-position=fixed]
+ * @cssprop [--kami-changelog-bottom=0]
+ * @cssprop [--kami-changelog-right=0]
+ * @cssprop [--kami-changelog-left=auto]
+ * @cssprop [--kami-changelog-top=auto]
+ * @cssprop [--kami-changelog-margin=30px 40px]
+ * @cssprop [--kami-changelog-release-width=400px]
+ * @cssprop [--kami-changelog-release-bottom=90px]
+ * @cssprop [--kami-changelog-release-right=0px]
+ * @cssprop [--kami-changelog-release-height=50vh]
+ * @cssprop [--kami-changelog-btn-radius=100%]
+ * @cssprop [--kami-changelog-btn-radius=10px]
+ *
+ * @cssprop [--kami-theme-primary]
+ * @cssprop [--kami-theme-white]
+ * @cssprop [--kami-theme-background]
+ * @cssprop [--kami-theme-shadow]
+ * @cssprop [--kami-theme-radius]
+ * @cssprop [--kami-theme-gradient-primary]
+ * @cssprop [--kami-theme-text-shadow]
  */
 @customElement('kami-changelog')
 export default class KamiChangelog extends LitElement {
@@ -110,7 +135,7 @@ export default class KamiChangelog extends LitElement {
   @state()
   private display: boolean = false;
 
-  public get hasRelease() {
+  private get hasRelease() {
     return this.release
       && this.release.getContent() !== undefined
       && this.release.getContent() !== '';
@@ -133,7 +158,7 @@ export default class KamiChangelog extends LitElement {
     this.release = releaseFactory(this.provider, data);
   }
 
-  public toggleDisplay() {
+  private toggleDisplay() {
     this.display = !this.display;
   }
 
