@@ -10,6 +10,15 @@ import { style } from './style';
 /**
  * @summary Convert markdown in html using markdown-it.
  * @tag kami-markdown
+ *
+ * @cssprop [--kami-theme-primary] - Color used when a link is hovered.
+ * @cssprop [--kami-theme-secondary] - Color used for link and blockquote.
+ * @cssprop [--kami-theme-text] - Define the text color.
+ * @cssprop [--kami-theme-background] - Define the background color of the component.
+ * @cssprop [--kami-theme-font-secondary] - Define the font for paragraphe.
+ * @cssprop [--kami-theme-font-primary] - Define the font for title.
+ * @cssprop [--kami-theme-white] - Define the white color.
+ *
  */
 @customElement('kami-markdown')
 export default class KamiMarkdown extends LitElement {
@@ -21,14 +30,30 @@ export default class KamiMarkdown extends LitElement {
 
   private static hightlightStyle: string = '';
 
-  static registerHighlightStyle(s: string) {
-    KamiMarkdown.hightlightStyle = s;
+  /**
+   * A **static** method which add hightlight style
+   * to all the new instance of ``kami-markdown``.
+   * @param hightlightStyle - an hightlight style
+   */
+  static registerHighlightStyle(hightlightStyle: string) {
+    KamiMarkdown.hightlightStyle = hightlightStyle;
   }
 
+  /**
+   * A **static** method which add hightlight language
+   * to all the new instance of ``kami-markdown``.
+   * @param languageName - name of the language
+   * @param language - an hightlight language
+   */
   static registerHighlightLanguage(languageName: string, language: LanguageFn) {
     KamiMarkdown.hljs.registerLanguage(languageName, language);
   }
 
+  /**
+   * A **static** method which allow you to use a markdown-it plugin
+   * for all new instance of `kami-markdown`.
+   * @param plugin - a markdown-it plugin
+   */
   static use(plugin: Markdown.PluginSimple) {
     this.plugins.push(plugin);
   }

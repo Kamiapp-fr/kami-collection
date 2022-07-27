@@ -16,6 +16,25 @@
         3. Third item  
         ---   
         `code`
+
+        ### Javascript
+        ```js
+        import KamiMarkdown from '@kamiapp/markdown';
+        import javascript from 'highlight.js/lib/languages/javascript';
+        import dark from 'highlight.js/styles/github-dark.css';
+
+        KamiMarkdown.registerHighlightLanguage('js', javascript);
+        KamiMarkdown.registerHighlightStyle(dark);
+        ```
+
+        ### Html
+        ```html
+        <kami-markdown>
+          &lt;script type="text/markdown"&gt;
+            # Hello World
+          &lt;/script&gt;
+        </kami-markdown>
+        ```
       </script>
     </template>
   </playground-element>
