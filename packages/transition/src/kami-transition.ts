@@ -22,6 +22,22 @@ interface RunAnimationInOut {
 /**
  * @summary Predefined transitions for your components.
  * @tag kami-transition
+ *
+ * @property {boolean} appear - Run the transition directly when it's append to the document.
+ * @property {boolean} show - Show or hide the element.
+ * @property {"fade" | "scale" | "slide-x" | "slide-y"} transition - Name of the transition used.
+ * @property {string} from - From value depending on the transition used.
+ * @property {string} to - To value depending on the transition used.
+ * @property {number} duration - Duration of the transition.
+ * @property {number} delay - Delay before the transition is run.
+ * @property {string} easing - Easing of the transition.
+ *
+ * @slot - Slot for the single mode
+ * @slot in - In slot for the in-out mode
+ * @slot out - Out slot for the in-out mode
+ *
+ * @fires display - Called when the element is display
+ * @fires hide - Called when the element is hide
  */
 @customElement('kami-transition')
 export default class KamiTransition extends LitElement {
@@ -78,7 +94,7 @@ export default class KamiTransition extends LitElement {
 
   private animationOut?: Animation;
 
-  public get options() {
+  private get options() {
     return {
       duration: this.duration,
       delay: this.delay,
@@ -86,15 +102,15 @@ export default class KamiTransition extends LitElement {
     };
   }
 
-  public get single() {
+  private get single() {
     return this.getElementSlot(this.child);
   }
 
-  public get in() {
+  private get in() {
     return this.getElementSlot(this.childIn);
   }
 
-  public get out() {
+  private get out() {
     return this.getElementSlot(this.childOut);
   }
 
@@ -125,6 +141,14 @@ export default class KamiTransition extends LitElement {
     this.toggle(this.show);
   }
 
+  /**
+   * This method allow you to toggle the state of this element.
+   * Depending if it's a single or an in-out transition.
+   * * Show/hide the element for the single mode.
+   * * Switch elements in the ``in`` and
+   * ``out`` slots for the in-out mode.
+   * @param show - show/hide element or switch elements
+   */
   public toggle(show?: boolean) {
     if (show && this.single) {
       this.display();
@@ -180,7 +204,7 @@ export default class KamiTransition extends LitElement {
     }
   }
 
-  public runAnimation({
+  private runAnimation({
     child,
     el,
     keyframes,
@@ -206,7 +230,7 @@ export default class KamiTransition extends LitElement {
     return animation;
   }
 
-  public runAnimationInOut({
+  private runAnimationInOut({
     childIn,
     childOut,
     inEl,
@@ -228,7 +252,7 @@ export default class KamiTransition extends LitElement {
     return { animationIn, animationOut };
   }
 
-  public display() {
+  private display() {
     if (!this.child || !this.single) {
       return;
     }
@@ -241,7 +265,7 @@ export default class KamiTransition extends LitElement {
     });
   }
 
-  public displayInOut() {
+  private displayInOut() {
     if (!this.childIn || !this.childOut || !this.in || !this.out) {
       return;
     }
@@ -259,7 +283,7 @@ export default class KamiTransition extends LitElement {
     this.animationOut = animationOut;
   }
 
-  public hide() {
+  private hide() {
     if (!this.child || !this.single) {
       return;
     }
@@ -276,7 +300,7 @@ export default class KamiTransition extends LitElement {
     });
   }
 
-  public hideInOut() {
+  private hideInOut() {
     if (!this.childIn || !this.childOut || !this.in || !this.out) {
       return;
     }
@@ -294,7 +318,7 @@ export default class KamiTransition extends LitElement {
     this.animationOut = animationIn;
   }
 
-  public updateHostSize(el?: Element) {
+  private updateHostSize(el?: Element) {
     if (!el || (!el.clientWidth && !el.clientHeight)) {
       return;
     }
@@ -303,7 +327,7 @@ export default class KamiTransition extends LitElement {
     this.style.height = `${el.clientHeight}px`;
   }
 
-  public cancelAnimation(animation?: Animation) {
+  private cancelAnimation(animation?: Animation) {
     if (!animation || animation.playState === 'finished') {
       return;
     }
@@ -311,7 +335,7 @@ export default class KamiTransition extends LitElement {
     animation.cancel();
   }
 
-  public displayEl(el?: HTMLElement) {
+  private displayEl(el?: HTMLElement) {
     if (!el) {
       return;
     }
@@ -320,7 +344,7 @@ export default class KamiTransition extends LitElement {
     el.style.display = 'inherit';
   }
 
-  public hideEl(el?: HTMLElement) {
+  private hideEl(el?: HTMLElement) {
     if (!el) {
       return;
     }

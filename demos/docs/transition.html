@@ -1,5 +1,5 @@
 {{> header }}
-<guide-element name="Transition">
+<guide-element name="Transition" element="kami-transition">
   <script type="text/markdown">    
       This component allow to use pre-defini transitions directly into your html without any css declaration. 
       If you want add more transitions just open a PR with your transition.
@@ -34,19 +34,7 @@
         <button slot="out">slide-left</button>
       </kami-transition>
       ```
-      
-      ## API
-      ### Props
-      
-      | name        |  type                 | description                  | required | default value                  |
-      |------------ |:---------------------:|------------------------------|----------|--------------------------------|
-      | show         | boolean                | Show or hide the element.   | true     |                                |
-      | transition    | string                | Name of the transition used.                | false     |   fade                             |
-      | from      | string                | From value depending on [Transition](#transition) | false    | Depending on [Transition](#transition)                |
-      | to      | string                | To value depending on [Transition](#transition)| false    | Depending on [Transition](#transition)                 |
-      | duration      | number                | Duration of the transition. | false    | 500                 |
-      | easing      | string                | Easing of the transition.| false    | ease                 |
-      
+
       ### Transition
       
       This the list of the current transitions implemented and theirs default values.
@@ -58,15 +46,7 @@
       | ``slide-x``    | translateX   | 50                | 1   | 
       | ``slide-y``    | translateY   | 50                | 0   | 
       
-      ### Methods
-      *None*
-      
-      ### Events
-      *None*
-      
-      ### CSS Custom Properties
-      *None*
-      
+      ## API
   </script>
 </guide-element>
 {{> footer }}
