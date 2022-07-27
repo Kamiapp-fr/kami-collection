@@ -1603,7 +1603,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),N=f,C=m),E===void 0&&(
       position: fixed;
       width: fit-content;
       transition: all 0.5s ease;
-      z-index: var(kami-flash-z-index, 10);
+      z-index: var(--kami-flash-z-index, 10);
     }
 
     .position--bottom-center {
