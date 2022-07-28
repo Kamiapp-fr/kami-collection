@@ -33,6 +33,7 @@ export default defineConfig({
   plugins: [
     VitePluginCustomElementsManifest({
       files: [
+        './packages/infinite-list/src/index.ts',
         './packages/progress-bar/src/index.ts',
         './packages/flash/src/index.ts',
         './packages/changelog/src/kami-changelog.ts',
