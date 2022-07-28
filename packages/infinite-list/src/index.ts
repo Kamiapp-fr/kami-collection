@@ -1,5 +1,7 @@
-import { html, LitElement } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { css, html, LitElement } from 'lit';
+import {
+  customElement, property, query, state,
+} from 'lit/decorators.js';
 import Mustache, { OpeningAndClosingTags } from 'mustache';
 
 /**
@@ -8,6 +10,14 @@ import Mustache, { OpeningAndClosingTags } from 'mustache';
  */
 @customElement('kami-infinite-list')
 export default class KamiInfiniteList extends LitElement {
+  static styles = css`
+    .kami-infinite-list {
+      display: var(--kami-infinite-list-display, block);
+      height: var(--kami-infinite-list-height, 100%);
+      overflow: auto; 
+    }
+  `;
+
   private get delimiters() {
     return [this.openDelimiter, this.closeDelimiter] as OpeningAndClosingTags;
   }
@@ -16,7 +26,7 @@ export default class KamiInfiniteList extends LitElement {
   public src?: string;
 
   @property({ type: Number, reflect: true })
-  public page = 0;
+  public page = 1;
 
   @property({ type: Number })
   public limit = 10;
@@ -35,8 +45,13 @@ export default class KamiInfiniteList extends LitElement {
 
   private template?: HTMLTemplateElement;
 
+  private isLoading = false;
+
   @state()
   private data: any[] = [];
+
+  @query('#container')
+  private container!: HTMLDivElement;
 
   protected async firstUpdated() {
     if (!(this.querySelector('template') instanceof HTMLTemplateElement) || !this.src) {
@@ -44,20 +59,40 @@ export default class KamiInfiniteList extends LitElement {
     }
 
     this.template = this.querySelector('template') as HTMLTemplateElement;
-    this.addData(await this.get({ src: this.src }));
+    await this.load();
   }
 
-  private addData(data: any[]) {
-    this.data = [...this.data, ...data];
+  private async load() {
+    if (!this.src) {
+      return;
+    }
+
+    this.isLoading = true;
+    this.dispatchEvent(new CustomEvent('loading-data'));
+
+    try {
+      const data = await this.get({
+        src: this.src,
+        limit: this.limit,
+        page: this.page,
+      });
+
+      this.data = [...this.data, ...data];
+      this.dispatchEvent(new CustomEvent('loading-success'));
+    } catch (error) {
+      this.dispatchEvent(new CustomEvent('loading-error'));
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   private async get({ src, limit, page }: { src: string, limit?: number, page?: number }) {
-    const query = new URLSearchParams({
+    const params = new URLSearchParams({
       [this.queryLimit]: (limit || this.limit).toString(),
       [this.queryPage]: (page || this.page).toString(),
     });
 
-    const response = await fetch(`${src}?${query}`);
+    const response = await fetch(`${src}?${params}`);
     const data = await response.json();
 
     return data;
@@ -80,11 +115,32 @@ export default class KamiInfiniteList extends LitElement {
     return document.importNode(template.content, true);
   }
 
+  private async onScroll() {
+    if (this.container.scrollTop + 20 < this.container.scrollHeight - this.container.offsetHeight
+      || this.isLoading) {
+      return;
+    }
+
+    this.page += 1;
+    await this.load();
+  }
+
+  private onClickItem(e: MouseEvent, index: number) {
+    this.dispatchEvent(new CustomEvent('click-item', {
+      detail: {
+        element: e.target,
+        index,
+      },
+    }));
+  }
+
   protected render() {
     return html`
-      <div class="kami-infinite-list">
-        ${this.data.map((d) => html`
-          ${this.createElement(d)}
+      <div id="container" @scroll="${this.onScroll}" class="kami-infinite-list">
+        ${this.data.map((d, i) => html`
+          <div @click="${(e: MouseEvent) => this.onClickItem(e, i)}" class="kami-infinite-list__item">
+            ${this.createElement(d)}
+          </div>
         `)}
       </div>
     `;

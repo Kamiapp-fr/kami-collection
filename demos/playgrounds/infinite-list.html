@@ -4,11 +4,16 @@
     <template data-element="kami-infinite-list" data-target="host">
       <kami-infinite-list src="https://jsonplaceholder.typicode.com/photos">
         <template>
-          <h3>${title}</h3>
+          <h3>${id}. ${title}</h3>
           <img width="200" src="${url}">
         </template>
       </kami-infinite-list>
     </template>
   </playground-element>
+  <style>
+    ::part(demo-output) {
+      height: 500px;
+    }
+  </style>
 </div>
 {{> footer }}
