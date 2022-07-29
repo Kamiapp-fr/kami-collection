@@ -1,4 +1,6 @@
-import { css, html, LitElement } from 'lit';
+import {
+  css, html, LitElement, nothing,
+} from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { Package } from 'custom-elements-manifest/schema';
 
@@ -15,6 +17,13 @@ export default class ComponentsElement extends LitElement {
       flex-direction: column;
       align-items: center;
       min-height: calc(100vh - 185px);
+    }
+
+    .components__search {
+      width: 100%;
+      max-width: 750px;
+      margin-bottom: 35px;
+      margin-top: 10px;
     }
 
     .components__content {
@@ -34,6 +43,9 @@ export default class ComponentsElement extends LitElement {
       }
     }
   `;
+
+  @state()
+  private search = '';
 
   private get components() {
     const components = this.manifest.modules.map(({ declarations }) => {
@@ -74,13 +86,30 @@ export default class ComponentsElement extends LitElement {
     return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }
 
+  private match(name: string) {
+    if (!name) {
+      return true;
+    }
+
+    const reg = new RegExp(this.search, 'g');
+
+    return reg.test(name);
+  }
+
+  private onSearch({ detail }: { detail: { search: string } }) {
+    this.search = detail.search;
+  }
+
   protected render() {
     return html`
       <main class="components">
         <title-element align="center">Components</title-element>
+        <kami-search-bar @change="${this.onSearch}" class="components__search"></kami-search-bar>
         <div class="components__content">
           ${this.components.map(({ name, summary }) => html`
-            <component-element name="${name}" summary="${summary}"></component-element>
+              ${this.match(name) ? html`
+                <component-element name="${name}" summary="${summary}"></component-element>
+              ` : nothing}
           `)}
         </div>
       </main>
