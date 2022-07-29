@@ -28,6 +28,7 @@ import Theme from './base-theme';
  * @cssprop [--kami-theme-success-rgb=71, 214, 194]
  * @cssprop [--kami-theme-warning-rgb=255, 159, 137]
  * @cssprop [--kami-theme-error-rgb=252, 119, 164]
+ * @cssprop [--kami-theme-text-rgb=86, 86, 86]
  *
  * @cssprop [--kami-theme-accent=#8B8B8F]
  * @cssprop [--kami-theme-text=#565656]
@@ -73,6 +74,8 @@ export default class KamiTheme extends Theme {
       --kami-theme-border-color: rgba(0, 0, 0, 0.09);
       --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
       --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
+
+      --kami-theme-text-rgb: 86, 86, 86;
     }
   
     .kami-dark-mode::slotted(*) {
@@ -82,6 +85,8 @@ export default class KamiTheme extends Theme {
       --kami-theme-border-color: rgba(255, 255, 255, 0.09);
       --kami-theme-gradient-primary: linear-gradient(116.95deg, #41B5FF -37.42%, #30E3CA 66.57%);
       --kami-theme-gradient-secondary:  linear-gradient(116.95deg, #30E3CA 32.17%, #41B5FF 116.16%);
+
+      --kami-theme-text-rgb: 255, 255, 255;
     }
   `;
 }
