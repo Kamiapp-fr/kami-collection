@@ -2,10 +2,34 @@
 <div class="playground">
   <playground-element element="kami-infinite-list">
     <template data-element="kami-infinite-list" data-target="host">
-      <kami-infinite-list src="https://jsonplaceholder.typicode.com/photos">
+      <kami-infinite-list part="demo-infinite-list" limit="16" loading-at="200" src="https://jsonplaceholder.typicode.com/photos">
         <template>
-          <h3>${id}. ${title}</h3>
-          <img width="200" src="${url}">
+          <kami-transition appear intersection transition="slide-y" >
+            <div style="display: flex; position: relative; width: fit-content;">
+              <img 
+                width="200" 
+                height="200"
+                src="${url}"
+                style="
+                  border-radius: 20px;
+                  box-shadow: 0 5px 20px -5px #00000078;
+                "
+              >
+              <span 
+                style="
+                  width: 100%;
+                  position: absolute;
+                  bottom: 0;
+                  background: #00000078;
+                  color: white;
+                  padding: 10px;
+                  box-sizing: border-box;
+                  border-radius: 0px 0px 20px 20px;
+                ">
+                  ${id}. ${title}
+                </span>
+            </div>
+          </kami-transition>
         </template>
       </kami-infinite-list>
     </template>
@@ -13,6 +37,12 @@
   <style>
     ::part(demo-output) {
       height: 500px;
+    }
+
+    ::part(demo-infinite-list) {
+      --kami-infinite-list-display: flex;
+      --kami-infinite-list-justify: center;
+      --kami-infinite-list-gap: 20px;
     }
   </style>
 </div>

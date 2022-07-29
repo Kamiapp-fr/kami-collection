@@ -14,6 +14,10 @@ export default class KamiInfiniteList extends LitElement {
     .kami-infinite-list {
       display: var(--kami-infinite-list-display, block);
       height: var(--kami-infinite-list-height, 100%);
+      flex-wrap: var(--kami-infinite-list-wrap, wrap);
+      justify-content: var(--kami-infinite-list-justify, flex-start);
+      align-items: var(--kami-infinite-list-align, center);
+      gap: var(--kami-infinite-list-gap, 10px);
       overflow: auto; 
     }
   `;
@@ -43,9 +47,14 @@ export default class KamiInfiniteList extends LitElement {
   @property({ type: String, attribute: 'end-delimiter' })
   public closeDelimiter = '}';
 
+  @property({ type: Number, attribute: 'loading-at' })
+  public loadingAt = 0;
+
   private template?: HTMLTemplateElement;
 
   private isLoading = false;
+
+  private index = 0;
 
   @state()
   private data: any[] = [];
@@ -77,7 +86,8 @@ export default class KamiInfiniteList extends LitElement {
         page: this.page,
       });
 
-      this.data = [...this.data, ...data];
+      this.data.push(...data);
+      data.forEach(this.appendItem.bind(this));
       this.dispatchEvent(new CustomEvent('loading-success'));
     } catch (error) {
       this.dispatchEvent(new CustomEvent('loading-error'));
@@ -98,13 +108,33 @@ export default class KamiInfiniteList extends LitElement {
     return data;
   }
 
-  private createElement(data: unknown) {
+  private appendItem(data: unknown[]) {
+    const element = this.createItem(data);
+
+    if (!element) {
+      return;
+    }
+
+    element.setAttribute('data-infinite-list-index', this.index.toString());
+    element.addEventListener('click', (e) => {
+      const index = Number(element.dataset.infiniteListIndex);
+
+      this.onClickItem(e as MouseEvent, index);
+    });
+
+    this.container.append(element);
+    this.index += 1;
+  }
+
+  private createItem(data: unknown) {
     if (!(this.template instanceof HTMLTemplateElement)) {
       return undefined;
     }
 
+    const item = document.createElement('div');
     const template = this.template.cloneNode(true) as HTMLTemplateElement;
 
+    item.classList.add('kami-infinite-list__item');
     template.innerHTML = Mustache.render(
       template.innerHTML,
       data,
@@ -112,12 +142,15 @@ export default class KamiInfiniteList extends LitElement {
       this.delimiters,
     );
 
-    return document.importNode(template.content, true);
+    item.append(document.importNode(template.content, true));
+
+    return item;
   }
 
   private async onScroll() {
-    if (this.container.scrollTop + 20 < this.container.scrollHeight - this.container.offsetHeight
-      || this.isLoading) {
+    const { scrollHeight, clientHeight, scrollTop } = this.container;
+
+    if ((scrollHeight - scrollTop - this.loadingAt > clientHeight) || this.isLoading) {
       return;
     }
 
@@ -137,11 +170,7 @@ export default class KamiInfiniteList extends LitElement {
   protected render() {
     return html`
       <div id="container" @scroll="${this.onScroll}" class="kami-infinite-list">
-        ${this.data.map((d, i) => html`
-          <div @click="${(e: MouseEvent) => this.onClickItem(e, i)}" class="kami-infinite-list__item">
-            ${this.createElement(d)}
-          </div>
-        `)}
+        
       </div>
     `;
   }
