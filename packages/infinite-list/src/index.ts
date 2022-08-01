@@ -108,6 +108,8 @@ export default class KamiInfiniteList extends LitElement {
 
   private index = 0;
 
+  private end = false;
+
   @state()
   private data: any[] = [];
 
@@ -138,6 +140,7 @@ export default class KamiInfiniteList extends LitElement {
   public clear() {
     this.page = 1;
     this.data = [];
+    this.end = false;
     this.container.innerHTML = '';
   }
 
@@ -160,6 +163,10 @@ export default class KamiInfiniteList extends LitElement {
 
       this.data.push(...data);
       data.forEach(this.appendItem.bind(this));
+
+      if (data.length === 0) {
+        this.end = true;
+      }
 
       this.dispatchEvent(new CustomEvent('loading-success'));
     } catch (error) {
@@ -237,7 +244,7 @@ export default class KamiInfiniteList extends LitElement {
   private async onScroll() {
     const { scrollHeight, clientHeight, scrollTop } = this.container;
 
-    if ((scrollHeight - scrollTop - this.loadingAt > clientHeight) || this.isLoading) {
+    if ((scrollHeight - scrollTop - this.loadingAt > clientHeight) || this.isLoading || this.end) {
       return;
     }
 
