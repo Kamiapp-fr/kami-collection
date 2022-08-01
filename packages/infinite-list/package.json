@@ -19,6 +19,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kamiapp/search-bar": "^0.x",
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "lit": "^2.2.1",
     "mustache": "^4.2.0",
