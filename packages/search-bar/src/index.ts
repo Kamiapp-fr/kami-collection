@@ -27,11 +27,11 @@ export default class KamiSearchBar extends LitElement {
       justify-content: center;
       align-items: center;
       line-height: 0;
-      border: solid 2px rgba(var(--kami-theme-text-rgb), 0.5);
+      border: solid 1px rgba(var(--kami-theme-text-rgb), 0.2);
       border-radius: 10px;
       padding: 12px 15px;
       box-sizing: border-box;
-      background-color: rgba(var(--kami-theme-text-rgb), 0.1);
+      background-color: rgba(var(--kami-theme-text-rgb), 0.05);
       backdrop-filter: blur(4px);
     }
 
