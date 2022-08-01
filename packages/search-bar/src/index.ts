@@ -12,14 +12,44 @@ import {
  * @summary Search bar component to find and sort data.
  * @tag kami-search-bar
  *
+ * @property {string} value - The input value.
+ * @property {number} sort - Set the sort button to **asc** or **desc** *(1 or -1)*.
+ * @property {string} placeholder - This input placeholder.
+ * @property {boolean} disableSort - Hide the sort button.
+ *
+ * @cssprop [--kami-search-border-color=rgba(var(--kami-theme-text-rgb), 0.2)] - Border color.
+ * @cssprop [--kami-search-border-size=1px] - Border size.
+ * @cssprop [--kami-search-background-blur=4px] - Blur into the background.
+ * @cssprop [--kami-search-text-color=var(--kami-theme-text)] - Color of the input value.
+ * @cssprop [--kami-search-icon-color=rgba(var(--kami-theme-text-rgb), 0.5)] - Icons color.
+ * @cssprop [--kami-search-icon-size=30px] - Icons size.
+ * @cssprop [--kami-search-background-color=rgba(var(--kami-theme-text-rgb), 0.05)] - Background
+ * color.
+ * @cssprop [--kami-search-placeholder-color=rgba(var(--kami-theme-text-rgb), 0.3)] - Placeholder
+ * color.
+ *
  * @fires search - Emitted when the search is submited
  * @fires change - Emitted when the search is updated
+ * @fires sort - Emitted when the sort button is clicked
+ * @fires clear - Emitted when the search input is clear
  */
 @customElement('kami-search-bar')
 export default class KamiSearchBar extends LitElement {
   static styles = css`
     :host {
       display: block;
+
+      --kami-search-border-color: rgba(var(--kami-theme-text-rgb), 0.2);
+      --kami-search-border-size: 1px;
+
+      --kami-search-background-color: rgba(var(--kami-theme-text-rgb), 0.05);
+      --kami-search-background-blur: 4px;
+
+      --kami-search-text-color: var(--kami-theme-text);
+      --kami-search-placeholder-color: rgba(var(--kami-theme-text-rgb), 0.3);
+
+      --kami-search-icon-color: rgba(var(--kami-theme-text-rgb), 0.5);
+      --kami-search-icon-size: 30px;
     }
 
     .kami-search-bar {
@@ -27,12 +57,12 @@ export default class KamiSearchBar extends LitElement {
       justify-content: center;
       align-items: center;
       line-height: 0;
-      border: solid 1px rgba(var(--kami-theme-text-rgb), 0.2);
+      border: solid var(--kami-search-border-size) var(--kami-search-border-color);
       border-radius: 10px;
       padding: 12px 15px;
       box-sizing: border-box;
-      background-color: rgba(var(--kami-theme-text-rgb), 0.05);
-      backdrop-filter: blur(4px);
+      background-color: var(--kami-search-background-color);
+      backdrop-filter: blur(var(--kami-search-background-blur));
     }
 
     .kami-search-bar:focus-within {
@@ -48,12 +78,12 @@ export default class KamiSearchBar extends LitElement {
       font-size: 20px;
       margin: 0px 10px;
       min-width: 0;
-      color: var(--kami-theme-text);
+      color: var(--kami-search-text-color);
       outline: none;
     }
 
     .kami-search-bar__input::placeholder {
-      color: rgba(var(--kami-theme-text-rgb), 0.3);
+      color: var(--kami-search-placeholder-color);
     }
 
     .kami-search-bar__action {
@@ -67,14 +97,14 @@ export default class KamiSearchBar extends LitElement {
 
     .kami-search-bar__sort {
       padding-left: 12px;
-      border-left: solid 1px rgba(var(--kami-theme-text-rgb), 0.5);
+      border-left: solid 1px var(--kami-search-icon-color);
       cursor: pointer;
     }
 
     .kami-search-bar__icon {
-      fill: rgba(var(--kami-theme-text-rgb), 0.5);
-      width: var(--kami-search-bar-icon-size, 30px);
-      height: var(--kami-search-bar-icon-size, 30px);
+      fill: var(--kami-search-icon-color);
+      width: var(--kami-search-icon-size);
+      height: var(--kami-search-icon-size);
     }
   `;
 
@@ -108,6 +138,9 @@ export default class KamiSearchBar extends LitElement {
   }
 
   private emitValueEvent(name: string) {
+    /**
+     * @ignore
+     */
     this.dispatchEvent(new CustomEvent(name, {
       detail: {
         search: this.value,

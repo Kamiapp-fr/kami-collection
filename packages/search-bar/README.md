@@ -1,6 +1,6 @@
 # `<kami-search-bar>`
 
-TODO: Add description
+Search bar component to find and sort data.
 
 ## Usage
 
