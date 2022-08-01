@@ -1,7 +1,12 @@
 import '@kamiapp/transition';
 import { css, html, LitElement } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
-import { mdiMagnify, mdiClose, mdiSortAscending } from '@mdi/js';
+import {
+  mdiMagnify,
+  mdiClose,
+  mdiSortAscending,
+  mdiSortDescending,
+} from '@mdi/js';
 
 /**
  * @summary Search bar component to find and sort data.
@@ -59,6 +64,7 @@ export default class KamiSearchBar extends LitElement {
     .kami-search-bar__sort {
       padding-left: 12px;
       border-left: solid 1px rgba(var(--kami-theme-text-rgb), 0.5);
+      cursor: pointer;
     }
 
     .kami-search-bar__icon {
@@ -68,11 +74,31 @@ export default class KamiSearchBar extends LitElement {
     }
   `;
 
+  private get sortIcon() {
+    return this.sort === -1
+      ? mdiSortDescending
+      : mdiSortAscending;
+  }
+
   @property({ type: String, reflect: true })
   public value = '';
 
+  @property({ type: Number, reflect: true })
+  public sort = 1;
+
+  @property({ type: Boolean, attribute: 'disable-sort' })
+  public disableSort = false;
+
   @query('#search')
   private searchEl!: HTMLInputElement;
+
+  private emitSortEvent(sort: number) {
+    this.dispatchEvent(new CustomEvent('sort', {
+      detail: {
+        sort,
+      },
+    }));
+  }
 
   private emitValueEvent(name: string) {
     this.dispatchEvent(new CustomEvent(name, {
@@ -100,6 +126,11 @@ export default class KamiSearchBar extends LitElement {
     this.searchEl.value = '';
   }
 
+  private onSortClicked() {
+    this.sort = this.sort === 1 ? -1 : 1;
+    this.emitSortEvent(this.sort);
+  }
+
   private renderIcon(path: string) {
     return html`
       <svg class="kami-search-bar__icon" viewBox="0 0 24 25">
@@ -119,9 +150,11 @@ export default class KamiSearchBar extends LitElement {
               ${this.renderIcon(mdiClose)}
             </div>
           </kami-transition>
-          <div class="kami-search-bar__sort">
-            ${this.renderIcon(mdiSortAscending)}
-          </div>  
+          ${!this.disableSort ? html`
+            <div @click="${this.onSortClicked}" class="kami-search-bar__sort">
+              ${this.renderIcon(this.sortIcon)}
+            </div>
+          ` : ''}  
         </div>
       </form>
     `;
