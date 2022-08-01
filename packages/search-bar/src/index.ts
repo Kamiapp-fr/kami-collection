@@ -108,6 +108,10 @@ export default class KamiSearchBar extends LitElement {
     }));
   }
 
+  private emitClearEvent() {
+    this.dispatchEvent(new CustomEvent('clear'));
+  }
+
   private onSubmit(e: Event) {
     e.preventDefault();
 
@@ -119,11 +123,16 @@ export default class KamiSearchBar extends LitElement {
 
     this.value = this.searchEl.value;
     this.emitValueEvent('change');
+
+    if (!this.value) {
+      this.emitClearEvent();
+    }
   }
 
   private onClear() {
     this.value = '';
     this.searchEl.value = '';
+    this.emitClearEvent();
   }
 
   private onSortClicked() {
