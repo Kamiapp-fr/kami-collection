@@ -52,6 +52,10 @@ export default class KamiSearchBar extends LitElement {
       outline: none;
     }
 
+    .kami-search-bar__input::placeholder {
+      color: rgba(var(--kami-theme-text-rgb), 0.3);
+    }
+
     .kami-search-bar__action {
       display: flex;
     }
@@ -85,6 +89,9 @@ export default class KamiSearchBar extends LitElement {
 
   @property({ type: Number, reflect: true })
   public sort = 1;
+
+  @property({ type: String })
+  public placeholder = '';
 
   @property({ type: Boolean, attribute: 'disable-sort' })
   public disableSort = false;
@@ -152,13 +159,23 @@ export default class KamiSearchBar extends LitElement {
     return html`
       <form @submit="${this.onSubmit}" class="kami-search-bar" autocomplete="off">
         ${this.renderIcon(mdiMagnify)}
-        <input @input="${this.onInput}"  class="kami-search-bar__input" autocomplete="off" id="search" value="${this.value}">
+
+        <input 
+          id="search" 
+          class="kami-search-bar__input" 
+          autocomplete="off" 
+          value="${this.value}"
+          placeholder="${this.placeholder}"
+          @input="${this.onInput}" 
+        >
+
         <div class="kami-search-bar__action">
           <kami-transition transition="slide-x" duration="200" from="10" to="1" show="${this.value !== ''}">
             <div @click="${this.onClear}" class="kami-search-bar__close">
               ${this.renderIcon(mdiClose)}
             </div>
           </kami-transition>
+
           ${!this.disableSort ? html`
             <div @click="${this.onSortClicked}" class="kami-search-bar__sort">
               ${this.renderIcon(this.sortIcon)}

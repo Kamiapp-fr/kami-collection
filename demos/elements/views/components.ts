@@ -100,11 +100,22 @@ export default class ComponentsElement extends LitElement {
     this.search = detail.search;
   }
 
+  private onClear() {
+    this.search = '';
+  }
+
   protected render() {
     return html`
       <main class="components">
         <title-element align="center">Components</title-element>
-        <kami-search-bar @change="${this.onSearch}" class="components__search"></kami-search-bar>
+        <kami-search-bar 
+          class="components__search" 
+          placeholder="Search"
+          disable-sort
+          @change="${this.onSearch}" 
+          @clear="${this.onClear}" 
+        ></kami-search-bar>
+
         <div class="components__content">
           ${this.components.map(({ name, summary }) => html`
               ${this.match(name) ? html`
