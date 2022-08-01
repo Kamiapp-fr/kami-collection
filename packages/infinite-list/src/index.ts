@@ -102,6 +102,9 @@ export default class KamiInfiniteList extends LitElement {
   @property({ type: Boolean, attribute: 'use-search-bar' })
   public useSearchBar = false;
 
+  @property({ type: String })
+  public nested?: string;
+
   private template?: HTMLTemplateElement;
 
   private isLoading = false;
@@ -198,6 +201,10 @@ export default class KamiInfiniteList extends LitElement {
 
     const response = await fetch(url.toString());
     const data = await response.json();
+
+    if (this.nested && data[this.nested]) {
+      return data[this.nested];
+    }
 
     return data;
   }
