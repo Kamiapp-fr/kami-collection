@@ -33,6 +33,12 @@
         </template>
       </kami-infinite-list>
     </template>
+
+    <template data-element="kami-infinite-list" data-target="slot">
+      <div slot="loading">
+        <h2 style="color: var(--kami-theme-text)">Loading ...</h2>
+      </div>
+    </template>
   </playground-element>
   <style>
     ::part(demo-output) {

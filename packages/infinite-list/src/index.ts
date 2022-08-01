@@ -119,6 +119,9 @@ export default class KamiInfiniteList extends LitElement {
   @query('#container')
   private container!: HTMLDivElement;
 
+  @query('#loading')
+  private loadingSlot!: HTMLSlotElement;
+
   protected async firstUpdated() {
     if (!(this.querySelector('template') instanceof HTMLTemplateElement) || !this.src) {
       return;
@@ -144,7 +147,7 @@ export default class KamiInfiniteList extends LitElement {
     this.page = 1;
     this.data = [];
     this.end = false;
-    this.container.innerHTML = '';
+    this.container.querySelectorAll('.kami-infinite-list__item').forEach((e) => e.remove());
   }
 
   private async load() {
@@ -153,6 +156,7 @@ export default class KamiInfiniteList extends LitElement {
     }
 
     this.isLoading = true;
+    this.loadingSlot.style.display = 'block';
     this.dispatchEvent(new CustomEvent('loading-data'));
 
     try {
@@ -171,6 +175,7 @@ export default class KamiInfiniteList extends LitElement {
         this.end = true;
       }
 
+      this.loadingSlot.style.display = 'none';
       this.dispatchEvent(new CustomEvent('loading-success'));
     } catch (error) {
       this.dispatchEvent(new CustomEvent('loading-error'));
@@ -223,7 +228,7 @@ export default class KamiInfiniteList extends LitElement {
       this.onClickItem(e as MouseEvent, index);
     });
 
-    this.container.append(element);
+    this.container.insertBefore(element, this.loadingSlot);
     this.index += 1;
   }
 
@@ -317,7 +322,10 @@ export default class KamiInfiniteList extends LitElement {
           id="container" 
           class="kami-infinite-list__container" 
           @scroll="${this.onScroll}" 
-        ></div>
+        >
+
+          <slot id="loading" name="loading"></slot>
+        </div>
       </div>
     `;
   }
