@@ -6,6 +6,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2022-08-02
+### Added
+- @kamiapp/search-bar
+  - Add `value`, `sort`, `placeholder` and `disable-sort` attributes.
+  - Add `search`, `change`, `sort` and `clear` events.
+  - Add `--kami-search-border-color`, `--kami-search-border-size`, `--kami-search-background-blur`, `--kami-search-text-color`, `--kami-search-icon-color`, `--kami-search-icon-size`, `--kami-search-background-color` and `--kami-search-placeholder-color` css variables.
+- **infinite-list**: Add `loading` slot.
+- **infinite-list**: Add `filter`, `sort` and `clear` methods.
+- **infinite-list**: Add `loading-data`, `loading-success` and `loading-error` events.
+- **infinite-list**: Add `order`, `search`, `loading-at`, `open-delimiter` and `close-delimiter` attributes.
+- **infinite-list**: Add `--kami-infinite-list-heigh`, `--kami-infinite-list-display`, `--kami-infinite-list-wrap`, `--kami-infinite-list-justify`, `--kami-infinite-list-align` and `--kami-infinite-list-gap` css variables
+- **transition**: Add `intersection` attribute. This allow you to display element only if it's on the viewport.
+- **theme**: Add `--kami-theme-text-rgb` css variable.
+
+### Changed
+- **infinite-list**: Rewrite using [lit](https://lit.dev). [#42](https://github.com/Kamiapp-fr/kami-collection/issues/42)
+- **BREAKING infinite-list**: Update the data binding. Now it use [mustache.js](https://github.com/janl/mustache.js) to render template.
+- **BREAKING infinite-list**: Rename `datasource` attribute to `src`.
+- **BREAKING infinite-list**: Rename `useSearch` attribute to `use-search-bar`.
+- **BREAKING infinite-list**: Rename `searchQuery` attribute to `query-search`.
+- **BREAKING infinite-list**: Rename `sortQuery` attribute to `query-sort`.
+- **BREAKING infinite-list**: Rename `pageQuery` attribute to `query-page`.
+- **BREAKING infinite-list**: Rename `limitQuery` attribute to `query-limit`.
+
+### Removed
+- **BREAKING infinite-list**: Removed `delegate`, `width`, `height` and `flex` attributes.
+
+### Deprecated
+- **BREAKING component**: Now deprecate, use [lit](https://lit.dev/) or [stencil](https://stenciljs.com/) instead of this. [#37](https://github.com/Kamiapp-fr/kami-collection/issues/37)
+
 ## [0.4.3] - 2022-07-27
 ### Fixed
 - **flash**: Fix undefined z-index css variable
@@ -36,7 +66,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **theme**: Add more css variables `--kami-theme-info`, `--kami-theme-success`, `--kami-theme-warning`, `--kami-theme-error`, `--kami-theme-primary-rgb`, `--kami-theme-secondary-rgb`, `--kami-theme-white-rgb`, `--kami-theme-info-rgb`, `--kami-theme-success-rgb`, `--kami-theme-warning-rgb`, `--kami-theme-error-rgb`
 
 ### Changed
-- **flash**: Rewrite using [lit](https://lit.dev).
+- **flash**: Rewrite using [lit](https://lit.dev). [#41](https://github.com/Kamiapp-fr/kami-collection/issues/41)
 - **BREAKING flash**: Update `type` attribute. Now it only accept `info`, `success`, `warning`, `error`
 - **BREAKING flash**: Update `position` attribute. Now it only accept `bottom-center`, `bottom-left`, `bottom-right`, `top-center`, `top-right`, `top-left`
 - **BREAKING flash**: Rename `createFlash()` into `create()`
@@ -120,7 +150,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.3...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.3...v0.5.0
 [0.4.3]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.0...v0.4.1
