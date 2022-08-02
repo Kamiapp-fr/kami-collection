@@ -2,7 +2,17 @@
 <div class="playground">
   <playground-element element="kami-infinite-list">
     <template data-element="kami-infinite-list" data-target="host">
-      <kami-infinite-list use-search-bar part="demo-infinite-list" limit="16" loading-at="200" query-search="q" query-sort="_order" query-asc="asc" query-desc="desc" src="https://jsonplaceholder.typicode.com/photos?_sort=id">
+      <kami-infinite-list 
+        src="https://jsonplaceholder.typicode.com/photos?_sort=id"
+        part="demo-infinite-list" 
+        limit="16" 
+        loading-at="200" 
+        query-search="q" 
+        query-sort="_order" 
+        query-asc="asc" 
+        query-desc="desc" 
+        use-search-bar 
+      >
         <template>
           <kami-transition appear intersection transition="slide-y" >
             <div style="display: flex; position: relative; width: fit-content;">

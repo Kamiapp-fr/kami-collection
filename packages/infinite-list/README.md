@@ -1,6 +1,8 @@
 # `<kami-infinite-list>`
 
-TODO: Add description
+Infinite list based on web component. This component allow you to create easly an infinite list.
+To use it you must have an API endpoint which support pagination (for example the [wordpress](https://developer.wordpress.org/rest-api/using-the-rest-api/pagination/) pagination).
+This component have also a ``fitler`` and ``sort`` feature which allow to manage data easly. 
 
 ## Usage
 

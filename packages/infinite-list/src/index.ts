@@ -16,6 +16,37 @@ interface KamiInfiniteListQuery {
 /**
  * @summary Infinite list based on web component.
  * @tag kami-infinite-list
+ *
+ * @property {string} src - Url used to get data.
+ * @property {number?} page - Current page display.
+ * @property {number?} limit - Number of item by page.
+ * @property {string?} search - Search query.
+ * @property {number?} order - Sort order *(1 or -1)*.
+ * @property {string?} queryLimit - Update the limit query name.
+ * @property {string?} queryPage - Update the page query name.
+ * @property {string?} querySearch - Update the search query name.
+ * @property {string?} querySort - Update the sort query name.
+ * @property {string?} queryAsc - Use this value for the sort query instead of *1*.
+ * @property {string?} queryDesc - Use this value for the sort query instead of *-1*.
+ * @property {string?} openDelimiter - Custom open delimiter for template render.
+ * @property {string?} closeDelimiter - Custom close delimiter for template render.
+ * @property {number?} loadingAt - Define when data must be loaded.
+ * @property {boolean?} useSearchBar - Display the **kami-search-bar**.
+ * @property {string?} nested - Get data from a nested field.
+ *
+ * @cssprop [--kami-infinite-list-height=100%] - Height of the list.
+ * @cssprop [--kami-infinite-list-display=block] - Display style of the list.
+ * @cssprop [--kami-infinite-list-wrap=wrap] - Wrap item or not *(only on display: flex)*.
+ * @cssprop [--kami-infinite-list-justify=flex-start] - Justify style *(only on display: flex)*.
+ * @cssprop [--kami-infinite-list-align=center] - Align style *(only on display: flex)*.
+ * @cssprop [--kami-infinite-list-gap=10px] - Define gap between items *(only on display: flex)*.
+ *
+ * @fires loading-data - Emitted when data is loading.
+ * @fires loading-success - Emitted when data is loaded successfuly.
+ * @fires loading-error - Emitted when an error appear.
+ * @fires click-item - Emitted when an item of the list is clicked.
+ *
+ * @slot loading - Displayed when data are loading.
  */
 @customElement('kami-infinite-list')
 export default class KamiInfiniteList extends LitElement {
@@ -93,7 +124,7 @@ export default class KamiInfiniteList extends LitElement {
   @property({ type: String, attribute: 'open-delimiter' })
   public openDelimiter = '${';
 
-  @property({ type: String, attribute: 'end-delimiter' })
+  @property({ type: String, attribute: 'close-delimiter' })
   public closeDelimiter = '}';
 
   @property({ type: Number, attribute: 'loading-at' })
@@ -131,18 +162,31 @@ export default class KamiInfiniteList extends LitElement {
     await this.load();
   }
 
-  public async filter(value: string) {
+  /**
+   * Filters current and futur data display into the list.
+   * @param {string} value - Filter the list.
+   */
+  public async filter(value: string): Promise<void> {
     this.search = value;
     this.clear();
     await this.load();
   }
 
-  public async sort(sort: number) {
+  /**
+   * Sorts current and futur data display into the list.
+   * @param {1 | -1} sort - Sort order.
+   */
+  public async sort(sort: number): Promise<void> {
     this.order = sort;
     this.clear();
     await this.load();
   }
 
+  /**
+   * Clears current data display.
+   * It will reset the **page** property to 1
+   * and remove all DOM items into the list.
+   */
   public clear() {
     this.page = 1;
     this.data = [];
