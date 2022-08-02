@@ -16,17 +16,14 @@
 </head>
 <body>
   <kami-theme>
-    <app-element><guide-element name="Changelog" element="kami-changelog">
+    <app-element><guide-element name="SearchBar" element="kami-search-bar">
   <script type="text/markdown">    
-      This component allow you to display your releases directly into your app. 
-      Currently this component only provide support for [github](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) 
-      and [gitlab](https://docs.gitlab.com/ee/user/project/releases/) releases. 
-      If you want use an another provider you can make a PR to add it.
+      Search bar component to find and sort data.
       
       ## Install 
       
       ```console
-      $ npm install --save @kamiapp/changelog
+      $ npm install --save @kamiapp/search-bar
       ```
       
       ## Usage
@@ -35,26 +32,45 @@
       
       ```html
       <body>
-        <kami-changelog
-          src="https://api.github.com/repos/Kamiapp-fr/kami-collection/releases"
-          header="🚀 Releases"
-          provider="github"
-        ></kami-changelog>
+        <kami-search-bar></kami-search-bar>
       
         &lt;script type="module"&gt;
-          import '@kamiapp/changelog';
+          import '@kamiapp/search-bar';
         &lt;/script&gt;
       </body>
       ```
 
-      ## Provider
+      The `<kami-search-bar>` component can be used like an input text. 
+
+      ```html
+      <kami-search-bar value="How to cook ?" placeholder="Search..."></kami-search-bar>
+      ```
+
+      You can hide the sort button using the `disable-sort` attribute.
       
-      This is the current list of provider compatible with this component :
-      
-      * `github`
-      * `gitlab`
-      
-      ## API    
+      ```html
+      <kami-search-bar disable-sort></kami-search-bar>
+      ```
+
+      If you want get the data from the `<kami-search-bar>`, you can listen the `search` or `change` event.
+        
+      * **change:** Called when the search value is updated.
+      * **search:** Called when the search is submit *(Enter key)*.
+
+      ```html
+      <kami-search-bar id="search"></kami-search-bar>
+      ```
+      ```js
+      const search = document.querySelector('#search');
+
+      search.addEventListener('change', (event) => {
+        // Called when the search value is updated
+        // This will display the search value.
+        console.log(event.detail.search);
+      });
+      ```
+
+      ## API      
   </script>
 </guide-element>
     </app-element>

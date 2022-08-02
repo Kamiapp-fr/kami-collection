@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <script type="module" crossorigin src="/assets/main.b9361f0f.js"></script>
+  <script type="module" crossorigin src="/assets/main.92352cfd.js"></script>
   <link rel="stylesheet" href="/assets/main.2f394ff1.css">
 </head>
 <body>
@@ -33,6 +33,25 @@
         3. Third item  
         ---   
         `code`
+
+        ### Javascript
+        ```js
+        import KamiMarkdown from '@kamiapp/markdown';
+        import javascript from 'highlight.js/lib/languages/javascript';
+        import dark from 'highlight.js/styles/github-dark.css';
+
+        KamiMarkdown.registerHighlightLanguage('js', javascript);
+        KamiMarkdown.registerHighlightStyle(dark);
+        ```
+
+        ### Html
+        ```html
+        <kami-markdown>
+          &lt;script type="text/markdown"&gt;
+            # Hello World
+          &lt;/script&gt;
+        </kami-markdown>
+        ```
       </script>
     </template>
   </playground-element>

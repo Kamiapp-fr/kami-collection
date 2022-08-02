@@ -11,12 +11,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <script type="module" crossorigin src="/assets/main.b9361f0f.js"></script>
+  <script type="module" crossorigin src="/assets/main.92352cfd.js"></script>
   <link rel="stylesheet" href="/assets/main.2f394ff1.css">
 </head>
 <body>
   <kami-theme>
-    <app-element><guide-element name="Transition">
+    <app-element><guide-element name="Transition" element="kami-transition">
   <script type="text/markdown">    
       This component allow to use pre-defini transitions directly into your html without any css declaration. 
       If you want add more transitions just open a PR with your transition.
@@ -51,19 +51,7 @@
         <button slot="out">slide-left</button>
       </kami-transition>
       ```
-      
-      ## API
-      ### Props
-      
-      | name        |  type                 | description                  | required | default value                  |
-      |------------ |:---------------------:|------------------------------|----------|--------------------------------|
-      | show         | boolean                | Show or hide the element.   | true     |                                |
-      | transition    | string                | Name of the transition used.                | false     |   fade                             |
-      | from      | string                | From value depending on [Transition](#transition) | false    | Depending on [Transition](#transition)                |
-      | to      | string                | To value depending on [Transition](#transition)| false    | Depending on [Transition](#transition)                 |
-      | duration      | number                | Duration of the transition. | false    | 500                 |
-      | easing      | string                | Easing of the transition.| false    | ease                 |
-      
+
       ### Transition
       
       This the list of the current transitions implemented and theirs default values.
@@ -75,15 +63,7 @@
       | ``slide-x``    | translateX   | 50                | 1   | 
       | ``slide-y``    | translateY   | 50                | 0   | 
       
-      ### Methods
-      *None*
-      
-      ### Events
-      *None*
-      
-      ### CSS Custom Properties
-      *None*
-      
+      ## API
   </script>
 </guide-element>
     </app-element>

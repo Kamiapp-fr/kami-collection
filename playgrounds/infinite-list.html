@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="turbo-cache-control" content="no-cache">
+  <title>Kami | Collection</title>
+  <link rel="icon" type="image/png" href="../img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script type="module" crossorigin src="/assets/main.92352cfd.js"></script>
+  <link rel="stylesheet" href="/assets/main.2f394ff1.css">
+</head>
+<body>
+  <kami-theme>
+    <app-element><div class="playground">
+  <playground-element element="kami-infinite-list">
+    <template data-element="kami-infinite-list" data-target="host">
+      <kami-infinite-list 
+        src="https://jsonplaceholder.typicode.com/photos?_sort=id"
+        part="demo-infinite-list" 
+        limit="16" 
+        loading-at="200" 
+        query-search="q" 
+        query-sort="_order" 
+        query-asc="asc" 
+        query-desc="desc" 
+        use-search-bar 
+      >
+        <template>
+          <kami-transition appear intersection transition="slide-y" >
+            <div style="display: flex; position: relative; width: fit-content;">
+              <img 
+                width="200" 
+                height="200"
+                src="${url}"
+                style="
+                  border-radius: 20px;
+                  box-shadow: 0 5px 20px -5px #00000078;
+                "
+              >
+              <span 
+                style="
+                  width: 100%;
+                  position: absolute;
+                  bottom: 0;
+                  background: #00000078;
+                  color: white;
+                  padding: 10px;
+                  box-sizing: border-box;
+                  border-radius: 0px 0px 20px 20px;
+                ">
+                  ${id}. ${title}
+                </span>
+            </div>
+          </kami-transition>
+        </template>
+      </kami-infinite-list>
+    </template>
+
+    <template data-element="kami-infinite-list" data-target="slot">
+      <div slot="loading">
+        <h2 style="color: var(--kami-theme-text)">Loading ...</h2>
+      </div>
+    </template>
+  </playground-element>
+  <style>
+    ::part(demo-output) {
+      height: 500px;
+    }
+
+    ::part(demo-infinite-list) {
+      --kami-infinite-list-display: flex;
+      --kami-infinite-list-justify: center;
+      --kami-infinite-list-gap: 20px;
+    }
+  </style>
+</div>
+    </app-element>
+  </kami-theme>
+  
+</body>
+</html>

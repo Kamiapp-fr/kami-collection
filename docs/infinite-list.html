@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="turbo-cache-control" content="no-cache">
+  <title>Kami | Collection</title>
+  <link rel="icon" type="image/png" href="../img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script type="module" crossorigin src="/assets/main.92352cfd.js"></script>
+  <link rel="stylesheet" href="/assets/main.2f394ff1.css">
+</head>
+<body>
+  <kami-theme>
+    <app-element><guide-element name="InfiniteList" element="kami-infinite-list">
+  <script type="text/markdown">    
+      Infinite list based on web component. This component allow you to create easly an infinite list.
+      To use it you must have an API endpoint which support pagination (for example the [wordpress](https://developer.wordpress.org/rest-api/using-the-rest-api/pagination/) pagination).
+      This component have also a ``fitler`` and ``sort`` feature which allow to manage data easly. 
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/infinite-list
+      ```
+      
+      ## Usage
+      
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
+      
+      ```html
+      <body>
+        <kami-infinite-list src="https://<YOUR-API>"></kami-infinite-list>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/infinite-list';
+        &lt;/script&gt;
+      </body>
+      ```
+      
+      ### Getting started
+
+      To work the component need a datasource which support pagination. 
+      To define the first page and the number of item by page, you can use `page` and `limit` attribute.
+      The [jsonplaceholder](https://jsonplaceholder.typicode.com/) api work perfectly with this component.
+      This is a simple a example with this api.
+
+      ```html
+      <kami-infinite-list 
+        src="https://jsonplaceholder.typicode.com/posts"
+        page="5" 
+        limit="15" 
+      >
+        <template>
+          <h2>${title}</h2>
+        </template>
+      </kami-infinite-list>
+      ```
+      
+      > See the [template](#template) section to get more information about it.
+
+
+      By default it will use `_limit` and `_page` as pagination query.
+      You can customize them with the `query-limit` and `query-page` attributes.
+
+      ```html
+      <!-- An example with a wordpress api -->
+      <!-- The query will be ?page=1&per_page=20 -->
+      <kami-infinite-list 
+        src="https://<YOUR-WORDPRESS-API>"
+        page="1"
+        limit="20"
+        query-page="page" 
+        query-limit="per_page" 
+      >
+        <!-- Add your template here -->
+      </kami-infinite-list>
+      ```
+
+      ### Filter and Sort
+
+      You can also fitler and sort the list if your api support it.
+      To do this you can use the `search` attribute to filter or the `order` attribute to sort the list.
+      Order attribute only accept **1** (ascending) or **-1** (descending). Default query used are
+      `_search` and `_sort` but you can update using `query-search` and `query-sort` attributes. For order the 
+      default value used are 1 and -1 but you can customize it. Use the `query-asc` and `query-desc` to update
+      the value depending the order attribute value.
+
+      ```html
+      <!-- The query will be ?_page=1&_limit=10&q=error&_order=desc -->
+      <kami-infinite-list 
+        src="https://jsonplaceholder.typicode.com/photos?_sort=id"
+        search="error"
+        order="-1"
+        query-search="q" 
+        query-sort="_order" 
+        query-asc="asc" 
+        query-desc="desc" 
+      >
+        <!-- Add your template here -->
+      </kami-infinite-list>
+      ```
+
+      > You can set the `use-search-bar` attribute to use the [<kami-search-bar>](/docs/search-bar.html) component.
+      > This search bar is already configured to search and sort using the `<kami-search-bar>` events.
+      > You don't need to add any code.
+      > See it in live [here](/playgrounds/infinite-list.html) !  
+
+      If you want use your own search bar or any other element to interact with the list,
+      you can use the `filter()` and `sort()` methods.
+
+      ```html
+      <kami-infinite-list 
+        id="list"
+        src="https://jsonplaceholder.typicode.com/photos?_sort=id"
+        query-search="q" 
+        query-sort="_order" 
+        query-asc="asc" 
+        query-desc="desc" 
+      >
+        <!-- Add your template here -->
+      </kami-infinite-list>
+      ```
+
+      ```js
+      const list = document.querySelector('#list');
+
+      // Wait all dom are loaded
+      window.addEventListener('DOMContentLoaded', async () => {
+        // filter and sort list.
+        await list.filter('error');
+        await list.sort(-1);
+      })
+      ```
+      
+      ### Nested 
+
+      If your request response with an object and your data to bind are into a nested field. 
+      You can use the ``nested`` attribute to bind this field and not the root object.
+
+      ```html
+      <kami-infinite-list src="https://rickandmortyapi.com/api/character" nested="results">
+        <!-- Add your template here -->
+      </kami-infinite-list>
+      ```
+
+      ### Template
+
+      This component use [mustache.js](https://github.com/janl/mustache.js/) as template engine.
+      See the mustache docs to get more informations.
+
+      ```html
+      <kami-infinite-list>
+        <template>
+          <h1>${id}</h1>
+          <p>${name}</p>
+        </template>
+      </kami-infinite-list>
+      ```
+      Mustache.js also support [loop render](https://github.com/janl/mustache.js/#non-empty-lists). 
+
+      ```html
+      <kami-infinite-list>
+        <template>
+          <ul>
+            ${#labels}
+            <li>${name}</li>
+            ${/labels}
+          </ul>
+        </template>
+      </kami-infinite-list>
+      ```
+      
+      Web component are also supported with the mustache render. If you want create simple
+      animation when an item appear on the screen you can use the [<kami-transition>](/docs/transition.html) component.
+      
+      ```html
+      <kami-infinite-list>
+        <template>
+          <kami-transition appear intersection transition="slide-y">
+            <div>
+              <h1>${id}</h1>
+              <p>${name}</p>
+            </div>
+          </kami-transition>
+        </template>
+      </kami-infinite-list>
+      ```
+      
+      > You must set the `intersection` attribute. Else transition will be run when the component is append and not when it appear on the screen. 
+      
+      By default delimiter are `${` and `}` but you can customize it 
+      using `open-delimiter` and `close-delimiter` attributes.
+
+      ```html
+      <kami-infinite-list open-delimiter="[[" close-delimiter="]]">
+        <template>
+          <h1>[[id]]</h1>
+          <p>[[name]]</p>
+        </template>
+      </kami-infinite-list>
+      ```
+
+
+      ## API      
+  </script>
+</guide-element>
+    </app-element>
+  </kami-theme>
+  
+</body>
+</html>
