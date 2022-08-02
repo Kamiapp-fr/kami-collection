@@ -25,6 +25,7 @@
     "@kamiapp/infinite-list": "^0.x",
     "@kamiapp/markdown": "^0.x",
     "@kamiapp/progress-bar": "^0.x",
+    "@kamiapp/search-bar": "^0.x",
     "@kamiapp/theme": "^0.x",
     "@kamiapp/transition": "^0.x",
     "@webcomponents/webcomponentsjs": "^2.6.0",

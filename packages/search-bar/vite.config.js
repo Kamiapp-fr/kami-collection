@@ -6,8 +6,8 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'KamiInfiniteList',
-      fileName: (format) => `kami-infinite-list.${format}.js`
+      name: 'KamiSearchBar',
+      fileName: (format) => `kami-search-bar.${format}.js`
     },
   },
   plugins: [dts()]

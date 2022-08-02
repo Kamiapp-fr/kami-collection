@@ -3,6 +3,8 @@ import '@api-viewer/demo';
 import '@kamiapp/theme';
 import '@kamiapp/transition';
 import '@kamiapp/changelog';
+import '@kamiapp/search-bar';
+import '@kamiapp/infinite-list';
 import '@kamiapp/progress-bar';
 import '@kamiapp/flash';
 import { setProgressBarDelay } from '@hotwired/turbo';

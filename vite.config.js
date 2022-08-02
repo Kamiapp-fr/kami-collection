@@ -8,6 +8,7 @@ import glob from "glob";
 const _dirname = dirname(fileURLToPath(import.meta.url));
 
 export const alias = {
+  "@kamiapp/search-bar": resolve(_dirname, "./packages/search-bar/src/index.ts"),
   "@kamiapp/progress-bar": resolve(_dirname, "./packages/progress-bar/src/index.ts"),
   "@kamiapp/flash": resolve(_dirname, "./packages/flash/src/index.ts"),
   "@kamiapp/component": resolve(_dirname, "./packages/component/src/kami-component.ts"),
@@ -33,6 +34,8 @@ export default defineConfig({
   plugins: [
     VitePluginCustomElementsManifest({
       files: [
+        './packages/search-bar/src/index.ts',
+        './packages/infinite-list/src/index.ts',
         './packages/progress-bar/src/index.ts',
         './packages/flash/src/index.ts',
         './packages/changelog/src/kami-changelog.ts',

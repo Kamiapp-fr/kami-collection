@@ -1,0 +1,59 @@
+{{> header }}
+<guide-element name="SearchBar" element="kami-search-bar">
+  <script type="text/markdown">    
+      Search bar component to find and sort data.
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/search-bar
+      ```
+      
+      ## Usage
+      
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
+      
+      ```html
+      <body>
+        <kami-search-bar></kami-search-bar>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/search-bar';
+        &lt;/script&gt;
+      </body>
+      ```
+
+      The `<kami-search-bar>` component can be used like an input text. 
+
+      ```html
+      <kami-search-bar value="How to cook ?" placeholder="Search..."></kami-search-bar>
+      ```
+
+      You can hide the sort button using the `disable-sort` attribute.
+      
+      ```html
+      <kami-search-bar disable-sort></kami-search-bar>
+      ```
+
+      If you want get the data from the `<kami-search-bar>`, you can listen the `search` or `change` event.
+        
+      * **change:** Called when the search value is updated.
+      * **search:** Called when the search is submit *(Enter key)*.
+
+      ```html
+      <kami-search-bar id="search"></kami-search-bar>
+      ```
+      ```js
+      const search = document.querySelector('#search');
+
+      search.addEventListener('change', (event) => {
+        // Called when the search value is updated
+        // This will display the search value.
+        console.log(event.detail.search);
+      });
+      ```
+
+      ## API      
+  </script>
+</guide-element>
+{{> footer }}

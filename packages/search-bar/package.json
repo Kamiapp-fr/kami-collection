@@ -1,16 +1,16 @@
 {
-  "name": "@kamiapp/infinite-list",
+  "name": "@kamiapp/search-bar",
   "version": "0.0.0",
   "files": [
     "dist"
   ],
-  "main": "./dist/kami-infinite-list.umd.js",
-  "module": "./dist/kami-infinite-list.es.js",
-  "types": "./dist/infinite-list/src/index.d.ts",
+  "main": "./dist/kami-search-bar.umd.js",
+  "module": "./dist/kami-search-bar.es.js",
+  "types": "./dist/search-bar/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/kami-infinite-list.es.js",
-      "require": "./dist/kami-infinite-list.umd.js"
+      "import": "./dist/kami-search-bar.es.js",
+      "require": "./dist/kami-search-bar.umd.js"
     }
   },
   "scripts": {
@@ -19,14 +19,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@kamiapp/search-bar": "^0.x",
+    "@kamiapp/transition": "^0.x",
+    "@mdi/js": "^6.6.96",
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "lit": "^2.2.1",
-    "mustache": "^4.2.0",
     "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
-    "@types/mustache": "^4.2.1",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vite-plugin-dts": "^1.0.4"

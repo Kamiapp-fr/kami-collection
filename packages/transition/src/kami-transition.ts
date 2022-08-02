@@ -31,6 +31,8 @@ interface RunAnimationInOut {
  * @property {number} duration - Duration of the transition.
  * @property {number} delay - Delay before the transition is run.
  * @property {string} easing - Easing of the transition.
+ * @property {boolean} intersection - Run the transition only when the element is on the viewport.
+ * *(Only work with **appear** attribute)*
  *
  * @slot - Slot for the single mode
  * @slot in - In slot for the in-out mode
@@ -57,6 +59,9 @@ export default class KamiTransition extends LitElement {
 
   @property({ type: Boolean })
   public appear: boolean = false;
+
+  @property({ type: Boolean })
+  public intersection: boolean = false;
 
   @property({
     type: String,
@@ -93,6 +98,8 @@ export default class KamiTransition extends LitElement {
   private animationIn?: Animation;
 
   private animationOut?: Animation;
+
+  private observer?: IntersectionObserver;
 
   private get options() {
     return {
@@ -199,9 +206,32 @@ export default class KamiTransition extends LitElement {
     this.style.display = 'block';
     this.style.opacity = '1';
 
-    if (this.appear) {
+    if (this.appear && !this.intersection) {
       this.toggle(true);
     }
+
+    if (this.appear && this.intersection) {
+      this.displayEl(this.child);
+      this.style.opacity = '0';
+
+      this.observer = this.createObserver();
+      this.observer.observe(this);
+    }
+  }
+
+  private createObserver() {
+    return new IntersectionObserver((changes) => {
+      const [{ intersectionRatio }] = changes;
+
+      if (intersectionRatio > 0 && this.style.opacity !== '1') {
+        this.style.opacity = '1';
+        this.toggle(true);
+      }
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    });
   }
 
   private runAnimation({
