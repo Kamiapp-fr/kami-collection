@@ -17,7 +17,6 @@
     "rootDirs": ["./"],
     "baseUrl": ".",
     "paths": {
-      "@kamiapp/component": ["./packages/component/src/kami-component.ts"],
       "@kamiapp/progress-bar": ["./packages/progress-bar/src/index.ts"],
       "@kamiapp/search-bar": ["./packages/search-bar/src/index.ts"],
       "@kamiapp/flash": ["./packages/flash/src/index.ts"],

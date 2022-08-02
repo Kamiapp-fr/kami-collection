@@ -27,7 +27,6 @@
     "vite-plugin-handlebars": "^1.6.0"
   },
   "workspaces": [
-    "./packages/component",
     "./packages/transition",
     "./packages/search-bar",
     "./packages/progress-bar",

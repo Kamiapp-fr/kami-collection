@@ -1,3 +1,8 @@
+> **Deprecated:** kami-component is now deprecate and will not receive any updates.
+> Please use an another library to build your web components.
+> We now use [lit](https://lit.dev) but [stencil](https://stenciljs.com/) is also a good choice.
+> *This package will be delete when the v1.0.0 of kami-collection will be released.*
+
 # `<kami-component>`
 
 A simple abstract class to create web compenent.

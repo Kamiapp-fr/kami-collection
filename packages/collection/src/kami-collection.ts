@@ -4,7 +4,6 @@ import 'web-animations-js';
 
 import KamiFlash from '@kamiapp/flash';
 import KamiInfiniteList from '@kamiapp/infinite-list';
-import KamiComponent from '@kamiapp/component';
 import KamiChangelog from '@kamiapp/changelog';
 import KamiMarkdown from '@kamiapp/markdown';
 import KamiProgressBar from '@kamiapp/progress-bar';
@@ -15,7 +14,6 @@ import KamiTransition from '@kamiapp/transition';
 export {
   KamiFlash,
   KamiInfiniteList,
-  KamiComponent,
   KamiTheme,
   KamiTransition,
   KamiProgressBar,

@@ -62,7 +62,6 @@ You can get more informations about each components into the ``packages/<compone
 | [``<kami-markdown>``](./packages/markdown/)|  Convert markdown in html.       | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/markdown) |   
 | [``<kami-theme>``](./packages/theme/)|   Light and Dark kami theme.        | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/theme) |
 | [``<kami-transition>``](./packages/transition/)|   Predefined transitions for your components.       | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/transition) |   
-| [``<kami-component>``](./packages/component/)|   Abstract class to create simple web component.         | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/component) |    
 | [``<kami-progress-bar>``](./packages/progress-bar/)| A simple horizontal progress bar. | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/progress-bar) |    
 | [``<kami-search-bar>``](./packages/search-bar/)| Search bar component to find and sort data. | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/search-bar) |   
 
