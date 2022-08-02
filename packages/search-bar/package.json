@@ -6,7 +6,7 @@
   ],
   "main": "./dist/kami-search-bar.umd.js",
   "module": "./dist/kami-search-bar.es.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/search-bar/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-search-bar.es.js",
