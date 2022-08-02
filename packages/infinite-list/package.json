@@ -6,7 +6,7 @@
   ],
   "main": "./dist/kami-infinite-list.umd.js",
   "module": "./dist/kami-infinite-list.es.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/infinite-list/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/kami-infinite-list.es.js",
