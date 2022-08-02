@@ -1,4 +1,4 @@
-import '@kamiapp/transition';
+import KamiTransition from '@kamiapp/transition';
 import { css, html, LitElement } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import {
@@ -7,6 +7,10 @@ import {
   mdiSortAscending,
   mdiSortDescending,
 } from '@mdi/js';
+
+if (!customElements.get('kami-transition')) {
+  customElements.define('kami-transition', KamiTransition);
+}
 
 /**
  * @summary Search bar component to find and sort data.
