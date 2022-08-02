@@ -1,4 +1,4 @@
-import '@kamiapp/search-bar';
+import KamiSearchBar from '@kamiapp/search-bar';
 import { css, html, LitElement } from 'lit';
 import {
   customElement, property, query, state,
@@ -11,6 +11,10 @@ interface KamiInfiniteListQuery {
   page?: number,
   sort?: number | string,
   search?: string,
+}
+
+if (!customElements.get('kami-search-bar')) {
+  customElements.define('kami-search-bar', KamiSearchBar);
 }
 
 /**
