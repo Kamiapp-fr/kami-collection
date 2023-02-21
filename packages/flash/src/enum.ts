@@ -1,4 +1,4 @@
-export function enumConverter<T>(enumValue: T, defaultValue: keyof typeof enumValue) {
+export function enumConverter<T extends {}>(enumValue: T, defaultValue: keyof typeof enumValue) {
   return (value: string | null) => {
     if (!value || !Object.keys(enumValue).includes(value)) {
       return enumValue[defaultValue];
