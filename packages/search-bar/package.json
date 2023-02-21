@@ -20,14 +20,14 @@
   },
   "dependencies": {
     "@kamiapp/transition": "^0.x",
-    "@mdi/js": "^6.6.96",
-    "@webcomponents/webcomponentsjs": "^2.6.0",
-    "lit": "^2.2.1",
-    "web-animations-js": "^2.3.1"
+    "@mdi/js": "^7.1.96",
+    "@webcomponents/webcomponentsjs": "^2.7.0",
+    "lit": "^2.6.1",
+    "web-animations-js": "^2.3.2"
   },
   "devDependencies": {
-    "typescript": "^4.5.4",
-    "vite": "^2.8.0",
-    "vite-plugin-dts": "^1.0.4"
+    "typescript": "^4.9.5",
+    "vite": "^4.1.3",
+    "vite-plugin-dts": "1.0.4"
   }
 }
