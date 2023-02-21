@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import Release from './Release';
 import ProviderRelease from './ProviderRelease';
 
-interface GitlabReleaseState{
+interface GitlabReleaseState {
   description: string;
   released_at: string;
   tag_name: string;

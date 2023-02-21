@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import Release from './Release';
 import ProviderRelease from './ProviderRelease';
 
-interface GithubReleaseState{
+interface GithubReleaseState {
   body: string;
   published_at: string;
   tag_name: string;
