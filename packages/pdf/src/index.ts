@@ -9,18 +9,18 @@ GlobalWorkerOptions.workerSrc = worker;
 export default class KamiPdf extends LitElement {
   static styles = css`
     .kami-pdf {
-      width: 100%;
-      height: 100vh;
-      background: grey;
+      width: var(--kami-pdf-width, 100%);
+      height: var(--kami-pdf-height, 100%);
+      background: var(--kami-theme-background);
       display: flex;
       flex-direction: column;
       align-items: center;
       overflow: auto;
     }
 
-    canvas {
-      margin: 5px;
-      max-width: 100%;
+    .kami-pdf canvas {
+      margin: var(--kami-pdf-page-margin, 5px);
+      max-width: var(--kami-pdf-page-width, 100%);
     }
   `;
 
