@@ -5,6 +5,21 @@ import worker from 'pdfjs-dist/build/pdf.worker.js?url';
 
 GlobalWorkerOptions.workerSrc = worker;
 
+/**
+ * @summary A simple pdf viewer.
+ * @tag kami-pdf
+ *
+ * @property {string} src - Source of the pdf.
+ * @property {number?} scale - Scale of the pdf.
+ *
+ * @cssprop [--kami-pdf-width=100%] - Width of the pdf.
+ * @cssprop [--kami-pdf-height=100%] - Height of the pdf.
+ * @cssprop [--kami-pdf-page-margin=5px] - Margin between each pdf page.
+ * @cssprop [--kami-pdf-page-width=100%] - Width of each pdf page.
+ *
+ * @cssprop [--kami-theme-background] - Background color of the pdf.
+ *
+ */
 @customElement('kami-pdf')
 export default class KamiPdf extends LitElement {
   static styles = css`
@@ -41,12 +56,12 @@ export default class KamiPdf extends LitElement {
     await this.renderPages(await getDocument(this.src).promise);
   }
 
-  public renderPages(pdf: PDFDocumentProxy) {
+  private renderPages(pdf: PDFDocumentProxy) {
     const pages = Array(pdf.numPages).fill('');
     return Promise.all(pages.map((_, i) => this.renderPage(pdf, i + 1)));
   }
 
-  public async renderPage(pdf: PDFDocumentProxy, index: number) {
+  private async renderPage(pdf: PDFDocumentProxy, index: number) {
     const page = await pdf.getPage(index);
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
