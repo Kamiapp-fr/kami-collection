@@ -1,6 +1,6 @@
 # `<kami-pdf>`
 
-TODO: Add description
+ A simple viewer that allows users to easily read and view PDF documents directly within their browser.
 
 ## Usage
 
@@ -18,7 +18,7 @@ import '@kamiapp/pdf';
 And use the component directly into your html :
 
 ```html
-<kami-pdf></kami-pdf>
+<kami-pdf src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf"></kami-pdf>
 ```
 ## Documentation
 

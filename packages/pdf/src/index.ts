@@ -11,7 +11,7 @@ import worker from 'pdfjs-dist/build/pdf.worker.js?url';
 GlobalWorkerOptions.workerSrc = worker;
 
 /**
- * @summary A simple pdf viewer.
+ * @summary  A simple viewer that allows users to easily read and view PDF.
  * @tag kami-pdf
  *
  * @property {string} src - Source of the pdf.
@@ -76,6 +76,10 @@ export default class KamiPdf extends LitElement {
     await this.load();
   }
 
+  /**
+   * Load the pdf depending on the `src` attribute.
+   * By default this method is called when the component is mounted.
+   */
   public async load() {
     if (!this.src) {
       throw new Error('The "src" attribute is needed to load a pdf');
@@ -97,6 +101,10 @@ export default class KamiPdf extends LitElement {
     }
   }
 
+  /**
+   * Clear the current pdf.
+   * It will remove all pages display.
+   */
   public clear() {
     this.pages.forEach((page) => page.remove());
   }
