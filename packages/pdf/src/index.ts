@@ -1,5 +1,10 @@
 import { css, html, LitElement } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import {
+  customElement,
+  property,
+  query,
+  queryAll,
+} from 'lit/decorators.js';
 import { getDocument, GlobalWorkerOptions, PDFDocumentProxy } from 'pdfjs-dist';
 import worker from 'pdfjs-dist/build/pdf.worker.js?url';
 
@@ -56,16 +61,28 @@ export default class KamiPdf extends LitElement {
   @query('#loading')
   private loadingSlot!: HTMLSlotElement;
 
+  @queryAll('canvas')
+  private pages!: HTMLCanvasElement[];
+
   protected async firstUpdated() {
-    if (!this.src) {
-      throw new Error('The "src" attribute is needed to load a pdf');
+    await this.load();
+  }
+
+  protected async updated(props: Map<'scale' | 'src', { scale: number, src: string }>): Promise<void> {
+    if (!props.get('scale') && !props.get('src')) {
+      return;
     }
 
     await this.load();
   }
 
   public async load() {
+    if (!this.src) {
+      throw new Error('The "src" attribute is needed to load a pdf');
+    }
+
     this.loadingSlot.style.display = 'flex';
+    this.clear();
     this.dispatchEvent(new CustomEvent('loading-data'));
 
     try {
@@ -78,6 +95,10 @@ export default class KamiPdf extends LitElement {
     } finally {
       this.loadingSlot.style.display = 'none';
     }
+  }
+
+  public clear() {
+    this.pages.forEach((page) => page.remove());
   }
 
   private async renderPdf(pdf: PDFDocumentProxy) {
