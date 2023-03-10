@@ -19,6 +19,11 @@ GlobalWorkerOptions.workerSrc = worker;
  *
  * @cssprop [--kami-theme-background] - Background color of the pdf.
  *
+ * @fires loading-data - Emitted when data is loading.
+ * @fires loading-success - Emitted when data is loaded successfuly.
+ * @fires loading-error - Emitted when an error appear.
+ *
+ * @slot loading - Displayed when data are loading.
  */
 @customElement('kami-pdf')
 export default class KamiPdf extends LitElement {
@@ -48,20 +53,44 @@ export default class KamiPdf extends LitElement {
   @query('#viewer')
   private viewer!: HTMLCanvasElement;
 
+  @query('#loading')
+  private loadingSlot!: HTMLSlotElement;
+
   protected async firstUpdated() {
     if (!this.src) {
       throw new Error('The "src" attribute is needed to load a pdf');
     }
 
-    await this.renderPages(await getDocument(this.src).promise);
+    await this.load();
   }
 
-  private renderPages(pdf: PDFDocumentProxy) {
+  public async load() {
+    this.loadingSlot.style.display = 'flex';
+    this.dispatchEvent(new CustomEvent('loading-data'));
+
+    try {
+      const pdf = await getDocument(this.src).promise;
+      await this.renderPdf(pdf);
+
+      this.dispatchEvent(new CustomEvent('loading-success'));
+    } catch (error) {
+      this.dispatchEvent(new CustomEvent('loading-error'));
+    } finally {
+      this.loadingSlot.style.display = 'none';
+    }
+  }
+
+  private async renderPdf(pdf: PDFDocumentProxy) {
+    const pages = await this.createPages(pdf);
+    this.viewer.append(...pages);
+  }
+
+  private createPages(pdf: PDFDocumentProxy) {
     const pages = Array(pdf.numPages).fill('');
-    return Promise.all(pages.map((_, i) => this.renderPage(pdf, i + 1)));
+    return Promise.all(pages.map((_, i) => this.createPage(pdf, i + 1)));
   }
 
-  private async renderPage(pdf: PDFDocumentProxy, index: number) {
+  private async createPage(pdf: PDFDocumentProxy, index: number) {
     const page = await pdf.getPage(index);
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -75,14 +104,14 @@ export default class KamiPdf extends LitElement {
       viewport,
     }).promise;
 
-    this.viewer.append(canvas);
-
-    return page;
+    return canvas;
   }
 
   render() {
     return html`
-      <div id="viewer" class="kami-pdf"></div>
+      <div id="viewer" class="kami-pdf">
+        <slot id="loading" name="loading"></slot>
+      </div>
     `;
   }
 }
