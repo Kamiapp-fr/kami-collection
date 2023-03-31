@@ -1,7 +1,22 @@
 {{> header }}
 <div class="playground">
   <playground-element element="kami-media">
-
+    <template data-element="kami-media" data-target="host">
+      <kami-media src="/img/logo.png" height="70vh"></kami-media>
+    </template>
+    <template data-element="kami-media" data-target="slot">
+      <div slot="unknown">
+        <h2 style="color: var(--kami-theme-text)">Document type isn't supported</h2>
+      </div>
+    </template>
+    <template data-element="kami-media" data-target="knob" data-attr="src" data-type="select">
+      <select>
+        <option value="/img/logo.png" selected></option>
+        <option value="/video/sample.mp4"></option>
+        <option value="/pdf/sample.pdf"></option>
+        <option value="/pdf/sample.unknown"></option>
+      </select> 
+    </template>
   </playground-element>
 </div>
 {{> footer }}
