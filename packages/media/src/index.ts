@@ -1,5 +1,10 @@
-import { css, html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {
+  css,
+  html,
+  LitElement,
+  nothing,
+} from 'lit';
+import { customElement, property, query } from 'lit/decorators.js';
 import { getType } from 'mime';
 import KamiPdf from '@kamiapp/pdf';
 
@@ -89,14 +94,41 @@ export default class KamiMedia extends LitElement {
       && !this.isPDF;
   }
 
+  @query('#media')
+  private media?: HTMLImageElement | HTMLVideoElement | HTMLAudioElement | KamiPdf;
+
   @property()
   public src?: string;
+
+  @property()
+  public alt?: string;
+
+  @property({ type: Boolean })
+  public controls: boolean = false;
+
+  @property({ type: Boolean })
+  public autoplay: boolean = false;
+
+  @property({ type: Boolean })
+  public loop: boolean = false;
+
+  @property({ type: Boolean })
+  public muted: boolean = false;
+
+  @property({ type: Number })
+  public volume: number = 1;
 
   @property()
   public height: string = '100%';
 
   @property()
-  public width: string = '100%;';
+  public width: string = '100%';
+
+  @property()
+  public crossorigin?: string;
+
+  @property()
+  public loading?: string;
 
   private isType(type: string) {
     if (!this.type) {
@@ -106,12 +138,28 @@ export default class KamiMedia extends LitElement {
     return Boolean(this.type.match(new RegExp(type, 'g')));
   }
 
+  protected updated() {
+    if (
+      !this.media
+      || (!(this.media instanceof HTMLVideoElement) && !(this.media instanceof HTMLAudioElement))
+    ) {
+      return;
+    }
+
+    this.media.muted = this.muted;
+    this.media.volume = this.volume;
+  }
+
   private renderImage() {
     return html`
       <img 
+        id="media"
         class="kami-media__image" 
         style="max-height: ${this.height}; max-width: ${this.width};"
         src="${this.src}"
+        alt="${this.alt || nothing}"
+        crossorigin="${this.crossorigin || nothing}"
+        loading="${this.loading || nothing}"
       >
     `;
   }
@@ -119,23 +167,35 @@ export default class KamiMedia extends LitElement {
   private renderVideo() {
     return html`
       <video 
+        id="media"
         class="kami-media__video" 
         style="max-height: ${this.height}; max-width: ${this.width};"
         src="${this.src}"
-        controls
+        crossorigin="${this.crossorigin || nothing}"
+        ?controls="${this.controls}"
+        ?autoplay="${this.autoplay}"
+        ?loop="${this.loop}"
       ></video>
     `;
   }
 
   private renderAudio() {
     return html`
-      <audio src="${this.src}" controls></audio>
+      <audio 
+        id="media"
+        src="${this.src}" 
+        crossorigin="${this.crossorigin || nothing}"
+        ?controls="${this.controls}"
+        ?autoplay="${this.autoplay}"
+        ?loop="${this.loop}"
+      ></audio>
     `;
   }
 
   private renderPDF() {
     return html`
       <div 
+        id="media"  
         class="kami-media__container" 
         style="max-height: ${this.height}; max-width: ${this.width};"
       >
