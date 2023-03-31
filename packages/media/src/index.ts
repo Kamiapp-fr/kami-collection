@@ -74,12 +74,19 @@ export default class KamiMedia extends LitElement {
     return this.isType('image');
   }
 
+  public get isAudio() {
+    return this.isType('audio');
+  }
+
   public get isPDF() {
     return this.isType('pdf');
   }
 
   public get isUnknow() {
-    return !this.isVideo && !this.isImage && !this.isPDF;
+    return !this.isVideo
+      && !this.isImage
+      && !this.isAudio
+      && !this.isPDF;
   }
 
   @property()
@@ -120,6 +127,12 @@ export default class KamiMedia extends LitElement {
     `;
   }
 
+  private renderAudio() {
+    return html`
+      <audio src="${this.src}" controls></audio>
+    `;
+  }
+
   private renderPDF() {
     return html`
       <div 
@@ -137,16 +150,33 @@ export default class KamiMedia extends LitElement {
     `;
   }
 
+  private renderMedia() {
+    if (this.isImage) {
+      return this.renderImage();
+    }
+
+    if (this.isVideo) {
+      return this.renderVideo();
+    }
+
+    if (this.isAudio) {
+      return this.renderAudio();
+    }
+
+    if (this.isPDF) {
+      return this.renderPDF();
+    }
+
+    return this.renderUnknown();
+  }
+
   protected render() {
     return html`
       <div 
         class="kami-media" 
         style="max-height: ${this.height}; max-width: ${this.width};"
       >
-        ${this.isImage ? this.renderImage() : ''}
-        ${this.isVideo ? this.renderVideo() : ''}
-        ${this.isPDF ? this.renderPDF() : ''}
-        ${this.isUnknow ? this.renderUnknown() : ''}
+        ${this.renderMedia()}
       </div>
     `;
   }
