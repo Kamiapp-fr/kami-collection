@@ -3,6 +3,7 @@ import '@api-viewer/demo';
 import '@kamiapp/theme';
 import '@kamiapp/transition';
 import '@kamiapp/changelog';
+import '@kamiapp/pdf';
 import '@kamiapp/search-bar';
 import '@kamiapp/infinite-list';
 import '@kamiapp/progress-bar';

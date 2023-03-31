@@ -1,0 +1,19 @@
+{{> header }}
+<div class="playground">
+  <playground-element element="kami-pdf">
+    <template data-element="kami-pdf" data-target="host">
+      <kami-pdf src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"></kami-pdf>
+    </template>
+    <template data-element="kami-pdf" data-target="slot">
+      <div slot="loading">
+        <h2 style="color: var(--kami-theme-text)">Loading ...</h2>
+      </div>
+    </template>
+  </playground-element>
+</div>
+<style>
+  ::part(demo-output) {
+    --kami-pdf-height: 70vh
+  }
+</style>
+{{> footer }}

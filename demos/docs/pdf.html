@@ -1,0 +1,51 @@
+{{> header }}
+<guide-element name="Pdf" element="kami-pdf">
+  <script type="text/markdown">    
+      A simple viewer that allows users to easily read and view PDF documents directly within their browser.
+      Whether you need to quickly scan through a document or dive deep into its contents, `kami-pdf` is the perfect solution for all your PDF viewing needs. 
+      Its lightweight and easy-to-use interface makes it the perfect addition to any website or application looking to provide high-quality document viewing capabilities.
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/pdf
+      ```
+      
+      ## Usage
+      
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
+      
+      ```html
+      <body>
+        <kami-pdf src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf"></kami-pdf>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/pdf';
+        &lt;/script&gt;
+      </body>
+      ```
+
+      > The `src` is needed to load the pdf. Else it will throw an error.
+
+      With the `scale` attribute, you have complete control over the size of your pages. 
+      You can easily adjust the scale to zoom in and out of specific sections of the document or to fit the entire page on your screen. 
+
+      ```html
+      <kami-pdf src="https://your-file.pdf" scale="2"></kami-pdf>
+      ```
+
+      With the `loading` slot feature, you can customize the user experience while your pdf is loading. 
+      This is particularly useful for websites or applications with large PDF files that may take some time to load.
+
+      ```html
+      <kami-pdf src="https://your-file.pdf" scale="2">
+        <div slot="loading">
+          <h2 style="color: var(--kami-theme-text)">Loading ...</h2>
+        </div>
+      </kami-pdf>
+      ```
+      
+      ## API      
+  </script>
+</guide-element>
+{{> footer }}

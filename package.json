@@ -28,6 +28,7 @@
     "vite-plugin-handlebars": "^1.6.0"
   },
   "workspaces": [
+    "./packages/pdf",
     "./packages/transition",
     "./packages/search-bar",
     "./packages/progress-bar",
@@ -46,6 +47,7 @@
     "highlight.js": "^11.7.0",
     "lit": "^2.6.1",
     "markdown-it-anchor": "^8.6.7",
-    "markdown-it-table-of-contents": "^0.6.0"
+    "markdown-it-table-of-contents": "^0.6.0",
+    "pdfjs-dist": "^3.4.120"
   }
 }
