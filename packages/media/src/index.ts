@@ -11,9 +11,42 @@ if (!customElements.get('kami-pdf')) {
 export default class KamiMedia extends LitElement {
   static styles = css`
     .kami-media {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       height: 100%;
       width: 100%;
-      overflow: auto;
+      background: var(--kami-theme-background);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .kami-media:has(.kami-media__pdf) {
+      --kami-pdf-page-margin: 0px 0px 10px 0;
+      align-items: flex-start;
+    }
+
+    .kami-media__container {
+      width: 100%; 
+      overflow-x: hidden; 
+      overflow-y: auto;
+    }
+
+    .kami-media__image, 
+    .kami-media__video, 
+    .kami-media__pdf {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    .kami-media__image, 
+    .kami-media__video {
+      object-fit: contain;
+    }
+
+    .kami-media__image {
+      width: fit-content;
     }
   `;
 
@@ -68,21 +101,33 @@ export default class KamiMedia extends LitElement {
 
   private renderImage() {
     return html`
-      <img src="${this.src}">
+      <img 
+        class="kami-media__image" 
+        style="max-height: ${this.height}; max-width: ${this.width};"
+        src="${this.src}"
+      >
     `;
   }
 
   private renderVideo() {
     return html`
-      <video controls>
-        <source src="${this.src}" type="${this.type}">
-      </video>
+      <video 
+        class="kami-media__video" 
+        style="max-height: ${this.height}; max-width: ${this.width};"
+        src="${this.src}"
+        controls
+      ></video>
     `;
   }
 
   private renderPDF() {
     return html`
-      <kami-pdf src="${this.src}"></kami-pdf>
+      <div 
+        class="kami-media__container" 
+        style="max-height: ${this.height}; max-width: ${this.width};"
+      >
+        <kami-pdf class="kami-media__pdf" src="${this.src}"></kami-pdf>
+      </div>
     `;
   }
 
@@ -94,7 +139,10 @@ export default class KamiMedia extends LitElement {
 
   protected render() {
     return html`
-      <div class="kami-media" style="max-height: ${this.height}; max-width: ${this.width}">
+      <div 
+        class="kami-media" 
+        style="max-height: ${this.height}; max-width: ${this.width};"
+      >
         ${this.isImage ? this.renderImage() : ''}
         ${this.isVideo ? this.renderVideo() : ''}
         ${this.isPDF ? this.renderPDF() : ''}
