@@ -139,15 +139,20 @@ export default class KamiMedia extends LitElement {
   }
 
   protected updated() {
-    if (
-      !this.media
-      || (!(this.media instanceof HTMLVideoElement) && !(this.media instanceof HTMLAudioElement))
-    ) {
+    if (!this.media || !(this.media instanceof HTMLMediaElement)) {
       return;
     }
 
     this.media.muted = this.muted;
     this.media.volume = this.volume;
+  }
+
+  public fullscreen() {
+    if (!this.media) {
+      return;
+    }
+
+    this.media.requestFullscreen();
   }
 
   private renderImage() {
