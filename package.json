@@ -29,6 +29,7 @@
   },
   "workspaces": [
     "./packages/pdf",
+    "./packages/media",
     "./packages/transition",
     "./packages/search-bar",
     "./packages/progress-bar",
