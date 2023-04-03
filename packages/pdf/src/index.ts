@@ -5,7 +5,7 @@ import {
   query,
   queryAll,
 } from 'lit/decorators.js';
-import { getDocument, GlobalWorkerOptions, PDFDocumentProxy } from 'pdfjs-dist/build/pdf.min.js';
+import { getDocument, GlobalWorkerOptions, PDFDocumentProxy } from 'pdfjs-dist';
 import worker from 'pdfjs-dist/build/pdf.worker.min.js?url';
 
 GlobalWorkerOptions.workerSrc = worker;

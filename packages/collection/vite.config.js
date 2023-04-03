@@ -8,13 +8,7 @@ module.exports = defineConfig({
       entry: resolve(__dirname, 'src/kami-collection.ts'),
       name: 'KamiCollection',
       fileName: (format) => `kami-collection.${format}.js`
-    },
-    rollupOptions: {
-      external: [
-        'pdfjs-dist/build/pdf.min.js',
-        'pdfjs-dist/build/pdf.worker.min.js?url',
-      ],
-    },
+    }
   },
   plugins: [dts()]
 })
