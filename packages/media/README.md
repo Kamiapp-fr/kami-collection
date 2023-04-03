@@ -18,7 +18,7 @@ import '@kamiapp/media';
 And use the component directly into your html :
 
 ```html
-<kami-media></kami-media>
+<kami-media src="/img/egypte.jpg"></kami-media>
 ```
 ## Documentation
 

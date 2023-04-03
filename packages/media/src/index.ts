@@ -12,6 +12,37 @@ if (!customElements.get('kami-pdf')) {
   customElements.define('kami-pdf', KamiPdf);
 }
 
+/**
+ * @summary A viewer element which can read all type of media.
+ * @tag kami-media
+ *
+ * @property {string} extension  - *(readonly)* Get extension of the media.
+ * @property {string} type  - *(readonly)* Get the type mime of the media.
+ * @property {string} isVideo  - *(readonly)* Return true if media is a video.
+ * @property {string} isImage  - *(readonly)* Return true if media is an image.
+ * @property {string} isAudio  - *(readonly)* Return true if media is an audio.
+ * @property {string} isPDF  - *(readonly)* Return true if media is a pdf.
+ * @property {string} isUnknow  - *(readonly)* Return true if media is not supported.
+ *
+ * @property {string} src - Source of the media.
+ * @property {string?} alt - Defines an alternative text description of the image.
+ * @property {boolean} controls -  Allow the user to control video or audio playback.
+ * @property {boolean} autoplay -  Video or audio are automatically begins to play.
+ * @property {boolean} loop - Automatically replay the video or audio at the end of it.
+ * @property {boolean} muted - Mute the video or audio.
+ * @property {number} volume - Define the volume of the video or audio.
+ * @property {string} height - Height of the media.
+ * @property {string} width - Width of the media.
+ * @property {string?} crossorigin - Indicates whether to use CORS to fetch the related media.
+ * @property {string?} loading - Indicates how the browser should load the image.
+ *
+ * @cssprop [--kami-media-radius=10px] - Border raduis of the media
+ * @cssprop [--kami-media-object-fit=contain] - Object fit of the media (only for video and image).
+ *
+ * @cssprop [--kami-theme-background=transparent] - Background color of the media.
+ *
+ * @slot unknown - Displayed when media is not supported.
+ */
 @customElement('kami-media')
 export default class KamiMedia extends LitElement {
   static styles = css`
@@ -21,8 +52,8 @@ export default class KamiMedia extends LitElement {
       justify-content: center;
       height: 100%;
       width: 100%;
-      background: var(--kami-theme-background);
-      border-radius: 10px;
+      background: var(--kami-theme-background, transparent);
+      border-radius: var(--kami-media-radius, 10px);
       overflow: hidden;
     }
 
@@ -42,12 +73,12 @@ export default class KamiMedia extends LitElement {
     .kami-media__pdf {
       width: 100%;
       height: 100%;
-      border-radius: 10px;
+      border-radius: var(--kami-media-radius, 10px);
     }
 
     .kami-media__image, 
     .kami-media__video {
-      object-fit: contain;
+      object-fit: var(--kami-media-object-fit, contain);
     }
 
     .kami-media__image {
@@ -147,6 +178,12 @@ export default class KamiMedia extends LitElement {
     this.media.volume = this.volume;
   }
 
+  /**
+   * Display the current media in fullscreen.
+   * It use the `requestFullscreen()` element method.
+   * This can only be call by a gesture from the user.
+   * @returns
+   */
   public fullscreen() {
     if (!this.media) {
       return;

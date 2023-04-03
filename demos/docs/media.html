@@ -1,7 +1,8 @@
 {{> header }}
 <guide-element name="Media" element="kami-media">
   <script type="text/markdown">    
-      TODO: Add description
+      This component is designed to display and play all types of media files including images, videos, and audio files. 
+      It also allow you to display pdf using  `kami-pdf`. To use it, just a `src` attribute is needed with your file path.
       
       ## Install 
       
@@ -15,12 +16,33 @@
       
       ```html
       <body>
-        <kami-media></kami-media>
+        <kami-media src="/img/egypte.jpg"></kami-media>
       
         &lt;script type="module"&gt;
           import '@kamiapp/media';
         &lt;/script&gt;
       </body>
+      ```
+
+      The `src` attribute specifies the path to the media file that you want to display. You can use relative or absolute paths depending on your application's setup.
+      By default, kami-media will display the media file in its original dimensions. However, you can specify the width and height of the element using the width and height attributes as follows:
+
+      ```html
+      <kami-media src="/img/egypte.jpg" width="500px" height="300px"></kami-media>
+      ```
+
+      `kami-media` will automatically detect the type of media file and use the appropriate HTML element to display it. 
+      For example, if the media file is an image, `kami-media` will use the img element, if it's a video, it will use the video element, and if it's an audio file, it will use the audio element.
+
+      ### Slots
+
+      The `unknown` slot feature, allow you to customize the component when the media type is not supported.
+      ```html
+      <kami-pdf src="https://your-file.unsupported">
+        <div slot="unknown">
+          <h2 style="color: var(--kami-theme-text)">File not supported</h2>
+        </div>
+      </kami-pdf>
       ```
       
       ## API      
