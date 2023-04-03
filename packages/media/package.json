@@ -1,16 +1,16 @@
 {
-  "name": "@kamiapp/pdf",
+  "name": "@kamiapp/media",
   "version": "0.0.0",
   "files": [
     "dist"
   ],
-  "main": "./dist/kami-pdf.umd.js",
-  "module": "./dist/kami-pdf.es.js",
+  "main": "./dist/kami-media.umd.js",
+  "module": "./dist/kami-media.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/kami-pdf.es.js",
-      "require": "./dist/kami-pdf.umd.js"
+      "import": "./dist/kami-media.es.js",
+      "require": "./dist/kami-media.umd.js"
     }
   },
   "scripts": {
@@ -19,11 +19,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kamiapp/pdf": "^0.x",
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "lit": "^2.2.1",
+    "mime": "^3.0.0",
     "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
+    "@types/mime": "^3.0.1",
     "typescript": "^4.9.5",
     "vite": "^4.1.3",
     "vite-plugin-dts": "1.0.4"

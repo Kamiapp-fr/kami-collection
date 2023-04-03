@@ -8,6 +8,7 @@ import glob from "glob";
 const _dirname = dirname(fileURLToPath(import.meta.url));
 
 export const alias = {
+  "@kamiapp/media": resolve(_dirname, "./packages/media/src/index.ts"),
   "@kamiapp/pdf": resolve(_dirname, "./packages/pdf/src/index.ts"),
   "@kamiapp/search-bar": resolve(_dirname, "./packages/search-bar/src/index.ts"),
   "@kamiapp/progress-bar": resolve(_dirname, "./packages/progress-bar/src/index.ts"),
@@ -34,6 +35,7 @@ export default defineConfig({
   plugins: [
     VitePluginCustomElementsManifest({
       files: [
+        './packages/media/src/index.ts',
         './packages/pdf/src/index.ts',
         './packages/search-bar/src/index.ts',
         './packages/infinite-list/src/index.ts',
