@@ -17,24 +17,22 @@
 <body>
   <kami-theme>
     <app-element><div class="playground">
-  <playground-element element="kami-theme">
-    <template data-element="kami-theme" data-target="slot">
-      <main style="background-color: var(--kami-theme-background);">
-        <h2 style="color: var(--kami-theme-text)">
-          Hello
-          <span style="color: var(--kami-theme-primary)">World</span>
-        </h2>
-      </main>
+  <playground-element element="kami-pdf">
+    <template data-element="kami-pdf" data-target="host">
+      <kami-pdf src="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf"></kami-pdf>
     </template>
-    <template data-element="kami-theme" data-target="knob" data-attr="theme" data-type="select">
-      <select>
-        <option value="" selected></option>
-        <option value="light"></option>
-        <option value="dark"></option>
-      </select> 
+    <template data-element="kami-pdf" data-target="slot">
+      <div slot="loading">
+        <h2 style="color: var(--kami-theme-text)">Loading ...</h2>
+      </div>
     </template>
   </playground-element>
 </div>
+<style>
+  ::part(demo-output) {
+    --kami-pdf-height: 70vh
+  }
+</style>
     </app-element>
   </kami-theme>
   

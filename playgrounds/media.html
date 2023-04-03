@@ -17,20 +17,25 @@
 <body>
   <kami-theme>
     <app-element><div class="playground">
-  <playground-element element="kami-theme">
-    <template data-element="kami-theme" data-target="slot">
-      <main style="background-color: var(--kami-theme-background);">
-        <h2 style="color: var(--kami-theme-text)">
-          Hello
-          <span style="color: var(--kami-theme-primary)">World</span>
-        </h2>
-      </main>
+  <playground-element element="kami-media">
+    <template data-element="kami-media" data-target="host">
+      <kami-media muted controls src="/img/pyramids.jpg" height="70vh"></kami-media>
     </template>
-    <template data-element="kami-theme" data-target="knob" data-attr="theme" data-type="select">
+    <template data-element="kami-media" data-target="slot">
+      <div slot="unknown">
+        <h2 style="color: var(--kami-theme-text)">Document type isn't supported</h2>
+      </div>
+    </template>
+    <template data-element="kami-media" data-target="knob" data-attr="src" data-type="select">
       <select>
-        <option value="" selected></option>
-        <option value="light"></option>
-        <option value="dark"></option>
+        <option value="/img/pyramids.jpg" selected></option>
+        <option value="/img/egypte.jpg"></option>
+        <option value="/img/logo.png"></option>
+        <option value="/video/sample.mp4"></option>
+        <option value="/video/sample-vertical.mp4"></option>
+        <option value="/audio/sample.mp3"></option>
+        <option value="/pdf/sample.pdf"></option>
+        <option value="/pdf/sample.unknown"></option>
       </select> 
     </template>
   </playground-element>

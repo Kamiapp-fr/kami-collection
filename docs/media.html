@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="turbo-cache-control" content="no-cache">
+  <title>Kami | Collection</title>
+  <link rel="icon" type="image/png" href="../img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script type="module" crossorigin src="/assets/main-75d42968.js"></script>
+  <link rel="stylesheet" href="/assets/main-6a2d9fc5.css">
+</head>
+<body>
+  <kami-theme>
+    <app-element><guide-element name="Media" element="kami-media">
+  <script type="text/markdown">    
+      This component is designed to display and play all types of media files including images, videos, and audio files. 
+      It also allow you to display pdf using  `kami-pdf`. To use it, just a `src` attribute is needed with your file path.
+      
+      ## Install 
+      
+      ```console
+      $ npm install --save @kamiapp/media
+      ```
+      
+      ## Usage
+      
+      Import the component using [native ESM via script tags](https://caniuse.com/es6-module) and use it directly into your html file :
+      
+      ```html
+      <body>
+        <kami-media src="/img/egypte.jpg"></kami-media>
+      
+        &lt;script type="module"&gt;
+          import '@kamiapp/media';
+        &lt;/script&gt;
+      </body>
+      ```
+
+      The `src` attribute specifies the path to the media file that you want to display. You can use relative or absolute paths depending on your application's setup.
+      By default, kami-media will display the media file in its original dimensions. However, you can specify the width and height of the element using the width and height attributes as follows:
+
+      ```html
+      <kami-media src="/img/egypte.jpg" width="500px" height="300px"></kami-media>
+      ```
+
+      `kami-media` will automatically detect the type of media file and use the appropriate HTML element to display it. 
+      For example, if the media file is an image, `kami-media` will use the img element, if it's a video, it will use the video element, and if it's an audio file, it will use the audio element.
+
+      ### Slots
+
+      The `unknown` slot feature, allow you to customize the component when the media type is not supported.
+      ```html
+      <kami-pdf src="https://your-file.unsupported">
+        <div slot="unknown">
+          <h2 style="color: var(--kami-theme-text)">File not supported</h2>
+        </div>
+      </kami-pdf>
+      ```
+      
+      ## API      
+  </script>
+</guide-element>
+    </app-element>
+  </kami-theme>
+  
+</body>
+</html>
