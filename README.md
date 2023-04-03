@@ -60,6 +60,8 @@ You can get more informations about each components into the ``packages/<compone
 | [``<kami-flash>``](./packages/flash/)                |   A simple alert component for your notifications.           | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/flash)    |                           
 | [``<kami-infinite-list>``](./packages/infinite-list/)|   Infinite list based on web component.          | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/infinite-list)    |     
 | [``<kami-markdown>``](./packages/markdown/)|  Convert markdown in html.       | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/markdown) |   
+| [``<kami-media>``](./packages/media/)|  A viewer element which can read all types of media.     | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/media) |
+| [``<kami-pdf>``](./packages/pdf/)|  A simple viewer that allows users to easily read PDF.  | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/pdf) |
 | [``<kami-theme>``](./packages/theme/)|   Light and Dark kami theme.        | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/theme) |
 | [``<kami-transition>``](./packages/transition/)|   Predefined transitions for your components.       | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/transition) |   
 | [``<kami-progress-bar>``](./packages/progress-bar/)| A simple horizontal progress bar. | ![npm (scoped)](https://img.shields.io/npm/v/@kamiapp/progress-bar) |    
