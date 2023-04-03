@@ -9,6 +9,12 @@ module.exports = defineConfig({
       name: 'KamiMedia',
       fileName: (format) => `kami-media.${format}.js`
     },
+    rollupOptions: {
+      external: [
+        'pdfjs-dist/build/pdf.min.js',
+        'pdfjs-dist/build/pdf.worker.min.js?url',
+      ],
+    },
   },
   plugins: [dts()]
 })
