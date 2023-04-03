@@ -23,6 +23,8 @@
     "@kamiapp/flash": "^0.x",
     "@kamiapp/infinite-list": "^0.x",
     "@kamiapp/markdown": "^0.x",
+    "@kamiapp/media": "^0.x",
+    "@kamiapp/pdf": "^0.x",
     "@kamiapp/progress-bar": "^0.x",
     "@kamiapp/search-bar": "^0.x",
     "@kamiapp/theme": "^0.x",
@@ -34,5 +36,8 @@
     "typescript": "^4.9.5",
     "vite": "^4.1.3",
     "vite-plugin-dts": "1.0.4"
+  },
+  "peerDependencies": {
+    "pdfjs-dist": "^3.4.120"
   }
 }

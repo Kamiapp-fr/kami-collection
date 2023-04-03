@@ -10,6 +10,8 @@ import KamiProgressBar from '@kamiapp/progress-bar';
 import KamiSearchBar from '@kamiapp/search-bar';
 import KamiTheme from '@kamiapp/theme';
 import KamiTransition from '@kamiapp/transition';
+import KamiPdf from '@kamiapp/pdf';
+import KamiMedia from '@kamiapp/media';
 
 export {
   KamiFlash,
@@ -20,4 +22,6 @@ export {
   KamiSearchBar,
   KamiMarkdown,
   KamiChangelog,
+  KamiPdf,
+  KamiMedia,
 };
