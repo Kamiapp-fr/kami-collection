@@ -1,6 +1,6 @@
 # `<kami-media>`
 
-TODO: Add description
+This component is designed to display and play all types of media files including images, videos, and audio files. It also allow you to display pdf using ``kami-pdf``. To use it, just a ``src`` attribute is needed with your file path.
 
 ## Usage
 
