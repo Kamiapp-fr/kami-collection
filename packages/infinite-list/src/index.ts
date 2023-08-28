@@ -239,20 +239,21 @@ export default class KamiInfiniteList extends LitElement {
     sort,
     search,
   }: KamiInfiniteListQuery) {
-    const url = new URL(src);
+    const [url, base] = src.split('?');
+    const params = new URLSearchParams(base);
 
-    url.searchParams.append(this.queryLimit, (limit || this.limit).toString());
-    url.searchParams.append(this.queryPage, (page || this.page).toString());
+    params.append(this.queryLimit, (limit || this.limit).toString());
+    params.append(this.queryPage, (page || this.page).toString());
 
     if (search) {
-      url.searchParams.append(this.querySearch, search);
+      params.append(this.querySearch, search);
     }
 
     if (sort) {
-      url.searchParams.append(this.querySort, sort.toString());
+      params.append(this.querySort, sort.toString());
     }
 
-    const response = await fetch(url.toString());
+    const response = await fetch(`${url.toString()}?${params.toString()}`);
     const data = await response.json();
 
     if (this.nested && data[this.nested]) {
