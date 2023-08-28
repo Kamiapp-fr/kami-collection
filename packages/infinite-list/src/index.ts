@@ -13,6 +13,8 @@ interface KamiInfiniteListQuery {
   search?: string,
 }
 
+type KamiInfiniteListMap = { [k:string]: unknown };
+
 if (!customElements.get('kami-search-bar')) {
   customElements.define('kami-search-bar', KamiSearchBar);
 }
@@ -37,6 +39,7 @@ if (!customElements.get('kami-search-bar')) {
  * @property {number?} loadingAt - Define when data must be loaded.
  * @property {boolean?} useSearchBar - Display the **kami-search-bar**.
  * @property {string?} nested - Get data from a nested field.
+ * @property {string[]?} stringify - Fields of the data to be stringified.
  *
  * @cssprop [--kami-infinite-list-height=100%] - Height of the list.
  * @cssprop [--kami-infinite-list-display=block] - Display style of the list.
@@ -139,6 +142,9 @@ export default class KamiInfiniteList extends LitElement {
 
   @property({ type: String })
   public nested?: string;
+
+  @property({ type: Array })
+  public stringify: string[] = [];
 
   private template?: HTMLTemplateElement;
 
@@ -292,7 +298,7 @@ export default class KamiInfiniteList extends LitElement {
     item.classList.add('kami-infinite-list__item');
     template.innerHTML = Mustache.render(
       template.innerHTML,
-      data,
+      this.stringifyData(data),
       {},
       this.delimiters,
     );
@@ -300,6 +306,21 @@ export default class KamiInfiniteList extends LitElement {
     item.append(document.importNode(template.content, true));
 
     return item;
+  }
+
+  private stringifyData(data: unknown): KamiInfiniteListMap | unknown {
+    if (!data || typeof data !== 'object') {
+      return data;
+    }
+
+    const typed = data as KamiInfiniteListMap;
+
+    return Object.keys(typed).reduce((prev, key) => ({
+      ...prev,
+      [key]: this.stringify.includes(key)
+        ? JSON.stringify(typed[key])
+        : typed[key],
+    }), {});
   }
 
   private async onScroll() {
