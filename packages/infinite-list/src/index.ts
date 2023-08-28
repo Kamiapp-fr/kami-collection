@@ -40,6 +40,8 @@ if (!customElements.get('kami-search-bar')) {
  * @property {boolean?} useSearchBar - Display the **kami-search-bar**.
  * @property {string?} nested - Get data from a nested field.
  * @property {string[]?} stringify - Fields of the data to be stringified.
+ * @property {string?} height - Specifies the height of the list.
+ * @property {string?} width - Specifies the width of the list.
  *
  * @cssprop [--kami-infinite-list-height=100%] - Height of the list.
  * @cssprop [--kami-infinite-list-display=block] - Display style of the list.
@@ -140,11 +142,17 @@ export default class KamiInfiniteList extends LitElement {
   @property({ type: Boolean, attribute: 'use-search-bar' })
   public useSearchBar = false;
 
+  @property({ type: Array })
+  public stringify: string[] = [];
+
   @property({ type: String })
   public nested?: string;
 
-  @property({ type: Array })
-  public stringify: string[] = [];
+  @property({ type: String })
+  public height?: string;
+
+  @property({ type: String })
+  public width?: string;
 
   private template?: HTMLTemplateElement;
 
@@ -386,7 +394,13 @@ export default class KamiInfiniteList extends LitElement {
 
   protected render() {
     return html`
-      <div class="kami-infinite-list">
+      <div 
+        class="kami-infinite-list" 
+        style="
+          ${this.height ? `height: ${this.height};` : ''}
+          ${this.width ? `width: ${this.width};` : ''}
+        "
+      >
         ${this.renderSearchBar()}  
         <div 
           id="container" 
