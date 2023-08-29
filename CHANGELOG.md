@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2023-08-29
+### Added
+- **infinite-list**: Included `width` and `height` attributes.
+- **infinite-list**: Added support for relative URLs within the `src` attribute.
+- **infinite-list**: Added the `stringify` attribute to convert a specific data field retrieved from `src` into a string.
+
+### Fixed
+- **infinite-list**: Fixed the issue of scrolling getting stuck within the playground.
+
 ## [0.6.1] - 2023-04-03
 ### Fixed
 - **pdf**: Add `pdfjs-dist` into the final bundle. This prevent error when you don't use a bundle system.
@@ -162,7 +171,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improves typing for packages and demo.
 - Improves CI/CD using github action.
 
-[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.6.1...HEAD
+[Unreleased]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.6.1...v0.7.0
 [0.6.1]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/Kamiapp-fr/kami-collection/compare/v0.4.3...v0.5.0
