@@ -20,6 +20,7 @@ if (!customElements.get('kami-transition')) {
  * @property {number} sort - Set the sort button to **asc** or **desc** *(1 or -1)*.
  * @property {string} placeholder - This input placeholder.
  * @property {boolean} disableSort - Hide the sort button.
+ * @property {boolean} disableReset - Hide the reset button.
  *
  * @cssprop [--kami-search-border-color=rgba(var(--kami-theme-text-rgb), 0.2)] - Border color.
  * @cssprop [--kami-search-border-size=1px] - Border size.
@@ -131,6 +132,9 @@ export default class KamiSearchBar extends LitElement {
   @property({ type: Boolean, attribute: 'disable-sort' })
   public disableSort = false;
 
+  @property({ type: Boolean, attribute: 'disable-reset' })
+  public disableReset = false;
+
   @query('#search')
   private searchEl!: HTMLInputElement;
 
@@ -213,7 +217,13 @@ export default class KamiSearchBar extends LitElement {
         >
 
         <div class="kami-search-bar__action">
-          <kami-transition transition="slide-x" duration="200" from="10" to="1" show="${this.value !== ''}">
+          <kami-transition 
+            transition="slide-x" 
+            duration="200" 
+            from="10" 
+            to="1" 
+            show="${this.value !== '' && !this.disableReset}"
+          >
             <div @click="${this.onReset}" class="kami-search-bar__close">
               ${this.renderIcon(mdiClose)}
             </div>
