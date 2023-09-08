@@ -56,6 +56,7 @@ if (!customElements.get('kami-search-bar')) {
  * @fires click-item - Emitted when an item of the list is clicked.
  *
  * @slot loading - Displayed when data are loading.
+ * @slot no-data - Displayed when no data are loaded.
  */
 @customElement('kami-infinite-list')
 export default class KamiInfiniteList extends LitElement {
@@ -171,6 +172,9 @@ export default class KamiInfiniteList extends LitElement {
   @query('#loading')
   private loadingSlot!: HTMLSlotElement;
 
+  @query('#no-data')
+  private noDataSlot!: HTMLSlotElement;
+
   protected async firstUpdated() {
     if (!(this.querySelector('template') instanceof HTMLTemplateElement) || !this.src) {
       return;
@@ -219,6 +223,7 @@ export default class KamiInfiniteList extends LitElement {
 
     this.isLoading = true;
     this.loadingSlot.style.display = 'block';
+    this.noDataSlot.style.display = 'none';
     this.dispatchEvent(new CustomEvent('loading-data'));
 
     try {
@@ -235,6 +240,7 @@ export default class KamiInfiniteList extends LitElement {
 
       if (data.length === 0) {
         this.end = true;
+        this.noDataSlot.style.display = 'block';
       }
 
       this.loadingSlot.style.display = 'none';
@@ -407,8 +413,8 @@ export default class KamiInfiniteList extends LitElement {
           class="kami-infinite-list__container" 
           @scroll="${this.onScroll}" 
         >
-
           <slot id="loading" name="loading"></slot>
+          <slot id="no-data" name="no-data" style="display: none;"></slot>
         </div>
       </div>
     `;
