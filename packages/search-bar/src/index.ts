@@ -36,6 +36,7 @@ if (!customElements.get('kami-transition')) {
  * @fires change - Emitted when the search is updated
  * @fires sort - Emitted when the sort button is clicked
  * @fires clear - Emitted when the search input is clear
+ * @fires reset - Emitted when the reset button is clicked
  */
 @customElement('kami-search-bar')
 export default class KamiSearchBar extends LitElement {
@@ -152,6 +153,10 @@ export default class KamiSearchBar extends LitElement {
     }));
   }
 
+  private emitResetEvent() {
+    this.dispatchEvent(new CustomEvent('reset'));
+  }
+
   private emitClearEvent() {
     this.dispatchEvent(new CustomEvent('clear'));
   }
@@ -173,9 +178,10 @@ export default class KamiSearchBar extends LitElement {
     }
   }
 
-  private onClear() {
+  private onReset() {
     this.value = '';
     this.searchEl.value = '';
+    this.emitResetEvent();
     this.emitClearEvent();
   }
 
@@ -208,7 +214,7 @@ export default class KamiSearchBar extends LitElement {
 
         <div class="kami-search-bar__action">
           <kami-transition transition="slide-x" duration="200" from="10" to="1" show="${this.value !== ''}">
-            <div @click="${this.onClear}" class="kami-search-bar__close">
+            <div @click="${this.onReset}" class="kami-search-bar__close">
               ${this.renderIcon(mdiClose)}
             </div>
           </kami-transition>
